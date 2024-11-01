@@ -1,4 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<session version="1.0">
-<refactoring comment="Rename resource &apos;StudyJavascript/src/main/webapp/js_041031&apos; to &apos;js04_1031&apos;" description="Rename resource &apos;js_041031&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="src/main/webapp/js_041031" name="js04_1031" stamp="1730335996788" updateReferences="true"/>
-</session>
