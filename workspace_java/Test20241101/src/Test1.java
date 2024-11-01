@@ -73,20 +73,20 @@ public class Test1 {
 		
 		
 		int age1 = 5 ;
-		if (age<5 || age >=65) {
+		if (age1<5 || age1 >=65) {
 			System.out.println("무료입장");
 		} else {
-			System.out.println("입자료 1000원");
+			System.out.println("입장료 1000원");
 		}
 		
+		// num 변수 3의 배수이면서 5의 배수 인 경우
 		
-		
-		
-		
-		
-		
-		
-		
-		
+		int num4 = 30 ; 
+		if (num4 %3==0 || num%5==0) { 
+			System.out.println("3의 배수 이거나 5의 배수");
+		} else { 
+			System.out.println("3의 배수도 5의 배수도 아님 ");
+		}
+	
 	}
 }
