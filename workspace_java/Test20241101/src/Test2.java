@@ -11,7 +11,22 @@ public class Test2 {
 		} else if (num>0) {
 			System.out.println(num + ": 양수");
 		} else {
-			System.out.println(num);
+			System.out.println(num + ": 영");
+		}
+		
+		
+		//놀이공원 입장료 계산
+		// 취학 전 아동(8세 미만 ) 1000원
+		
+		int age=14;
+		if (age<8) {
+			System.out.println(age+"세의 입장료 : 1000원");
+		} else if (age<14) {
+			System.out.println(age+"세의 입장료 : 2000원");
+		} else if (age <20){
+			System.out.println(age+"세의 입장료 : 2500원");
+		} else {
+			System.out.println(age+"세의 입장료 : 3000원");
 		}
 	}
 }
