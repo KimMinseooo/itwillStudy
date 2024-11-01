@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+<script>
+	// 변수 선언문의 차이점 ( var vs let  vs const )
+	// 1 . var 사용하여 변수 선언 시 동일한 이름의 변수를 다시 선언(중복)하더라도
+	// 	사용 가능하며 다른 타입 또는 다른 값의 데이터로 변경 시에도 문제 발생하지 않음 
+	// => 단, 개발자의 실수로 중복선언이 되었더라도 그대로 사용되므로 개발 과정에서 문제 발생 가능성 있음 
+	
+	var num1 = 10 ;
+	console.log(num1 + " : " + typeof(num1));
+	
+
+</script>
+
+</head>
+<body>
+
+</body>
+</html>

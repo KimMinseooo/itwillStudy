@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+<script type="text/javascript">
+	// [자바스크립트의 연산자 ]
+
+	let a= 10 ; 
+	console.log("a = " + a );
+	
+	a += 1 ;
+	console.log("a = " + a); 
+	
+	a += 1 ;
+	console.log("a = " + a); 
+	
+	 a++;
+	 console.log("a = " + a);
+	 
+	 let b = a++ + 5; 
+	 console.log("a= " + a +" b = " + b);
+	 
+	 let a2 = 10 ;
+	 let b2 = ++a2 + 5 ;
+	 console.log("a2= " + a2 +" b2 = " + b2);
+	 
+	 // 비교연산자 (관계연산자)를 통한 문자열의 크기 비교 
+	 console.log("A > a = " + ("A" > "a"));	 
+	 
+	 console.log("javascript > Javascript = " + ("javascript" > "Javascript"));
+	 // 첫글자부터 차례대로 비교 시 소문자  j가 대문자 J 보다 크므로 true 
+	 console.log("JavaScript > Javascript = " + ("JavaScript" > "Javascript"));
+	 
+	 // 연산 과정에서 데이터타입의 자동 형변환 
+	 // 덧셈연산자는 문자열과 함께 사용 시 문자열 결합으로 사용됨
+	 console.log("정수2 + 문자열2 = " + (2+"2"));
+	 // 덧셈연산자를 제외한 산술연산자는 숫자데이터로 일치 시킨 후 연산을 수행
+	 console.log("정수2 * 문자열2 = " + (2*"2"));
+	 
+	 console.log("정수2 == 문자열2 = " + (2 =="2"));
+	 console.log("정수2 > 문자열2 =" + (2 > "2")); // 값이 같으므로 false
+	 
+	 
+</script>
+
+
+
+
+
+
+</head>
+<body>
+
+</body>
+</html>

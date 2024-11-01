@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h1>test6.html - img 태그 </h1>
+	
+	<img src="1.jpg" width="1000" height="500" title="해변가"><br>
+	<img src="3.jpg" width="100" height="100" alt="이미지를 불러올 수 없습니다">
+	<hr>
+	<img alt="" src="today_image/2.jpg" width="1000" height="200">
+	<img alt="" src="../images/3.jpg" width="200" height="200">
+	
+</body>
+</html>

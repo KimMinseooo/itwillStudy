@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+
+let num3 = 0; 
+console.log("num3 = "+ num3);
+
+// 변수 num3에 대해 "양수","음수""0이다!" 세 가지 경우의 수 판별
+	let msg;
+	if(num3 > 0) {
+		msg ="양수";
+	} else if (num3 < 0) {
+		msg ="음수";
+	} else {
+		msg ="0이다";
+	}
+	console.log(msg);
+
+</script>
+</head>
+<body>
+
+</body>
+</html>

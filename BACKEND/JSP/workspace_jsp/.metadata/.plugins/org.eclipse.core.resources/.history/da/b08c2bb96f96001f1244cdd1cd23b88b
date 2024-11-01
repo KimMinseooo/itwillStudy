@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+
+/* 
+	- 함수와 연산자에 전달되는 값은 대부분 적절한 데이터타입(자료형)으로 자동 형변환 일어남 
+	ex) prompt() 함수로 입력받은 숫자는 string 타입이며 number 타입과 연산 시 
+		string 타입으로 자동 형변환이 일어남(타입을 일치시킨 후 연산을 수행)
+*
+*	=>대표적인 타입 이름(string, number, boolean 등)의 첫글자를 대문자로 지정
+*	=> ex) 변수 num의 값을 string 타입으로 변환시 : String(num)
+*
+*/
+
+// 	let data =prompt("입력");
+// 	console.log(data + ": " + typeof(data));
+	
+	// 1. 문자열(string) 타입으로 변환
+	let value1 =10 ;
+	console.log(value1 + ": " +typeof(value1));
+	
+	value1 = String(value1);
+	console.log(value1 + ": " +typeof(value1));
+	
+	let value2 = true;
+	console.log(value2 + ": " +typeof(value2));
+// 	value2 = String(value2);
+// 	console.log(value2 + ": " +typeof(value2));
+
+	//문자열 타입으로 변환 시 형변환 연산자 대신 널스트링("")과 결합연산자를 사용해도 동일
+	value2+="";
+	console.log(value2 + ": " +typeof(value2));
+	
+// 	2. 숫자(number) 타입으로 형변환
+// 		- 수학과 관련된 함수 및 연산 과정 등에서 자동으로 number 타입으로 형변환 일어남
+// 		ex) 문자열형숫자("10") / 문자열형숫자("2") = 두 데이터 모두 number 타입 변환 후 연산
+// 		-단, 덧셈연산자의 경우 문자열과 연산 수행 시 연결연산자로 사용되어 
+// 		=> 숫자 타입으로 강제 형변환 후 덧셈 연산 수행 필수! 
+	console.log("문자열10 / 문자열2 =" + ("10"/"2"));
+	console.log("문자열10 + 문자열2 =" + ("10"+"2"));
+	
+	
+	console.log("Number(문자열10) + Number(문자열2) = " + (Number("10") + Number("2")));
+	
+	
+	
+	
+	
+	
+	
+</script>
+</head>
+<body>
+
+</body>
+</html>

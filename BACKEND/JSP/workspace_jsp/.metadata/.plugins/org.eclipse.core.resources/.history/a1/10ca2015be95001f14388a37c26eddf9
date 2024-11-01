@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+<script type="text/javascript">
+	// [자바스크립트의 연산자 ]
+
+	let a= 10 ; 
+	console.log("a = " + a );
+	
+	a += 1 ;
+	console.log("a = " + a); 
+	
+	a += 1 ;
+	console.log("a = " + a); 
+	
+	 a++;
+	 console.log("a = " + a);
+	 
+	 let b = a++ + 5; 
+	 console.log("a= " + a +" b = " + b);
+	 
+	 let a2 = 10 ;
+	 let b2 = ++a2 + 5 ;
+	 console.log("a2= " + a2 +" b2 = " + b2);
+	 
+	 
+	 
+	 
+	 
+</script>
+
+
+
+
+
+
+</head>
+<body>
+
+</body>
+</html>

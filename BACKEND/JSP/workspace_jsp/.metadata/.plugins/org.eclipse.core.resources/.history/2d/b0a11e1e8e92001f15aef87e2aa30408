@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+	<h1>table 태그</h1>
+	<table border="1">
+		<tr>
+			<th colspan="6">2강 시간표</th> <!-- th태그(주로 제목열)는 진하게 표시 , 중앙정렬이 기본값  -->
+		</tr>
+		<tr>  <!-- 1행 -->
+			<th width="100"></th>
+			<th width="100">월요일</th>
+			<th width="100">화요일</th>
+			<th width="100">수요일</th>
+			<th width="100">목요일</th>
+			<th width="100">금요일</th>
+			<th></th>
+		</tr>
+		<tr>
+			<td >1교시</td>
+			<td align="center" >백엔드</td>
+			<td align="center">JAVA</td>
+			<td align="center">백엔드</td>
+			<td align="center">JAVA</td>
+			<td align="center">백엔드</td>
+		</tr>
+		<tr>
+			<td >2교시</td>
+			<td align="center">DB</td>
+			<td align="center">백엔드</td>
+			<td align="center">프로젝트</td>
+			<td align="center">DB</td>
+			<td align="center">JAVA</td>
+		</tr>
+					
+	</table>
+	<hr>
+	<br>
+	<table border="1">
+		<tr>
+			<td colspan="4">1</td>
+<!-- 			<td>2</td>          한줄씩 주석 방법 : ctrl + shift + c       -->
+<!-- 			<td>3</td> --> 
+<!-- 			<td>4</td> -->
+		</tr>
+		<tr>
+			<td rowspan="2">5</td>
+			<td>6</td>
+			<td rowspan="2" colspan="2">7</td>
+<!-- 			<td>8</td> -->
+		</tr>
+		<tr>
+<!-- 		<td>9</td>     5에 의해서 9가 있던 1열이 병합되었으므로 9는 옆으로 밀려남     -->
+			<td>10</td>
+<!-- 			<td>11</td> -->
+<!-- 			<td>12</td> -->
+		</tr>
+
+
+
+	</table>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h1>test6.html - img 태그 </h1>
+	
+	<!-- 
+		서버(또는 컴퓨터) 상의 자원에 접근하기 위해 대상을 지정할 때 (ex. 하이퍼링크, 이미지 태그 등) 
+		대상의 위치를 절대 경로 및 상대 경로 지정 방식으로 지정 가능 
+		
+		1.절대 경로 : 어느 위치에서 시작하더라도 무조건 접근 가능한 경로 
+					주로 , 인터넷 상의 URL이 절대 경로 사용 
+					ex) http://www.itwillbs.co.kr
+					ex) D:/Shared/JSP/....
+					
+		2.상대 경로 : 자신의 현재 위치에 따라 상대적으로 변하는 경로 
+					1) 최상위 경로 : /
+					2) 현재 경로 : ./
+					3) 상위 경로: ../
+					4) 하위 경로: 경로명
+	 -->
+	
+	<img src="1.jpg" width="1000" height="500" title="해변가"><br>
+	<img src="3.jpg" width="100" height="100" alt="이미지를 불러올 수 없습니다" >
+	<hr>
+	<img alt="" src="today_image/2.jpg" width="1000" height="500"> <br>
+	<img alt="" src="../images/3.jpg" width="200" height="200">
+	
+	<img src="D:/BACKEND/JSP/workspace_jsp/StudyHTML/src/main/webapp/1024/1.jpg" width="100" height="50" title="해변가"><br>
+	<!-- 톰켓을 통한 접근 시 절대경로는 HTML 요청 주소와 동일한 구조 사용해야함 -->
+	<img src="http://localhost:8080/StudyHTML/1024/1.jpg" width="1000" height="500" title="해변가"><br>
+	<img src="http://localhost:8080/StudyHTML/1024/today_image/2.jpg" width="100" height="50" title="해변가"><br>
+	<img src="http://localhost:8080/StudyHTML/images/3.jpg" width="100" height="50" title="해변가"><br>
+	
+	<img alt="이미지를 불러올 수 없습니다"src="http://192.168.2.200/Shared/BACKEND/images/3.jpg" width="100" height="50" title="해변가"><br>
+	
+</body>
+</html>
