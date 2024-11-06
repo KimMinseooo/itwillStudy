@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-
+<script src="test16_exam2_function.js"></script>
 <script type="text/javascript">
 
 /*
@@ -23,32 +23,123 @@
 
 */
 	
+	// 돌려서 출력하는 문제는 거의 배열을 두배로 만들어서 출력하면 가능 ~!
+	let arr2 =[1,2,3,4,5];
+	
+	
+	// 나눈 나머지 ( 반대로 돌려야한다면 ...) 
+	for (let i =0;i<arr2.length;i++) {
+		for (let j=0;j<arr2.length;j++) {
+			let index= (j - i + arr2.length) % arr2.length;
+// 			document.write(index +" ");
+			document.write(arr2[index] + " ");
+		}
+		document.write("<br>");
+	}
+	
+	document.write("===================<br>");
+	
+	
+	
+	// 나눈 나머지 version( %연산 ) 
+	for (let i=0;i<arr2.length;i++) {  // 라인수
+		for (let j=0;j<arr2.length;j++) { // 배열 접근
+			let index =(i+j)%arr2.length;
+			document.write(arr2[index] +" ");
+		}
+		document.write("<br>");
+	}
+	
+	
+	let arr = [1,2,3,4,5,1,2,3,4,5];
+	// ==================================================
+	// 배열 2배 version	
+	for (let i=0;i<arr.len/2;i++) {
+		for(let j =i;j<arr.length/2+i;j++) {
+			document.write(arr[j] +" ");
+		}
+		document.write("<br>");
+		
+	}
+	
+	
+	
 // 	let arr =[1,2,3,4,5];
 	
 // 	console.log(arr);
 // 	let cnt =5;
+
+/*
 	let cnt =Number(prompt("숫자를 입력하세요"));
 	let arr =new Array(cnt);
 // 	console.log(arr);
-	
 	for(let i=0;i<arr.length;i++) {
 		arr[i]=Number(prompt("숫자입력"));
 	}
+
+	//함수 version (외부 js 파일) 
+	for (let i=0;i<cnt;i++) {
+		printArray(arr);
+		rotation(arr);
+	}
+*/
+
 	
-		while(cnt>0) {
+/*
+	// 함수 version 
+	// 함수는 적당한 크기로 만드는 것이 중요하다! 
+	for (let i=0;i<cnt;i++) {
+		printArray();
+		rotation();
+	}
+	// 배열 출력 
+	function printArray () {
+		
+		for (let i=0;i<arr.length;i++) {
+			document.write(arr[i]+" ");	
+		}
+		
+		document.write("<br>");
+	}
+	// 배열안에 데이터를 옮기는 작업 (한바퀴 돌리기)
+	function rotation () {
+		let tmp =arr[0];
+		
+		for (let j=0;j<arr.length;j++) {
+		  // 1 2 3 4 5 
+			arr[j]=arr[j+1];
+		  
+			if (j == arr.length-1) {
+				arr[j]=tmp;
+			}
+		}
+	}
+*/
+
+
+
+// 	-----------------------------------------------------------
+/*
+		for (let i=0;i<cnt;i++) {
+			
+			for (let j=0;j<arr.length;j++) {
+				document.write(arr[j]+" ");	
+			}
+			document.write("<br>");
+			
 			console.log(arr);
 			let tmp =arr[0];
 		
-			for (let i=0;i<arr.length;i++) {
+			for (let j=0;j<arr.length;j++) {
 			  // 1 2 3 4 5 
-				arr[i]=arr[i+1];
-				if (i == arr.length-1) {
-					arr[i]=tmp;
+				arr[j]=arr[j+1];
+			  
+				if (j == arr.length-1) {
+					arr[j]=tmp;
 				}
 			}
-			cnt--;
 		}
-
+*/
 
 </script>
 
