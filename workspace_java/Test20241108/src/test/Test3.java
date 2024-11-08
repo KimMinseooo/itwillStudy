@@ -124,8 +124,8 @@ public class Test3 {
 		System.out.println("============================================");
 		
 		// 마름모 구하기 
-		int num =11;    // 홀수이면 뭐든지 가능 !  
-		int space = num/2;  //5  1 5 
+		int num =5;    // 홀수이면 뭐든지 가능 !  
+		int space = num/2;  //5  1 5  5/2  0~2
 							//4  3 4
 		
 		int star =1; 
