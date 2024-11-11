@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+
+
+
+
+
+// 	let nameElement = document.getElementById("name");
+// 	console.log(nameElement);
+
+// debugger; 
+
+window.onload = function (){
+	let nameElement = document.getElementById("name");
+	console.log(nameElement);
+	
+	nameElement.value="홍길동";
+	
+	document.getElementById('name2').value = "자바스크립트";
+	
+	// id 선택자가 "header1" 인 요소의 배경색(style.background)을 "SKYBLUE" 로 변경
+	document.getElementById('header1').style.background = "SKYBLUE";
+	
+	// =====================================================================
+	// class 선택자를 통해 단일 또는 복수개의 요소에 접근
+	// => document.getElementByClassName() 메서드 사용
+	// 주의! => getElementsByClassName() 메서드로 id 지정 불가!
+	let header3 = document.getElementsByClassName("header3");
+	console.log(header3);
+	// class는 배열이기때문에 [index]로 접근해야함 
+	header3[0].style.background="PINK";
+	
+	let header = document.getElementsByClassName("header");
+	
+// 	for (let i =0;i<header.length;i++) {
+// 		header[i].style.background="LIME";
+// 		header[i].style.color = "MAGENTA";
+// 	}
+	
+	// 향상된 for문
+	for (let h of header) { 
+		h.style.background="LIME";
+		h.style.color = "YELLOW";
+	}
+	
+	// ===============================================
+	// 태그 선택자를 통해 클래스 선택자와 마찬가지로 복수개의 요소에 접근 가능 
+	let tagsH3= document.getElementsByTagName("h3");
+	console.log(tagsH3);
+	
+	for (let tag of tagsH3) {
+		tag.style.background = "YELLOW";
+	}
+	
+}
+</script>
+</head>
+<body>
+
+	<h1>test23.html</h1>
+	<input type="text" id="name" placeholder="id 속성값 name" >
+	<input type="text" id="name2" placeholder="id 속성값 name2" >
+	<hr>
+	
+	<h3 id="header1">Header - 1</h3>
+	<h3 id="header2">Header - 2</h3>
+	<h3 id="header3" class= "header3">Header - 3</h3>
+	<h3 id="header4" class="header">Header - 4</h3>
+	<h3 class="header">Header - 5</h3>
+	<h3 class="header">Header - 6</h3>
+	
+	
+	
+	
+	
+	
+</body>
+</html>
