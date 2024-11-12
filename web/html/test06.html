@@ -1,0 +1,101 @@
+﻿<html>
+ <head>
+	<title>a로 링크 걸기</title>
+ </head>
+<body>
+<!-- nav는 메뉴 영역을 나타내는 tag임 -->
+<nav>
+	<a href="test06.html"> 링크수업-1</a>
+	<a href="test06-1.html"> 링크수업-2</a>
+</nav>
+<hr>
+<h1>a로 링크 걸기</h1>
+<hr>
+ <p> 
+		&lt;a href="경로"&gt; ... &lt;/a&gt; 	 <br>
+	링크 걸린 텍스트는 밑줄이 생기고 마우스오버시 커서는 손모양으로 바뀌며, <br>
+	색상은 (초기링크=파랑/활성화링크=빨강/방문한링크=보라) 중에서 나타남
+ </p>
+
+<h2>절대경로로 링크 걸기(URL)</h2>
+	<a href="https://www.w3schools.com/">w3schools.com</a> 
+	<a href="https://www.naver.com/">naver</a>
+
+<h2> 상대경로로 링크 걸기</h2>
+ <ol>
+	<li>웹페이지(*.htm/*.html) <br>
+		<a href="test05.htm">이미지 수업 보기</a>
+		<a href="test04.htm">table수업 보기</a>
+	</li>
+
+	<li> 이미지(*.gif/*.jpg/*.png) <br>
+		<a href="img/dried-flowers.jpg">photo</a>
+		<a href="img/gif/dog.gif">움짤이미지</a>
+		<a href="img/png/car.png">car.png</a>
+	</li>
+	<li>
+		(*.webm/*.pgg/*.mp4) <br>
+	 <a href="img/birdmv.mp4">birdmv.mp4 </a>
+	</li>
+
+	<li>
+		(*.txt) <br>
+	  <a href="memo.txt">memo </a>
+	 </li>
+	</ol>
+
+<p> 웹브라우저가 처리 불가능한 종류(압축파일, 한글문서 등)를 링크 걸면 <br>
+ <a href="img.zip">다운로드</a> 됨
+</p>
+
+	<h3> target="" 링크를 여는 방식 지정 </h3>
+	<ul>
+	<li>target="_self" 기본값. 현재 위치에 링크를 열기</li>
+	<li><b><mark>target="_blank"</mark>새탭에서 링크 열기</b> </li>
+	<li>target="_top"(프레임구조)나뉨없이 전체에서 링크 열기</li>
+	<li>target="_parent"(프레임구조)상위창에서 링크 열기</li>
+	</ul>
+
+	<h2>새탭으로 링크 열기</h2>
+	<a href="https://www.w3schools.com/" target="_blank">w3schools.com</a> 
+	<a href="https://www.naver.com/" target="_blank">naver</a>
+	
+
+<hr>
+<h3>링크 걸린 이미지</h3>
+<a href="https://www.itwillbs.co.kr/" target="_blank"><img src="img/png/itwilllogo.png" ></a><br>
+<a href="https://www.naver.co.kr/" target="_blank" title ="naver로 쇼핑하러 가기"><img src="img/png/banner.png" width="300"></a>
+
+<p title="나 부연 설명"> title 속성으로 툴팁(풍선도움말) 추가하기 <br>
+이미지나 링크 등에 부연 설명을 나타낼 수 있음
+</p>
+
+<h3>썸네일 이미지</h3>
+<a href="img/winter.jpg" target="_blank" title ="원본 사진보기"><img src ="img/winter.jpg" width="150"></a>
+<a href="img/winter.jpg" target="_blank"title ="원본 사진보기"><img src ="img/cabin.jpg" width="150"></a>
+<a href="img/winter.jpg" target="_blank"title ="원본 사진보기"><img src ="img/sunset2.jpg" width="150"></a>
+<a href="img/winter.jpg" target="_blank"title ="원본 사진보기"><img src ="img/tokyo.jpg" width="150"></a>
+<br>
+<p>영상 보기<br> 
+<a href="img/birdmv.mp4" target="_blank" title="영상 보기"> <img src="img/png/birdmv.png" width="150"></a>
+</p>
+
+<hr>
+<h3>mailto: 로 email 링크 걸기 </h3>
+	<a href="mailto:class@itwillbs.co.kr">(주)아이티윌 이메일</a><br>
+<a href="mailto:class@itwillbs.co.kr" title="class@itwillbs.co.kr"><img src="img/png/email.png" width="100"></a>
+
+<hr>
+<h3># 으로 top 링크 걸기</h3>
+	<p>페이지 최상단으로 이동하는 top 링크<br>
+	<a href="#">TOP</a>
+	</p>
+
+
+
+
+
+
+
+ </body>
+</html>
