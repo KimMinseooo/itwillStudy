@@ -28,12 +28,12 @@
  * 설치 및 Admin
  * SQL 기본, 활용
 
-<img src="https://img.shields.io/badge/Sass-CC6699.svg?&logo=Sass&logoColor=fff"/>
+
 
 * **Front-end**
  * HTML/CSS
  * JavaScript
- * React 
+ * React <img src="https://img.shields.io/badge/Rust-000000?style=flat-square&logo=Rust&logoColor=white"/>
 
 * **프로젝트**
  * 1차 실무프로젝트
