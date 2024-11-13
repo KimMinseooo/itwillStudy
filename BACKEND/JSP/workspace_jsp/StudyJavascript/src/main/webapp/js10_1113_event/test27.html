@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+<script type="text/javascript">
+
+
+function printRadio() {
+	// name이 중복으로 여러개인 경우 배열로 생각하면 됨 a[0] , a[1] 이런식으로 받아짐 
+	let radio = document.fr.rb;
+	console.log(radio);
+// 	debugger;
+	
+	// 만약 , 두 라디오버튼 중 아무것도 선택하지 않았을 경우 
+	// "라디오버튼 항목 선택 필수!" 출력
+	
+// 	if (!radio[0].checked && !radio[1].checked) {
+// 		alert("라디오버튼 항목 선택 필수!");		
+// 	}
+	
+	if(radio.value=='') {
+		alert("라디오버튼 항목 선택 필수!");
+	}
+}
+
+function printCheckbox() {
+	let checkbox = document.fr.cb;
+	console.log(checkbox);
+// 	debugger;
+	
+	// 체크박스 항목이 하나도 체크되지 않았을 경우 "체크박스 항목 하나 이상 선택 필수!" 출력
+	// => 모든 체크박스에 required 속성 지정 시 모든 항목 체크되어야만 submit 동작하므로
+	// required 속성 대신 별도로 자바스크립트에서 치크 여부 판별이 효율적임
+	
+	// <하드코딩>
+// 	if(!checkbox[0].checked && !checkbox[1].checked && !checkbox[2].checked){
+// 		alert("체크박스 항목 하나 이상 선택 필수!");
+// 	}
+
+	// <for문>
+	let ischecked= false;
+	for(let i =0; i<checkbox.length;i++) {
+		if(checkbox[i].checked) {
+			ischecked = true;
+			break;    
+		}
+	}
+	
+	// 반복문 종료 후 ischecked 값이 false 이면 아무것도 체크되지 않았다는 뜻
+	if(!ischecked) { // ischecked 가 false면
+		alert("체크박스 항목 하나 이상 선택 필수!!!!");
+	}
+	
+}
+
+// function allCheck(a,b,c,d,e) {
+// debugger;
+
+
+// }
+
+window.onload= function () {
+	let cbAll  =document.querySelector("#cbAll"); // input에 있던 cbAll이라는 id 
+	let checkbox = document.fr.cb;
+	cbAll.addEventListener("change",function (e) {
+		
+// 		e.target.checked // cbAll의 체크상태를 가져오는 코드 
+		
+		//전체선택 체크박스 상태에 따라 개별 체크박스 체크 상태를 일괄 변경
+		// => 전체선택 체크 시 3개의 체크박스 체크 상태를 모두 체크(true)로 변경하고 
+		//    아니면 3개의 체크박스 체크 상태를 모두 체크 해제(false)로 변경
+		let isChecked= cbAll.checked;
+		
+// 		<for문>
+// 		for(let i=0;i<checkbox.length;i++) {
+// 			checkbox[i].checked = isChecked;
+// 		}
+		
+		//<향상된 for문>
+		for(let check of checkbox) {
+			check.checked = isChecked;
+		}
+	
+	});
+}
+
+</script>
+
+
+
+</head>
+<body>
+
+	<h2>test27.html</h2>
+	<form action="test27_2.html" name="fr">
+		<!-- 라디오버튼의 name 속성값이 동일한 요소들은 그룹화가 되어 하나만 선택 가능   -->
+		<!-- 이때, 하나의 그룹 요소에 required 속성을 모두 지정해도 하나만 선택하면 선택 완료됨 -->
+		<input type="radio" value="rb값1" name="rb">라디오값1
+		<input type="radio" value="rb값2" name="rb">라디오값2
+		<input type="button" value="라디오버튼 선택완료" onclick="printRadio()">	
+		<br>
+		
+		<!-- name 속성값이 동일한 체크박스에 required 속성을 모두 지정할 경우  -->
+		<!-- require 속성이 설정된 모든 체크박스가 체크되어야만 선택 완료로 취급됨 -->
+		<!-- 만약, 복수개 중 일부만 선택되면 선택 완료로 간주할 경우 함수에서 별도로 체크 필요 -->
+		<input type="checkbox" value="체크박스값1" name="cb"> 체크박스값1
+		<input type="checkbox" value="체크박스값2" name="cb"> 체크박스값2
+		<input type="checkbox" value="체크박스값3" name="cb"> 체크박스값3
+		<input type="checkbox" id="cbAll" name="all_check">전체선택
+		<input type="button" value="체크박스 선택완료" onclick="printCheckbox()">
+		
+
+
+
+
+		<br>
+		<input type="submit" id="sb" value="전송">
+	</form>
+
+
+
+</body>
+</html>
