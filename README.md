@@ -28,8 +28,9 @@
  * 설치 및 Admin
  * SQL 기본, 활용
 
+<img src="https://img.shields.io/badge/React-#61DAFB?style=plastic&logo=React&logoColor=white"/>
+
 * **Front-end**
-*  <img src="https://img.shields.io/badge/React-#61DAFB?style=plastic&logo=React&logoColor=white"/>
  * HTML/CSS
  * JavaScript
  * React 
