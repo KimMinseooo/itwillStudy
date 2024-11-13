@@ -28,7 +28,7 @@
  * 설치 및 Admin
  * SQL 기본, 활용
 
-<img src="https://img.shields.io/badge/React-#61DAFB?style=plastic&logo=React&logoColor=white"/>
+<img src="https://img.shields.io/badge/Sass-CC6699.svg?&logo=Sass&logoColor=fff"/>
 
 * **Front-end**
  * HTML/CSS
