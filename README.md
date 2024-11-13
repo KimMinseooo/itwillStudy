@@ -29,9 +29,10 @@
  * SQL 기본, 활용
 
 * **Front-end**
+*  <img src="https://img.shields.io/badge/React-#61DAFB?style=plastic&logo=React&logoColor=white"/>
  * HTML/CSS
  * JavaScript
- * React <img src="https://img.shields.io/badge/React-#61DAFB?style=plastic&logo=React&logoColor=white"/>
+ * React 
 
 * **프로젝트**
  * 1차 실무프로젝트
