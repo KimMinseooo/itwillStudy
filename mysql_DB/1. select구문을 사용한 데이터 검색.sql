@@ -37,3 +37,50 @@ from employees;
 select last_name , salary, 12*(salary+100)
 from employees;
 
+-- null값이란?
+-- 모르는 값, 정의되지 않은 값, 알 수 없는 값, 알려지지 않은 값 등 
+-- 0(숫자) 또는 공백(문자)과는 다른 특수한 값임.
+-- 모든 데이터타입에 사용 가능함.
+-- 수당 받지 않는 사원들은 null값 저장되어 있음.
+select last_name, job_id, salary, commission_pct 
+from employees;
+-- 부서가 결정되지 않은 신입사원은 null값 저장되어 있음.
+select employee_id, last_name, department_id
+from employees;
+
+-- 매니저가 없는 직원(사장)은 null값이 저장되어 있음.
+select employee_id, last_name, manager_id
+from employees;
+
+select employee_id, last_name, salary, commission_pct,
+		(12*salary)+(12*salary*commission_pct)
+from employees;
+
+-- 컬럼 alias
+-- [문법1] 컬럼명 as alias
+-- [문법2] 컬럼명 alias
+-- [문법3] 컬럼명 [as] "별칭" -> 특수문자 포함, 공백 포함
+select employee_id as "사번", last_name as "이름",
+		salary "급여", email '메일 주소'
+from employees;
+
+-- distinct 키워드 : 중복값을 제거하고 출력해주는 키워드
+-- employees 테이블에서 직원들이 소속된 부서종류를 출력하시오. 
+desc employees;
+select distinct department_id
+from employees;
+
+select department_id, job_id
+from employees
+order by department_id;
+
+desc employees;
+
+-- <연습문제>
+--  1. employees 테이블로부터 employee_id, last_name, job_id, hire_date를 출력하되 컬럼 제목을 각각 
+--   Emp #, Employee, Job, Hire Date로 지정하여 출력하시오.
+select employee_id as "Emp #",last_name as "Employee",job_id as "job",hire_date as "Hire Date"
+from employees;
+--  2. employees 테이블로부터 사원들이 담당하고 있는 업무 리스트를 출력하시오
+select distinct job_id
+from employees;
