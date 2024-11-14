@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+
+	
+// ------------- Events ------------------	
+window.onload = function (){
+	
+	document.getElementById("btnCheckId").addEventListener("click",gotoCheckId); // 아이디 중복체크 페이지 이동
+	document.getElementById("id").addEventListener("blur",checkIdLength); // 아이디 길이체크
+	document.getElementById("passwd").addEventListener("keyup",checkPw); // 비밀번호 길이 체크
+	document.getElementById("passwd2").addEventListener("keyup",checkingPw); // 비밀번호 같은지 체크 
+	document.getElementById("jumin1").addEventListener("keyup",changeFocus); // 주민번호 앞자리6자리 체크후 뒷자리로 포커스 이동
+	document.getElementById("jumin2").addEventListener("keyup",deleteFocus); // 비밀번호 뒷자리7자리 체크후 포커스 삭제
+	document.getElementById("btnSearchAddress").addEventListener("click",gotoAdress); // 주소검색 페이지 이동
+	document.joinForm.emailDomain.addEventListener("change",selectEmail); // Email 선택
+	document.getElementById("checkAllHobby").addEventListener("click",checkAll); // 전체선택
+	document.getElementById("btnChangeImg").addEventListener("click",changeImg); // 이미지변경 선택
+	document.querySelectorAll("input[type=button]")[3].addEventListener("click",backPage); // 이전 페이지 가기
+// 	document.querySelector("#backButton").addEventListener("click",backPage);  // 이전 페이지 가기
+}	
+// --------------------------------------
+
+// ----------- functions ---------------
+ 
+ 	// 아이디 중복체크 페이지 이동
+	function gotoCheckId() {      
+		window.open("check_id.html");
+	}
+	// 주소검색 페이지 이동
+	function gotoAdress() {    
+		window.open("search_address.html");
+	}
+	 // 아이디 길이체크
+	function checkIdLength() {  
+		let id = document.getElementById("id");
+		let idSpan = document.getElementById("checkIdResult");
+		
+		if(id.value.length>=4 && id.value.length<=8) {
+			idSpan.innerText ="사용가능"
+			idSpan.style.color ="GREEN";
+		} else { 
+			idSpan.innerText ="4~8글자만 사용 가능합니다"
+				idSpan.style.color ="RED";
+		}
+	}
+	 // 비밀번호 길이 체크
+	function checkPw() {     
+		let pw = document.getElementById("passwd").value;
+		let pwSpan =document.getElementById("checkPasswdResult");
+		if(pw.length>=8 && pw.length <=16) {
+			pwSpan.innerText ="사용 가능한 패스워드";
+			pwSpan.style.color = "BLUE";
+		} else {
+			pwSpan.innerText ="사용 불가능한 패스워드";
+			pwSpan.style.color = "RED";
+		}
+	}
+	// 비밀번호 같은지 체크 
+	function checkingPw() {       
+		let pw = document.getElementById("passwd").value;
+		let pw2= document.getElementById("passwd2").value;
+		let checkPwSpan = document.getElementById("checkPasswd2Result");
+		for(let i =0;i<pw2.length;i++) {
+		    if(pw2.charAt(i)!=pw.charAt(i)) {
+		    	checkPasswd2Result.innerText ="비밀번호 불일치";
+		    	checkPasswd2Result.style.color ="RED";
+		    	break;
+		    } 
+		    checkPasswd2Result.innerText ="비밀번호 일치";
+	    	checkPasswd2Result.style.color ="BLUE";
+		}
+	}
+	// 주민번호 앞자리6자리 체크후 뒷자리로 포커스 이동
+	function changeFocus() {
+		let jumin = document.getElementById("jumin1").value;
+		
+		if(jumin.length==6) document.joinForm.jumin2.focus();
+	}
+	
+	// 비밀번호 뒷자리7자리 체크후 포커스 삭제
+	function deleteFocus() {
+		let jumin = document.getElementById("jumin2").value;
+		
+		if(jumin.length==7) document.joinForm.jumin2.blur();
+	}
+	// Email 선택
+	function selectEmail() {
+		let select =document.joinForm.emailDomain.value;  
+		
+		let input = document.joinForm.email2;
+		if(select==""){
+			input.value="";
+			input.focus();
+			input.readOnly= false;
+			input.style.background="WHITE";
+		} else {
+			input.value =select;
+			input.readOnly= true;
+			input.style.background="GRAY";
+		}
+		
+	}
+	 // 전체선택
+	function checkAll() {
+		let check = document.getElementById("checkAllHobby");
+		let hobby = document.joinForm.hobby;
+		let isChecked= check.checked;
+
+		for(let i =0;i<hobby.length;i++) {
+			hobby[i].checked=isChecked;
+		}
+		
+	}
+	// 이미지변경 선택
+	function changeImg() {
+		let changeImg = document.querySelector("img"); // img 태그로 받기
+		console.log(changeImg);
+		changeImg.src = "../images/rabbit.png";
+		
+	}
+	
+	// 제출전 빈곳 체크 
+	function checkSubmit() {
+		
+		let text= document.querySelectorAll("input[type=text]");
+		let pw = document.querySelectorAll("input[type=password]");
+		let job= document.joinForm.job;
+		let gender= document.querySelectorAll("input[type=radio]");
+		let hobby =document.joinForm.hobby;
+		let motivation = document.joinForm.motivation;
+		let genderChecked= false;
+		let hobbyChecked= false;
+		for(let i =0;i<text.length;i++) {
+			if(text[i].value=='') {
+				alert("값을 입력해야합니다!!!!");
+				text[i].focus();
+				return false;
+			}
+		}
+		
+		for(let i =0;i<pw.length;i++) {
+			if(pw[i].value=='') {
+				alert("값을 입력해야합니다!!!!");
+				pw[i].focus();
+				return false;
+			}
+		}
+		
+		if(job.value=='') {
+			alert("직업 선택해주세요!!!!");
+			job.focus();
+			return false;
+		}
+// ================================================		
+		for(let i =0;i<gender.length;i++) {
+			if(gender[i].checked) {
+				genderChecked=true;
+				break;
+			}
+		}
+		if(!genderChecked) {
+			alert("성별 선택하세요!!");
+			gender[0].focus();
+			return genderChecked;
+		}
+// ================================================
+		for(let i =0; i<hobby.length;i++) {
+			if(hobby[i].checked) {
+				hobbyChecked=true;
+				break;
+			}
+		}
+		if(!hobbyChecked) { // ischecked 가 false면
+			alert("취미 하나 이상 선택해야함");
+			return hobbyChecked;
+		}
+		
+		if(motivation.value=='') {
+			alert("가입동기 작성하시오");
+			motivation.focus();
+			return false;
+		}
+		
+		return true;
+		
+	}
+	// 이전 페이지 가기
+	function backPage() {
+		history.back();
+	}
+	
+	// =============================================================================================================
+</script>
+
+</head>
+<body>	
+	<div align="center">
+		<h1>회원 가입</h1>
+		<form action="final_exam_result.html" name="joinForm" onsubmit="return checkSubmit()">
+			<table border="1">
+				<tr>
+					<th>이름</th>
+					<td><input type="text" name="name" id="name"></td>
+					<td rowspan="3" align="center">
+						<img src="profile_img/pengsu.jpg" width="80" height="80"><br>
+						<input type="button" value="이미지변경" id="btnChangeImg">
+					</td>
+				</tr>
+				<tr>
+					<th>아이디</th>
+					<td>
+						<input type="text" name="id" id="id" placeholder="4 ~ 8글자 사이 입력" >
+						<input type="button" value="ID중복확인" id="btnCheckId">
+						<span id="checkIdResult"></span>
+					</td>
+				</tr>
+				<tr>
+					<th>비밀번호</th>
+					<td>
+						<input type="password" name="passwd" id="passwd" placeholder="8 ~ 16글자 사이 입력" >
+						<span id="checkPasswdResult"></span>
+					</td>
+				</tr>
+				<tr>
+					<th>비밀번호확인</th>
+					<td colspan="2">
+						<input type="password" name="passwd2" id="passwd2" >
+						<span id="checkPasswd2Result"></span>
+					</td>
+				</tr>
+				<tr>
+					<th>주민번호</th>
+					<td colspan="2">
+						<input type="text" name="jumin1" id="jumin1" size="8" > -
+						<input type="text" name="jumin2" id="jumin2" size="8" >
+					</td>
+				</tr>
+				<tr>
+					<th>주소</th>
+					<td colspan="2">
+						<input type="text" name="postCode" id="postCode" size="6">
+						<input type="button" value="주소검색" id="btnSearchAddress" >
+						<br>
+						<input type="text" name="address1" id="address1" size="30" placeholder="기본주소">
+						<br>
+						<input type="text" name="address2" id="address2" size="30" placeholder="상세주소">
+					</td>
+				</tr>
+				<tr>
+					<th>E-Mail</th>
+					<td colspan="2">
+						<input type="text" name="email1" size="10"> @
+						<input type="text" name="email2" size="10">
+						<select name="emailDomain" >
+							<option value="">직접입력</option>
+							<option value="naver.com">naver.com</option>
+							<option value="gmail.com">gmail.com</option>
+							<option value="nate.com">nate.com</option>
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<th>직업</th>
+					<td colspan="2">
+						<select name="job">
+							<option value="">항목을 선택하세요</option>
+							<option value="개발자">개발자</option>
+							<option value="DB엔지니어">DB엔지니어</option>
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<th>성별</th>
+					<td colspan="2">
+						<input type="radio" name="gender" value="M">남
+						<input type="radio" name="gender" value="F">여
+					</td>
+				</tr>
+				<tr>
+					<th>취미</th>
+					<td colspan="2">
+						<input type="checkbox" name="hobby" value="여행">여행
+						<input type="checkbox" name="hobby" value="독서">독서
+						<input type="checkbox" name="hobby" value="게임">게임
+						<input type="checkbox" id="checkAllHobby">전체선택
+					</td>
+				</tr>
+				<tr>
+					<th>가입동기</th>
+					<td colspan="2">
+						<textarea rows="5" cols="40" name="motivation"></textarea>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="3" align="center">
+						<input type="submit" value="가입">
+						<input type="reset" value="초기화">
+						<input type="button" value="돌아가기">
+					</td>
+				</tr>
+			</table>
+		</form>
+	</div>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
