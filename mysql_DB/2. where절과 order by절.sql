@@ -166,8 +166,31 @@ from employees
 where commission_pct is not null;
 
 -- 2-2. order by절(정렬)
+-- [문법] select * | 컬럼1, 컬럼2, 컬럼3 
+-- 		 from 테이블명
+-- 		[where 조건문]
+-- 		[order by 컬럼명 [asc | desc]];
 
+select last_name, job_id, department_id , hire_date
+from employees
+order by hire_date desc;
 
+select employee_id , last_name , salary*12 annsal
+from employees
+order by salary*12;
+-- (==)
+select employee_id , last_name , salary*12 annsal
+from employees
+order by annsal;
+
+select last_name , job_id , department_id, hire_date
+from employees
+order by 3 desc;
+
+-- 여러 컬럼을 기준으로 정렬하는 예제
+select employee_id , last_name, department_id ,salary
+from employees 
+order by department_id, salary desc;
 
 -- <연습문제>
 --  1. employees 테이블로부터 2000년도에 입사한 모든 사원의 last_name과 hire_date를 출력하시오
@@ -178,3 +201,11 @@ where hire_date between '2000-01-01' and '2000-12-31';
 select last_name,hire_date
 from employees
 where hire_date like '2000-%';
+
+-- 2.employees 테이블로부터 커미션을 받지 않는 모든 사원의 last_name, salary, commission_pct를 출력
+-- 하되 salary를 기준으로 내림차순 정렬하시오.
+select last_name, salary, commission_pct
+from employees
+where commission_pct is null 
+order by salary desc;
+
