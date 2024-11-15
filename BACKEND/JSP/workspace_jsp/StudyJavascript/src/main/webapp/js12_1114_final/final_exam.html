@@ -19,7 +19,7 @@ window.onload = function (){
 	document.joinForm.emailDomain.addEventListener("change",selectEmail); // Email 선택
 	document.getElementById("checkAllHobby").addEventListener("click",checkAll); // 전체선택
 	document.getElementById("btnChangeImg").addEventListener("click",changeImg); // 이미지변경 선택
-	document.querySelectorAll("input[type=button]")[3].addEventListener("click",backPage); // 이전 페이지 가기
+	document.querySelectorAll("input[type=button]")[document.querySelectorAll("input[type=button]").length-1].addEventListener("click",backPage); // 이전 페이지 가기
 // 	document.querySelector("#backButton").addEventListener("click",backPage);  // 이전 페이지 가기
 }	
 // --------------------------------------
@@ -126,7 +126,7 @@ window.onload = function (){
 	// 제출전 빈곳 체크 
 	function checkSubmit() {
 		
-		let text= document.querySelectorAll("input[type=text]");
+		let text= document.querySelectorAll("input[type=text]");      
 		let pw = document.querySelectorAll("input[type=password]");
 		let job= document.joinForm.job;
 		let gender= document.querySelectorAll("input[type=radio]");
