@@ -7,6 +7,7 @@
 <nav>
 <a href="test07.htm"> form-1</a>
 <a href="test07-1.htm"> form-2</a>
+<a href="formtest-김민서.htm"> form-test</a>
 </nav>
 <hr>
 
@@ -77,22 +78,59 @@
 	</p>
 
 	<hr>
-	<h2>11. input type=""</h2>
+	<h2>11. input type="color" 색상값을 지정하는 폼요소</h2>
 	<p>	<br>
-	<input type="">
+	<input type="color">
 	</p>
 
 	<hr>
-	<h2>12. input type=""</h2>
-	<p>	<br>
-	<input type="">
+	<h2>12. input type="search" 검색용 상자를 지정하는 폼요소</h2>
+	<p>입력시 삭제 버튼이 있음 <br>
+	<input type="search">
+	</p>
+	<br><br><br>
+	<hr>	
+	<h1>서로 관련된 폼요소들을 그룹화 하기 - fieldset</h1>
+	<p>
+	<b>fieldset</b>으로 폼요소들을 묶어주고 해당 fieldset의 제목(주제)은
+	 <b>legend</b>로 묶어서 나타냄.
+	</p>
+	<fieldset>
+	  <legend>필수</legend>
+		<label>name<input type="text"></label><br>
+		<label>id<input type="text"></label>
+	</fieldset>
+
+	<br><br><br>
+	<hr>
+	<h1>html5 추가된 input 속성들 </h1>
+
+	<p>
+	1. 자동포커싱 - 입력대기상태가 됨 - autofocus="autofocus"(autofocus)<br>
+	<input type="text" autofocus>
 	</p>
 
-
-
-
-
-
+	<p>
+	2. 자동 완성 기능을 켜거나 끔 -  autocomplete="on/off"<br>
+	<label for="id">ID</label>	
+	<input type="text" id="id" autocomplete="on">
+	</p>
+	<p>
+	3. 입력예시나 설명 - placeholder="..."<br>
+	<input type="text" placeholder="010-1111-222">
+	</p>
+	<p>
+	4. 필수입력요소로 지정 -required="required"(required)<br>
+	<input type="text" required>
+	</p>
+	<p>
+	5. 읽기만 가능한 요소로 지정(입력값이 전송됨) -readonly="readonly"(readonly)<br>
+	<input type="text" readonly>
+	</p>
+	<p>
+	6. 사용 불가능한 요소로 지정(입력값이 전송됨)- disabled="disabled"(disabled)<br>
+	<input type="text" disabled>
+	</p>
 	<hr>
 	<input type="submit" >
 	<input type="reset">
