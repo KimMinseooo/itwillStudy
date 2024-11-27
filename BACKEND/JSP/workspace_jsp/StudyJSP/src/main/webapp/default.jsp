@@ -9,6 +9,9 @@
 <body>
 	<h1>index.jsp</h1>
 	
+	<h3><a href="Main.jdbc">JDBC 메인 화면</a></h3>
+	
+	<hr>
 	<form action="myServlet1" method="get">
 		<input type="submit" value="GET 방식">
 	</form>
