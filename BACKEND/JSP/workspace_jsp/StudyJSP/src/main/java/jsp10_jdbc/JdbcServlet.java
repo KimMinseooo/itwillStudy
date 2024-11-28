@@ -13,7 +13,7 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 
-@WebServlet("*.jdbc")
+//@WebServlet("*.jdbc")
 public class JdbcServlet extends HttpServlet {
 
 
@@ -114,6 +114,26 @@ public class JdbcServlet extends HttpServlet {
 				String sql = "INSERT INTO STUDENT VALUES(?,?)";
 				PreparedStatement pstmt = con.prepareStatement(sql);
 				
+				/*
+				  3-3) SQL 문장을 관리하는 PreparedStatement 객체(pstmt) 의
+				       setXXX() 메서드 호출하여 만능문자(?) 부분을 실제 데이터 교체(치환)
+				       => setXXX(index, data) 메서드의 XXX 부분은 교체할 데이터의 자바 데이터타입명
+				          ex) 정수형 데이터 전달 시 : setInt()
+				              문자열 데이터 전달 시 : setString()
+				       => 첫번째 파라미터(int index) : 만능문자(?) 순서번호
+				       => 두번째 파라미터(XXX data) : 만능문자 부분에 교체될 실제 데이터
+				                                      (메서드명에 따라 XXX 부분 타입이 달라짐)
+				       => 주의1) 모든 만능문자는 반드시 데이터로 치환되어야 한다!
+				                 만약, 빠진 데이터가 있을 경우 예외(오류) 발생
+				                 (java.sql.SQLException: No value specified for parameter 2)
+				                 (두번째 파라미터의 값이 지정되지 않았음)
+				       => 주의2) pstmt.setXXX() 메서드간의 순서는 상관이 없으나
+				                 반드시 PreparedStatement 객체를 리턴받은 후
+				                 4단계 작업(SQL 구문 실행) 전에 파라미터 교체 필수!
+				 */
+
+				
+				
 				pstmt.setInt(1, idx);
 				pstmt.setString(2, name);
 				System.out.println("pstmt = " + pstmt);
@@ -122,6 +142,74 @@ public class JdbcServlet extends HttpServlet {
 				// 4단계. SQL 구문 실행 및 결과 처리 
 				int insertCnt = pstmt.executeUpdate();
 				System.out.println("INSERT 구문 실행 결과 : " +insertCnt);
+				
+			} catch (ClassNotFoundException e) {
+				System.out.println("드라이버 로드 실패!");
+				e.printStackTrace();
+			} catch(SQLException e ) {
+				System.out.println("DB 연결 실패!");
+				e.printStackTrace();
+			}
+		} else if (command.equals("/connect3_update.jdbc")) {
+				int no = Integer.parseInt(req.getParameter("no"));
+				String name= req.getParameter("name");
+				
+				System.out.println("전달받은 no :" +no);
+				System.out.println("전달받은 name :"+name);
+				try {
+					Class.forName("com.mysql.cj.jdbc.Driver");
+					System.out.println("드라이버 로드 성공!");
+					
+					// 2단계 DB연결(접속)
+					String url = "jdbc:mysql://localhost:3306/STUDY_JSP";
+					String user = "root";
+					String passwd = "1234";
+					Connection con =DriverManager.getConnection(url, user, passwd);
+					System.out.println("DB 연결 성공! ");
+					
+					
+//					"INSERT INTO STUDENT VALUES(?,?)"
+					String sql = "UPDATE STUDENT SET NAME = ? WHERE IDX = ? ";
+					PreparedStatement pstmt = con.prepareStatement(sql);
+					pstmt.setString(1, name);
+					pstmt.setInt(2, no);
+					System.out.println("pstmt = " + pstmt);
+					
+ 					int updateCnt = pstmt.executeUpdate();
+					System.out.println("UPDATE 구문 실행 결과 : " +updateCnt);
+					
+				} catch (ClassNotFoundException e) {
+					System.out.println("드라이버 로드 실패!");
+					e.printStackTrace();
+				} catch(SQLException e ) {
+					System.out.println("DB 연결 실패!");
+					e.printStackTrace();
+				}	
+		} else if (command.equals("/connect3_delete.jdbc")) {
+			int no = Integer.parseInt(req.getParameter("no"));
+			
+			try {
+				Class.forName("com.mysql.cj.jdbc.Driver");
+				System.out.println("드라이버 로드 성공!");
+				
+				// 2단계 DB연결(접속)
+				String url = "jdbc:mysql://localhost:3306/STUDY_JSP";
+				String user = "root";
+				String passwd = "1234";
+				Connection con =DriverManager.getConnection(url, user, passwd);
+				System.out.println("DB 연결 성공! ");
+//				"INSERT INTO STUDENT VALUES(?,?)"
+				String sql = "DELETE FROM STUDENT WHERE IDX = ? ";
+				PreparedStatement pstmt = con.prepareStatement(sql);
+			
+				
+				pstmt.setInt(1, no);
+				System.out.println("pstmt = " + pstmt);
+				
+				// =============================================
+				// 4단계. SQL 구문 실행 및 결과 처리 
+				int deleteCnt = pstmt.executeUpdate();
+				System.out.println("DELETE 구문 실행 결과 : " +deleteCnt);
 				
 			} catch (ClassNotFoundException e) {
 				System.out.println("드라이버 로드 실패!");

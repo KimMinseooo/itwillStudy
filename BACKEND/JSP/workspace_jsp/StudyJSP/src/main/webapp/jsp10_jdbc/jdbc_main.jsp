@@ -19,5 +19,19 @@
 		<input type="submit" value="INSERT">
 	</form>
 	
+	<h3>JDBC 연결 3, 4단계 -UPDATE</h3>
+	<form action="connect3_update.jdbc" method="post">
+		<input type="text" name="no" placeholder="수정할 학생 번호"><br>
+<!-- 		<input type="text" name="idx" placeholder="번호"><br> -->
+		<input type="text" name="name" placeholder="이름"><br>
+		<input type="submit" value="UPDATE">
+	</form>
+	
+	<h3>JDBC 연결 3, 4단계 -DELETE</h3>
+	<form action="connect3_delete.jdbc" method="post">
+		<input type="text" name="no" placeholder="삭제할 학생 번호"><br>
+		<input type="submit" value="DELETE">
+	</form>
+	
 </body>
 </html>
