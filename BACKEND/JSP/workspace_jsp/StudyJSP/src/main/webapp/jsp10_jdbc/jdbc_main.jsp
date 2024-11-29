@@ -32,6 +32,16 @@
 		<input type="text" name="no" placeholder="삭제할 학생 번호"><br>
 		<input type="submit" value="DELETE">
 	</form>
+	<hr>
+	<h3>JDBC 연결 3, 4단계 -SELECT</h3>
+	<form action="connect3_select.jdbc" method="get">
+		<input type="text" name="idx" placeholder="검색할 학생 정보"><br>
+		<input type="submit" value="SELETE">
+	</form>
 	
+	<form action="connect3_select2.jdbc" method="get">
+		<input type="text" name="idx" placeholder="검색할 학생 정보"><br>
+		<input type="submit" value="SELETE2">
+	</form>
 </body>
 </html>
