@@ -11,6 +11,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 
 @WebServlet("*.jdbc")
@@ -65,7 +66,7 @@ public class JdbcServlet3 extends HttpServlet {
 				System.out.println("DB 연결 실패!");
 				e.printStackTrace();
 			}
-		} else if (command.equals("/connect3_insert.jdbc")) {
+		} else if (command.equals("/connect3_insert.jdbc")) {   // INSERT 
 			
 			int idx = Integer.parseInt(req.getParameter("idx"));
 			String name =req.getParameter("name");
@@ -75,16 +76,16 @@ public class JdbcServlet3 extends HttpServlet {
 			int insertCnt = dao.insert(dto);
 			System.out.println("INSERT 구문 실행 결과 : " +insertCnt);
 			
-		} else if (command.equals("/connect3_update.jdbc")) {
-				int no = Integer.parseInt(req.getParameter("no"));
-				String name= req.getParameter("name");
-				
-				StudentDTO dto = new StudentDTO(no,name);
-				StudentDAO dao = new StudentDAO();
+		} else if (command.equals("/connect3_update.jdbc")) {   // UPDATE 
+			int no = Integer.parseInt(req.getParameter("no"));
+			String name= req.getParameter("name");
+			
+			StudentDTO dto = new StudentDTO(no,name);
+			StudentDAO dao = new StudentDAO();
 			int updateCnt = dao.update(dto);
 			System.out.println("UPDATE 구문 실행 결과 : "+updateCnt );
 			
-		} else if (command.equals("/connect3_delete.jdbc")) {
+		} else if (command.equals("/connect3_delete.jdbc")) {     // DELETE
 			int no = Integer.parseInt(req.getParameter("no"));
 
 			StudentDTO dto= new StudentDTO(no);
@@ -93,6 +94,23 @@ public class JdbcServlet3 extends HttpServlet {
 			
 			System.out.println("DELETE 구문 실행 결과 : " +deleteCnt);
 			
+		} else if (command.equals("/connect3_select.jdbc")) {
+			int idx = Integer.parseInt(req.getParameter("idx"));
+			System.out.println("idx: " + idx);
+			
+			StudentDAO dao = new StudentDAO();
+			dao.select(idx);
+		} else if (command.equals("/connect3_select2.jdbc")) {
+			// 학생 한명의 정보를 jdbc_select2.jsp 화면으로 가져가기!
+			int idx = Integer.parseInt(req.getParameter("idx"));
+			StudentDAO dao = new StudentDAO();
+//			ArrayList<StudentDTO> student  = dao.select2(idx);
+			StudentDTO student  = dao.select2(idx);
+			req.setAttribute("student",student);
+			RequestDispatcher dis 
+				= req.getRequestDispatcher("jsp10_jdbc/jdbc_select2.jsp");
+			dis.forward(req, resp);
 		}
+
 	}
 }

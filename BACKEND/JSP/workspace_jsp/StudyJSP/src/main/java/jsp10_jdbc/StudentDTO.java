@@ -6,13 +6,13 @@ public class StudentDTO {
 	private int idx;
 	private String name;
 	
-	public StudentDTO() {}
+	public StudentDTO() {}  // 기본생성자
 
-	public StudentDTO(int idx) {
+	public StudentDTO(int idx) {  // idx를 받는 생성자
 		this.idx=idx;
 	}
 	
-	public StudentDTO(int idx, String name) {
+	public StudentDTO(int idx, String name) {   // idx, name을 받는 생성자
 		this.idx = idx;
 		this.name = name;
 	}

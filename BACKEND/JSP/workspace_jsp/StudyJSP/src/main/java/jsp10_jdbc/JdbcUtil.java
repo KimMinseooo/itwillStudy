@@ -3,6 +3,7 @@ package jsp10_jdbc;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 // 데이터베이스 연동을 통한 DB작업 준비 및 작업 완료 후 자원 해제(= 자원 반환) 작업을 
@@ -46,6 +47,13 @@ public class JdbcUtil {
 	public static void close(PreparedStatement pstmt) {
 		try {
 			pstmt.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	public static void close(ResultSet rs) {
+		try {
+			rs.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
