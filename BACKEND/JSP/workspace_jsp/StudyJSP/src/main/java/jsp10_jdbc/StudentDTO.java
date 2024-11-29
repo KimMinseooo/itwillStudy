@@ -8,6 +8,10 @@ public class StudentDTO {
 	
 	public StudentDTO() {}
 
+	public StudentDTO(int idx) {
+		this.idx=idx;
+	}
+	
 	public StudentDTO(int idx, String name) {
 		this.idx = idx;
 		this.name = name;

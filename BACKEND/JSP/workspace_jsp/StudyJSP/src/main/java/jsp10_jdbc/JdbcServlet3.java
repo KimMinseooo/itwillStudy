@@ -69,8 +69,8 @@ public class JdbcServlet3 extends HttpServlet {
 			
 			int idx = Integer.parseInt(req.getParameter("idx"));
 			String name =req.getParameter("name");
+			
 			StudentDTO dto = new StudentDTO(idx,name);
-
 			StudentDAO dao = new StudentDAO();
 			int insertCnt = dao.insert(dto);
 			System.out.println("INSERT 구문 실행 결과 : " +insertCnt);
@@ -79,52 +79,20 @@ public class JdbcServlet3 extends HttpServlet {
 				int no = Integer.parseInt(req.getParameter("no"));
 				String name= req.getParameter("name");
 				
-				System.out.println("전달받은 no :" +no);
-				System.out.println("전달받은 name :"+name);
-				Connection con = null;
-				PreparedStatement pstmt= null;
-				try {
-					con=JdbcUtil.getConnection();
-					String sql = "UPDATE STUDENT SET NAME = ? WHERE IDX = ? ";
-					pstmt = con.prepareStatement(sql);
-					pstmt.setString(1, name);
-					pstmt.setInt(2, no);
-					System.out.println("pstmt = " + pstmt);
-					
- 					int updateCnt = pstmt.executeUpdate();
-					System.out.println("UPDATE 구문 실행 결과 : " +updateCnt);
-					
-				} catch(SQLException e ) {
-					System.out.println("DB 연결 실패!");
-					e.printStackTrace();
-				} finally {
-					JdbcUtil.close(con);
-					JdbcUtil.close(pstmt);
-				}
+				StudentDTO dto = new StudentDTO(no,name);
+				StudentDAO dao = new StudentDAO();
+			int updateCnt = dao.update(dto);
+			System.out.println("UPDATE 구문 실행 결과 : "+updateCnt );
+			
 		} else if (command.equals("/connect3_delete.jdbc")) {
 			int no = Integer.parseInt(req.getParameter("no"));
+
+			StudentDTO dto= new StudentDTO(no);
+			StudentDAO dao = new StudentDAO();
+			int deleteCnt = dao.delete(dto);
 			
-			Connection con = null;
-			PreparedStatement pstmt= null;
-			try {
-				
-				con = JdbcUtil.getConnection();
-				String sql = "DELETE FROM STUDENT WHERE IDX = ? ";
-				pstmt = con.prepareStatement(sql);
+			System.out.println("DELETE 구문 실행 결과 : " +deleteCnt);
 			
-				pstmt.setInt(1, no);
-				System.out.println("pstmt = " + pstmt);
-				
-				int deleteCnt = pstmt.executeUpdate();
-				System.out.println("DELETE 구문 실행 결과 : " +deleteCnt);
-				
-			} catch(SQLException e ) {
-				System.out.println("DB 연결 실패!");
-				e.printStackTrace();
-			} finally {
-				JdbcUtil.close(con);
-				JdbcUtil.close(pstmt);
-			}
 		}
 	}
 }
