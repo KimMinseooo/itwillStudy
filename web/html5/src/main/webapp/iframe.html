@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>iframe</title>
+</head>
+<body>
+<!-- ctrl + shift + / = 주석 -->
+<!-- ctrl + F11 = preview -->
+	<h1>iframe - 독립된 영역</h1>
+	<p>
+	 &lt; iframe src="보여질 내용(경로)"&gt;
+	 iframe 미지원 브라우저 사용자용 메시지 &lt;/iframe&gt;
+	</p>  
+	<iframe src="https://www.daum.net/" width="500" height="500">iframe 미지원 브라우저 사용자용 메시지</iframe>
+	
+	<h2>iframe안에 보여질 수 있는 종류</h2>
+	<ul>
+		<li>URL <iframe src="https://www.itwillbs.co.kr/" width="500" height="500"></iframe> </li>
+		<li>웹페이지(*.htm/*.html)<br><iframe src="test01.htm" width="300" height="300"></iframe> </li>
+		<li>이미지(*.gif/*.jpg/*.png)<br> <iframe src="img/night.jpg" width="500" height="600"></iframe> </li>
+		<li>동영상(*.webm/*.ogg/*.mp4)<br><iframe src="img/birdmv.mp4" width="500" height="400"></iframe> </li>
+		<li>텍스트파일(*.txt) <iframe src="memo.txt" width="700" height="300"></iframe></li>
+	</ul>
+	
+	<hr>
+	<h2>iframe안에 링크 열기</h2>
+	<p>iframe을 구별할 수 있는 name의 값을 주고, 그 name의 값을 a의 target의 값으로 지정 <br>
+	&lt;a href="경로" <mark><b>target="abc"</b></mark> &gt; ... &lt;/a&gt;  <br>
+	&lt;iframe src="경로" <mark><b>name="abc"</b></mark>&gt; &lt;/iframe&gt;
+	</p>
+	
+	<nav>
+		<a href="test01.htm" target="if-html">test01</a>
+		<a href="test02.htm" target="if-html">test02</a>
+		<a href="test03.htm" target="if-html">test03</a>
+	</nav>
+	<iframe src="test01.htm" width="600" height="400" name="if-html" ></iframe>
+	
+	
+	<hr>
+	<h3>[문제] ifram안에 이미지 열기</h3>
+	<nav>
+		<a href="img/night.jpg" target="if-photo">photo01</a>
+		<a href="img/sunset.jpg" target="if-photo">photo02</a>
+		<a href="img/tokyo.jpg" target="if-photo">photo03</a>
+		<a href="img/winter.jpg" target="if-photo">photo04</a>
+	</nav>
+	<iframe src="img/night.jpg" width="600" height="400" name="if-photo" style="border:none;"></iframe>
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+</body>
+</html>

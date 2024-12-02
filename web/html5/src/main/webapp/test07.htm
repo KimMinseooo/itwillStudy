@@ -1,0 +1,157 @@
+﻿<!DOCTYPE html>
+<html>
+ <head>
+	<title>form-1</title>
+ <head>
+ <body>
+<nav>
+<a href="test07.htm"> form-1</a>
+<a href="test07-1.htm"> form-2</a>
+</nav>
+<hr>
+
+	<h1>form-1 (form요소들)</h1>
+	<form action="test.jsp" method="post">
+	 <p> input의 설명문을 label태그로 나타내고 label에는 for의 값을,
+	input에는 id의 값을 서로 일치시켜 줌 </p>
+	<hr>
+ 	  <h2>1. input type="text" 주관식. 한 줄 글상자</h2>
+	<p> 상자의 길이는 size로,  입력값의 최대길이 제한은 maxlength로 <br>
+	  <label for="nm">name</label>	<input type="text" id="nm" size="14">
+	  <label for="nc">nick </label>	<input type="text" id="nc" maxlength="16">
+	</p>
+	<hr>
+	<h2>2. input type="password" 주관식. 암호 글상자</h2>
+	  <label for="pwd">Password</label> <input type="password" id="pwd">
+	<hr>
+	<h2>3. input type="checkbox" 다중 선택형 객관식. 체크박스 </h2>
+	<p>초기값으로 지정할 항목은 checked(checked="checked")를 추가함.<br><br>
+		복습이 필요한 과목은?<br>
+		<label><input type="checkbox" >web </label>
+		<label><input type="checkbox">java </label>
+		<label><input type="checkbox" >jsp </label>
+		<label><input type="checkbox">db </label>
+	</p>
+	<hr>
+	<h2>4. input type="radio" 단일 선택형 객관식. 라디오버튼 </h2>
+	<p> 단일 선택이 되려면 name 의 값을 서로 일치 시킴
+		초기값으로 지정할 항목은 checked(checked="checked")를 추가함.<br><br>
+		가장 자신 있는 과목은?<br>
+		<label><input type="radio" name="c1">web </label>
+		<label><input type="radio" name="c1">java </label>
+		<label><input type="radio" name="c1">jsp </label>
+		<label><input type="radio"name="c1">db </label>
+	</p>	
+	
+	<hr>
+	<h2>5. textarea ... /textarea 주관식. 글상자</h2>
+	<p> cols="n" rows="n"</p>
+	<textarea cols="40" rows="6">
+	cols="40" rows="6"
+	</textarea>
+
+	<hr>
+	<h2>6. 공간절약형 객관식.  펼침목록(드롭다운리스트)</h2>
+	<p> 
+	  등교에 걸리는 시간은?
+	<select >
+		<option>10분 이내</option>
+		<option>10분~30분</option>
+		<option>30분~1시간</option>
+		<option>1시간~1시간30분</option>
+		<option>1시간 30분~2시간</option>
+		<option>2시간 이상</option>
+	</select>
+	</p><br>
+
+	<p>- 초기값으로 지정할 항목은 selected(selected ="selected")를 추가함.<br>
+	  등교에 걸리는 시간은?
+	<select size="4">
+		<option>10분 이내</option>
+		<option>10분~30분</option>
+		<option selected>30분~1시간</option>
+		<option>1시간~1시간30분</option>
+		<option>1시간 30분~2시간</option>
+		<option>2시간 이상</option>
+	</select>
+	</p>
+	<p> - 다중 선택형 박스가 되려면 select에 multiple(multiple="multiple")를 추가함.<br>
+	  상담을 원하는 시간은? <br>
+	 <select multiple>
+		<option>1교시</option>
+		<option selected>2교시</option>
+		<option>3교시</option>
+		<option>4교시</option>
+		<option>5교시</option>
+		<option selected>6교시</option>
+		<option>7교시</option>
+		<option>8교시</option>
+	 </select>
+	</p>
+	
+	<p> -형태만 박스가 되려면 select에 size="n"를 추가함.<br>
+	  상담을 원하는 시간은? <br>
+	 <select size="4">
+		<option>1교시</option>
+		<option>2교시</option>
+		<option>3교시</option>
+		<option>4교시</option>
+		<option>5교시</option>
+		<option >6교시</option>
+		<option>7교시</option>
+		<option>8교시</option>
+	 </select>
+	</p>
+	
+	<p> -서로 관련있는 option들을 묶어서 그룹화하여 나타낼 수 있음 <br>
+	option들을 optgroup태그로 묶고 optgroup에 label속성을 추가하여 해당 optgroup의 제목(주제)를 나타냄<br>
+	  상담을 원하는 시간은? <br>
+	 <select size="5">
+	   <optgroup label="오전">
+		<option>1교시</option>
+		<option>2교시</option>
+		<option>3교시</option>
+		<option>4교시</option>
+	   </optgroup>
+	   <optgroup label="오후">
+		<option>5교시</option>
+		<option >6교시</option>
+		<option>7교시</option>
+		<option>8교시</option>
+	   </optgroup>
+	 </select>
+	</p>
+	
+	<hr>
+	<h2>7. input type="hidden" 보이지 않는 정보 전송용 </h2>
+	<input type="hidden" value="A">
+
+	<hr>
+	<h2>8. input type="file" 전송용 </h2>
+	<label> 증명사진 <input type="file"></label>
+
+
+
+	<hr>
+	<h2> . input type="submit/reset/button" 전송/초기화/(일반)버튼 </h2>
+	<p> value로 버튼의 글자를 지정<br><br>
+		<input type="submit" >
+		<input type="reset"><br>
+		<input type="button" onclick ="alert('swhy!!!!!!!')" value="버튼">
+	</p>
+	<hr>	
+	<h2> . input type="image" 전송용 이미지</h2>
+	<p> src로 이미지경로를 지정 <br><br>
+		<input type="image" src="img/gif/dog.gif">
+	</p>
+	<hr>
+	<h2> . button ... / button</h2>
+	  <p>초기화 하는 버튼은 type="reset"을 추가하고 ,<br>
+		일반(폼과 무관한) 버튼은 type="button"을 추가 <br><br>
+	   <button>버튼<b>입니다ㅎㅎㅎㅎ</b>ㅎㅎㅎㅎㅎ</button>
+	   <button type="reset"><b><i>리셋</i></b>버튼입니다ㅎㅎㅎㅎ</button> <br><br>
+	   <button type="button">일반 버<img src="img/png/email.png" width="50">튼입니다</button>
+	</p>
+	</form>
+ </body>
+</html>

@@ -1,0 +1,139 @@
+﻿<!DOCTYPE html>
+<html>
+ <head>
+	<title>form-1</title>
+ <head>
+ <body>
+<nav>
+<a href="test07.htm"> form-1</a>
+<a href="test07-1.htm"> form-2</a>
+<a href="formtest-김민서.htm"> form-test</a>
+</nav>
+<hr>
+
+	<h1>form-2 ( 요소들)</h1>
+	<hr>
+	<form action="test.jsp" method="post">
+	<hr>
+	<h2>1. input type="time" 시간(오전/오후 시 분)을 지정하는 폼요소</h2>
+	<p>	<br>
+	<input type="time">
+	</p>
+
+	<hr>
+	<h2>2. input type="date" 날짜(년월일)를 지정하는 폼요소</h2>
+	<p>	<br>
+	<input type="date">
+	</p>
+
+	<hr>
+	<h2>3. input type="datetime-local" 날짜와 시간(년월일 오전/오후 시 분)을 지정하는 폼요소 </h2>
+	<p>	<br>
+	<input type="datetime-local">
+	</p>
+
+	<hr>
+	<h2>4. input type=" week" 날짜(년 주)를 지정하는 폼요소</h2>
+	<p>	<br>
+	<input type="week">
+	</p>
+
+	<hr>
+	<h2>5. input type="month" 날짜(년 월)를 지정하는 폼요소</h2>
+	<p>	<br>
+	<input type="month">
+	</p>
+
+	<hr>
+	<h2>6. input type="number" 숫자값을 지정하는 폼요소</h2>
+	<p>min/max로 입력값의 최소/최대를,  step로 증감 간격을 <br>
+	<input type="number"><br>
+		<label>최소 프로젝트 팀원<input type="number" min="0"></label>명입니다 (min="0")<br>
+		<label>최대 프로젝트 팀원<input type="number" max="10"></label>명입니다 (max="10")<br>
+		<label>프로젝트 팀원<input type="number" step="5"></label>명입니다 ()<br>
+	</p>
+
+	<hr>
+	<h2>7. input type="range" 범위내 값을 지정하는 폼요소 </h2>
+	<p>	<br>
+	<input type="range">
+	</p>
+
+	<hr>
+	<h2>8. input type="tel" 연락처(전화번호)를 지정하는 폼요소 </h2>
+	<p>모바일 브라우저에서 가상키패드가 숫자형식으로 바뀔 수 있고 전화걸기 가능 	<br>
+	<input type="tel">
+	</p>
+
+	<hr>
+	<h2>9. input type="email" 연락처(이메일)를 지정하는 폼요소</h2>
+	<p>브라우저에서 알맞은 이메일형식 인지 체크 해줌(@유무,@이후 작성 여부)<br>
+	<input type="email">
+	</p>
+
+	<hr>
+	<h2>10. input type="url" 연락처(웹주소)를 지정하는 폼요소 </h2>
+	<p>	브라우저에서 알맞은 웹주소형식 인지 체크해줌(프로토콜 http://, https:// 유무)<br>
+	<input type="url">
+	</p>
+
+	<hr>
+	<h2>11. input type="color" 색상값을 지정하는 폼요소</h2>
+	<p>	<br>
+	<input type="color">
+	</p>
+
+	<hr>
+	<h2>12. input type="search" 검색용 상자를 지정하는 폼요소</h2>
+	<p>입력시 삭제 버튼이 있음 <br>
+	<input type="search">
+	</p>
+	<br><br><br>
+	<hr>	
+	<h1>서로 관련된 폼요소들을 그룹화 하기 - fieldset</h1>
+	<p>
+	<b>fieldset</b>으로 폼요소들을 묶어주고 해당 fieldset의 제목(주제)은
+	 <b>legend</b>로 묶어서 나타냄.
+	</p>
+	<fieldset>
+	  <legend>필수</legend>
+		<label>name<input type="text"></label><br>
+		<label>id<input type="text"></label>
+	</fieldset>
+
+	<br><br><br>
+	<hr>
+	<h1>html5 추가된 input 속성들 </h1>
+
+	<p>
+	1. 자동포커싱 - 입력대기상태가 됨 - autofocus="autofocus"(autofocus)<br>
+	<input type="text" autofocus>
+	</p>
+
+	<p>
+	2. 자동 완성 기능을 켜거나 끔 -  autocomplete="on/off"<br>
+	<label for="id">ID</label>	
+	<input type="text" id="id" autocomplete="on">
+	</p>
+	<p>
+	3. 입력예시나 설명 - placeholder="..."<br>
+	<input type="text" placeholder="010-1111-222">
+	</p>
+	<p>
+	4. 필수입력요소로 지정 -required="required"(required)<br>
+	<input type="text" required>
+	</p>
+	<p>
+	5. 읽기만 가능한 요소로 지정(입력값이 전송됨) -readonly="readonly"(readonly)<br>
+	<input type="text" readonly>
+	</p>
+	<p>
+	6. 사용 불가능한 요소로 지정(입력값이 전송됨)- disabled="disabled"(disabled)<br>
+	<input type="text" disabled>
+	</p>
+	<hr>
+	<input type="submit" >
+	<input type="reset">
+  </form>
+ </body>
+</html>
