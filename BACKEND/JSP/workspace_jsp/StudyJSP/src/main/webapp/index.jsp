@@ -9,6 +9,8 @@
 <body>
 	<h1>index.jsp</h1>
 	
+	<h3><a href="ProductMain.pr">PRODUCT 메인 화면</a></h3>
+	
 	<h3><a href="Main.jdbc">JDBC 메인 화면</a></h3>
 	
 	<hr>
