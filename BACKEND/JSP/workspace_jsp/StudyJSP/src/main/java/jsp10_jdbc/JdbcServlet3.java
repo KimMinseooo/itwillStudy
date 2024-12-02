@@ -12,6 +12,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
 
 @WebServlet("*.jdbc")
@@ -104,11 +105,18 @@ public class JdbcServlet3 extends HttpServlet {
 			// 학생 한명의 정보를 jdbc_select2.jsp 화면으로 가져가기!
 			int idx = Integer.parseInt(req.getParameter("idx"));
 			StudentDAO dao = new StudentDAO();
-//			ArrayList<StudentDTO> student  = dao.select2(idx);
 			StudentDTO student  = dao.select2(idx);
 			req.setAttribute("student",student);
 			RequestDispatcher dis 
 				= req.getRequestDispatcher("jsp10_jdbc/jdbc_select2.jsp");
+			dis.forward(req, resp);
+		} else if (command.equals("/connect3_select3.jdbc")) {
+			// 모든 학생의 정보를 jdbc_select3.jsp 화면으로 가져가기!
+			StudentDAO dao = new StudentDAO();
+			List<StudentDTO> student = dao.select3();
+			req.setAttribute("studentList",student);
+			RequestDispatcher dis 
+				= req.getRequestDispatcher("jsp10_jdbc/jdbc_select3.jsp");
 			dis.forward(req, resp);
 		}
 

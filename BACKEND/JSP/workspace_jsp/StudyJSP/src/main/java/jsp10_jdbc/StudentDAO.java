@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
 public class StudentDAO {
 
@@ -160,20 +161,20 @@ public class StudentDAO {
 		}
 		
 	}
-//	public ArrayList<StudentDTO> select2(int idx) {
+
 	public StudentDTO select2(int idx) {
 		// DB 작업에 필요한 객체들 로컬 변수 선언
 		Connection con =null;
 		PreparedStatement pstmt= null;
 		ResultSet rs =null;
 		StudentDTO student= null;
-//		ArrayList<StudentDTO> list = new ArrayList<StudentDTO>();
+
+
 		try  {
 			con = JdbcUtil.getConnection();
 			
 			// SELECT 구문
 			String sql = "SELECT NAME , IDX FROM STUDENT WHERE idx = ?";
-//			String sql = "SELECT NAME , IDX FROM STUDENT";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, idx);
 			System.out.println("pstmt : " + pstmt);
@@ -182,7 +183,6 @@ public class StudentDAO {
 			while(rs.next()) { // 데이터가 존재할 동안 반복~~~
 				
 				student = new StudentDTO(rs.getInt("idx"),rs.getString("name"));
-//				list.add(student);
 			}
 			
 		} catch(SQLException e) {
@@ -193,7 +193,36 @@ public class StudentDAO {
 			JdbcUtil.close(rs);
 		}
 		return student;
-//		return list;
 	}
-	
+	public List<StudentDTO> select3() {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		StudentDTO student = null;
+		List<StudentDTO> list = new ArrayList<StudentDTO>();
+
+		con = JdbcUtil.getConnection();
+		try { 
+			
+			String sql = "SELECT NAME , IDX FROM STUDENT";
+			pstmt = con.prepareStatement(sql);
+			System.out.println("pstmt : " + pstmt);
+			
+			rs = pstmt.executeQuery();
+			while(rs.next()) { // 데이터가 존재할 동안 반복~~~
+				
+				student = new StudentDTO(rs.getInt("idx"),rs.getString("name"));
+				list.add(student);
+			}
+		} catch (SQLException e) {
+			System.out.println("SQL 구문 오류");
+		} finally {
+			JdbcUtil.close(con);
+			JdbcUtil.close(pstmt);
+			JdbcUtil.close(rs);
+		}
+		return list;
+	}
+		
+		
 }

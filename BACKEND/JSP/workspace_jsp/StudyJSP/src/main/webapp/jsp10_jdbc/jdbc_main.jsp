@@ -43,5 +43,8 @@
 		<input type="text" name="idx" placeholder="검색할 학생 정보"><br>
 		<input type="submit" value="SELETE2">
 	</form>
+	
+	<input type="button" value="SELECT3" onclick="location.href = 'connect3_select3.jdbc'">
+	
 </body>
 </html>
