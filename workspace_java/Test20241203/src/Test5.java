@@ -27,7 +27,9 @@ public class Test5 {
 		for(Board bo : boardList) {
 			bo.prn();
 		}
-		
-		
+
+		System.out.println("=================================");
+		BoardDAO dao = new BoardDAO();
+		dao.insertBoard2(boardList);
 	}
 }
