@@ -48,7 +48,7 @@ public class Board {
 		this.content = content;
 	}
 	public void prn() {
-		
+		System.out.println("작성자 : "+name+" 제목 : " + subject + " 내용 : " + content);
 	}
 	
 }
