@@ -1,12 +1,11 @@
 package jsp10_jdbc;
 
-public class ProductDTO {
+public class ProductDTO { 
 	private int product_id;
 	private String product_name;
 	private int product_price;
 	private int product_qty;
 	private String product_img;
-	
 	public int getProduct_id() {
 		return product_id;
 	}
@@ -37,22 +36,6 @@ public class ProductDTO {
 	public void setProduct_img(String product_img) {
 		this.product_img = product_img;
 	}
-	public ProductDTO(int product_id, String product_name, int product_price, int product_qty, String product_img) {
-		this.product_id = product_id;
-		this.product_name = product_name;
-		this.product_price = product_price;
-		this.product_qty = product_qty;
-		this.product_img = product_img;
-	}
-	public ProductDTO(int product_id, String product_name, int product_price, int product_qty) {
-		this.product_id = product_id;
-		this.product_name = product_name;
-		this.product_price = product_price;
-		this.product_qty = product_qty;
-	
-	}
-	public ProductDTO() {
-	}
 	@Override
 	public String toString() {
 		return "ProductDTO [product_id=" + product_id + ", product_name=" + product_name + ", product_price="
@@ -60,4 +43,5 @@ public class ProductDTO {
 	}
 	
 	
+	public ProductDTO() {}
 }

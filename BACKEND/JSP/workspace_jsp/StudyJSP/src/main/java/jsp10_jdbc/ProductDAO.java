@@ -5,132 +5,119 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.List;
 
 public class ProductDAO {
 
-	public int insert(ProductDTO dto) {	
-		System.out.println("전달받은 데이터 : " + dto);
+	public int insert(ProductDTO prod) {
 		
-		Connection con = null ;
+		Connection con = null;
 		PreparedStatement pstmt = null;
-		int insertCnt=0;
+		int insertCnt = 0;
 		try { 
 			con = JdbcUtil.getConnection();
 			
-			String sql = "INSERT INTO PRODUCT VALUES(?,?,?,?,?)";
+			String sql = "INSERT INTO PRODUCT VALUES (?,?,?,?,?)";
 			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, prod.getProduct_id());
+			pstmt.setString(2, prod.getProduct_name());
+			pstmt.setInt(3, prod.getProduct_price());
+			pstmt.setInt(4, prod.getProduct_qty());
+			pstmt.setString(5, prod.getProduct_img());
+			insertCnt = pstmt.executeUpdate();
 			
-			pstmt.setInt(1,	dto.getProduct_id());
-			pstmt.setString(2,dto.getProduct_name());
-			pstmt.setInt(3,	dto.getProduct_price());
-			pstmt.setInt(4,	dto.getProduct_qty());
-			pstmt.setString(5,dto.getProduct_img());
-			
-			System.out.println("pstmt = " + pstmt);
-			insertCnt = pstmt.executeUpdate(); 
-			
-		}catch(SQLException e ) {
-			System.out.println("SQL 구문 오류");
+		} catch (SQLException e) {
+			e.printStackTrace();
 		} finally {
 			JdbcUtil.close(con);
 			JdbcUtil.close(pstmt);
-		} {
-			
 		}
 		return insertCnt;
 	}
-	
-	public List<ProductDTO> selectAll() {
+
+	public ArrayList<ProductDTO> selectAll(ProductDTO product) {
 		
 		Connection con = null;
 		PreparedStatement pstmt = null;
-		ResultSet rs= null;
-		ProductDTO product = null;
-		List<ProductDTO> list = new ArrayList<ProductDTO>();
-		try { 
+		ResultSet rs = null;
+		ArrayList<ProductDTO> list = new ArrayList<ProductDTO>(); 
+		
+		try {
 			con = JdbcUtil.getConnection();
-			String sql = "SELECT product_id,product_name,product_price,product_qty"
-					+    " FROM PRODUCT";
-			
-			pstmt= con.prepareStatement(sql);
-			System.out.println("pstmt : " + pstmt);
+			String sql = "select * from product ";
+			pstmt = con.prepareStatement(sql);
 			
 			rs = pstmt.executeQuery();
+			
 			while(rs.next()) {
-				product= new ProductDTO(rs.getInt("product_id"),rs.getString("product_name"),rs.getInt("product_price"),rs.getInt("product_qty"));
-				list.add(product);
+				ProductDTO prod = new ProductDTO();
+				prod.setProduct_id(rs.getInt("product_id"));
+				prod.setProduct_name(rs.getString("product_name"));
+				prod.setProduct_price(rs.getInt("product_price"));
+				prod.setProduct_qty(rs.getInt("product_qty"));
+				list.add(prod);
 			}
-		}catch (SQLException e ) {
-			System.out.println("SQL 구문 오류");
-		}finally {
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
 			JdbcUtil.close(con);
 			JdbcUtil.close(pstmt);
 			JdbcUtil.close(rs);
-		} 
+		}
 		return list;
 	}
-	
-	public ProductDTO select(int idx) {
-		
-		Connection con =null;
-		PreparedStatement pstmt= null;
-		ResultSet rs =null;
-		ProductDTO product= null;
 
+	public ProductDTO select(int product_id) {
 
-		try  {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		ProductDTO prod =null;
+		try {
 			con = JdbcUtil.getConnection();
 			
-			// SELECT 구문
-			String sql = "SELECT product_id, product_name, product_price, product_qty, product_img"
-					+ "   FROM PRODUCT "
-					+    "WHERE product_id = ?";
+			String sql = "SELECT * FROM PRODUCT WHERE product_id = ? ";
 			pstmt = con.prepareStatement(sql);
-			pstmt.setInt(1, idx);
-			System.out.println("pstmt : " + pstmt);
-			
+			pstmt.setInt(1, product_id);
 			rs = pstmt.executeQuery();
-			while(rs.next()) { // 데이터가 존재할 동안 반복~~~
-				
-				product = new ProductDTO(rs.getInt("product_id"),rs.getString("product_name"),rs.getInt("product_price"),rs.getInt("product_qty"),rs.getString("product_img"));
-			}
 			
-		} catch(SQLException e) {
-			System.out.println("SQL 구문 오류");
-		} finally {
+			while(rs.next()) {
+				prod = new ProductDTO();
+				prod.setProduct_id(rs.getInt("product_id"));
+				prod.setProduct_name(rs.getString("product_name"));
+				prod.setProduct_price(rs.getInt("product_price"));
+				prod.setProduct_qty(rs.getInt("product_qty"));
+				prod.setProduct_img(rs.getString("product_img"));
+			}
+			System.out.println(prod);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally { 
 			JdbcUtil.close(con);
 			JdbcUtil.close(pstmt);
 			JdbcUtil.close(rs);
 		}
-		return product;
-		
+		return prod;
 	}
-	
-	public int delete(int id) {
+
+	public int delete(int product_id) {
 		
+		int deleteCnt=0;
 		Connection con = null;
 		PreparedStatement pstmt = null;
-		int deleteCnt=0;
-		try { 
+		
+		try {
 			con = JdbcUtil.getConnection();
-			
-			String sql ="DELETE FROM PRODUCT WHERE product_id = ? ";
+			String sql = "DELETE FROM PRODUCT WHERE product_id = ? ";
 			pstmt = con.prepareStatement(sql);
-			pstmt.setInt(1, id);
-			System.out.println("pstmt : "+ pstmt);
-			
+			pstmt.setInt(1, product_id);
 			deleteCnt = pstmt.executeUpdate();
-			
-		} catch(SQLException e) {
-			System.out.println("SQL 구문 오류");
-		} finally {
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally { 
 			JdbcUtil.close(con);
 			JdbcUtil.close(pstmt);
 		}
-		
-		
-		
 		return deleteCnt;
-	}
+	} 
+	
 }

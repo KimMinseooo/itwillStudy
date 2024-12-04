@@ -27,12 +27,13 @@
 				<%-- 상세정보 버튼 클릭 시 "ProductDetail.pr" 서블릿 주소 요청 --%>
 				<c:forEach var ="prod" items="${productList}">
 					<tr>
-					<td>${prod.product_id }</td>
-					<td>${prod.product_name }</td>
-					<td>${prod.product_price }</td>
-					<td>${prod.product_qty }</td>
-					<td>
-					<input type="button" value="번호${prod.product_id } 상세정보" onclick="location.href = 'product_detail.pr?product_id=${prod.product_id}'"></td>
+						<td>${prod.product_id }</td>
+						<td>${prod.product_name }</td>
+						<td>${prod.product_price }</td>
+						<td>${prod.product_qty }</td>
+						<td>
+							<input type="button" value="번호${prod.product_id } 상세정보" onclick="location.href = 'product_detail.pr?product_id=${prod.product_id}'">
+						</td>
 					</tr>
 				</c:forEach>
 			</c:otherwise>
