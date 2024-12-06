@@ -11,7 +11,23 @@ public class School {
 
 	public void draw(Shape shape) { 
 		System.out.println("모든 도형 그리기");
-		shape.prn();
+		
+		if(shape instanceof Circle) {
+			Circle circle = (Circle)shape;
+			circle.prn();
+		}
+		if(shape instanceof Triangle) {
+			Triangle tri = (Triangle)shape;
+			tri.prn();
+		}
+		if(shape instanceof Rectangle) {
+			Rectangle rec = (Rectangle)shape;
+			rec.prn();
+		}
+		
+		
+//		
+//		shape.prn();
 	}
 	
 	
