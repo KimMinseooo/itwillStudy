@@ -1,0 +1,11 @@
+@charset "UTF-8";
+.ex { 
+	background-color: #cfd;
+}
+
+li {
+	padding: 1em 1.3em;
+}
+.r { color : #900; }
+.b { color : #009; }
+.g { color : #090; }

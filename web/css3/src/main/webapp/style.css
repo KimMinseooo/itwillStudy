@@ -1,0 +1,22 @@
+@charset "UTF-8";
+h1 {
+	background-color: #09aa5c;
+	border-left :12px solid #697;
+	padding: 0.7em;
+	text-align: center;
+	border-radius: 8px;
+	color:white;
+	
+}
+
+h2 {
+	border-bottom: 5px solid #cec;
+	padding: 0.3em;
+	color:#697;
+}
+
+
+section {
+	border: 4px double #ccc;
+	padding: 1em;
+}

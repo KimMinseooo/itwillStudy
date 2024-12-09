@@ -1,0 +1,63 @@
+@charset "UTF-8";
+
+.ta01, .ta02, .ta03 {border :1px solid #06a;
+	width: 400px;}
+/* text-align: ; 글자의 수평 정렬 */
+.ta01 { text-align: left;}
+.ta02 { text-align: center;}
+.ta03 { text-align: right;}
+
+.ta04 { text-align: justify;}
+
+form { background-color: #ccc;
+	   text-align: center;
+	   width: 600px;
+	   height: 100px;
+}
+
+.in01 { text-align: left;
+		border: 2px solid #05a;
+		padding: 0.5em;}
+		
+.in02 { text-align: center;}
+
+.in03 { text-align: right;}
+
+/* text-decoration: ; 글자의 줄들 */
+.td01 { text-decoration: overline; }
+.td02 { text-decoration: line-through;}
+.td03 { text-decoration: underline;}
+.td04 { text-decoration: none;}
+.td04:hover {
+	text-decoration: underline;
+	background-color: #adc;
+}
+
+/* text-indent: ; 들여쓰기 */
+.ti01 { text-indent: 16px; }
+.ti02 { text-indent: 2em; }
+.ti03 { text-indent: 10%; }
+.ti04 { text-indent: -100px; }
+
+.ti04:hover{ text-indent:0;}
+
+/* text-transform: ; (영문) 대소문자 변경 */
+.tt01 {text-transform: none; }
+.tt02 {text-transform: lowercase;}
+.tt03 {text-transform: uppercase;}
+.tt04 {text-transform: capitalize;}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

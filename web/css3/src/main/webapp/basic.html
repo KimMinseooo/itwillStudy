@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link href="basic.css" rel="stylesheet">
 <style type="text/css">
  h1 { color : #045;
  	text-transform: uppercase;
@@ -10,6 +11,7 @@
  }
  h2 { color : #045;
  	border-bottom: 4px double;
+ 	margin-top : 2.5em;
  }
  ul {
  	line-height: 1.8;
@@ -19,29 +21,38 @@
  #li-id {border: 2px solid #e90;}
  #li-in {background-color :#aef; }
  .li-cl {border: 2px solid #0e9;}
+ .syn {border: 2px solid #0e9;
+ background-color : #eee;
+ padding : 1em;
+ width: 200px;
+ font-size :1.15em;
+ }
 </style>
 </head>
 <body>
 	<h1>css basic</h1>
-	<p class="li-cl">
+	<p class="syn">
 		선택자 {속성:속성값;}
 	</p>
 	
 	<h2>1. css대표 선택자</h2>
 	<ul>
-		<li><span>tag선택자 - tag 그대로를 선택자로 활용.</span> tag전체가 바뀌므로 강제적용, 자동적용</li>
-		<li id="li-id">id선택자- tag에 id를 추가하고 그 값을 선택자(#)로 활용.
+		<li class="b"><span>tag선택자 - tag 그대로를 선택자로 활용.</span> tag전체가 바뀌므로 강제적용, 자동적용</li>
+		<li id="li-id" class="r">id선택자- tag에 id를 추가하고 그 값을 선택자(#)로 활용.
 		    id가 중복적용 불가하므로 해당 소스를 재활용 불가하여 주로 구조적인 용도에 사용.</li>
-		<li class="li-cl">class선택자- tag에 class를 추가하고 그 값을 선택자(.class값)로 활용.
-			class는 중복 적용 가능하므로 주로 디자인적인 용도에 사용.</li>
+		<li class="li-cl g">class선택자- tag에 class를 추가하고 그 값을 선택자(.class값)로 활용.
+			class는 중복 적용 가능, 조합이 가능하므로 주로 디자인적인 용도에 사용.</li>
 	</ul>
 	
 	<h2>2. css 적용 방법</h2>
 	<ul>
-		<li>External CSS (외부 CSS) - CSS소스를 외부 파일로 독립시켜 html 문서와 연결한 형태로 적용.
+		<li class="ex g">External CSS (외부 CSS)
+		 - CSS소스를 외부 파일로 독립시켜 html 문서와 연결한 형태
+		 (head안에 link href="*.css" rel="stylesheet")
+		 로 적용.
 			유지보수에 유리, 통일성 있는 디자인 적용 가능.</li>
-		<li id="li-in">Internal CSS (내부 CSS) - CSS소스를 html문서의 head안에 추가하여 적용. 해당 에만 종속적으로 적용됨</li>
-		<li>Inline CSS (인라인 CSS) - CSS 소스를 tag뒤에 직접 추가하여 적용.
+		<li id="li-in" class="b">Internal CSS (내부 CSS) - CSS소스를 html문서의 head안에 추가하여 적용. 해당 에만 종속적으로 적용됨</li>
+		<li style="background-color: #fca;" class="r">Inline CSS (인라인 CSS) - CSS 소스를 tag뒤에 직접 추가하여 적용.
 			소스가 길어지고 유지보수에 불리 , 통일성 있는 디자인 적용 불가. 본문만 수정 가능한 상황일 때 불가피하게 사용. CSS적용 우선 순위는 가장 높음</li>
 		
 	</ul>
