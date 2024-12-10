@@ -28,5 +28,11 @@ public class Test2 {
 		AbsShape absShape3 = new RecA();
 		absShape3.prn();
 		absShape3.method();
+		
+		
+		School school =new School();
+		school.draw(absShape1);
+		school.draw(absShape2);
+		school.draw(absShape3);
 	}
 }
