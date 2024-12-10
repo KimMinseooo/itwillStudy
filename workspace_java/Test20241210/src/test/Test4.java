@@ -10,12 +10,13 @@ public class Test4 {
 //		추상메서드 정의 int div(int num1, int num2)
 		
 //		상속받은 클래스 Calculator
+		System.out.println(Calc.a);
 		
 		Calculator cal = new Calculator();
 		System.out.println(cal.add(10, 30));
 		System.out.println(cal.sub(20, 10));
 		System.out.println(cal.mul(10, 30));
-		System.out.println(cal.div(10, 5));
+		System.out.println(cal.div(10, 2));
 		
 //		인터페이스 Calc2 정의 
 //		추상메서드 정의 prn() 
