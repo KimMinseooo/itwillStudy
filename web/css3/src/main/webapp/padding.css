@@ -1,0 +1,20 @@
+@charset "UTF-8";
+#pd { border: 1px solid;}
+#pd:hover {
+	padding: 50px;
+}
+
+#ul-pd01>li{ border: 1px solid #009;}
+.pt {padding-top : 30px;}
+.pr {text-align: right;
+	padding-right:30px;
+	}
+.pb {padding-bottom: 30px;}
+.pl {padding-left: 30px;}
+
+#ul-pd02>li {border: 1px solid #090;} 
+
+.p01 {padding :2em;}
+.p02 {padding :2em 20%;}
+.p03 {padding :3em 30% 1em;}
+.p04 {padding :2em 40% 1.5em 25%}
