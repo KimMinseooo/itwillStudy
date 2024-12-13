@@ -1,0 +1,123 @@
+@charset "UTF-8";
+
+#sec01 { font-size: 20px; }
+
+.fs01 { font-size: 16px;
+		color : #00d;}
+		
+.fs02 { font-size: 12px;
+		color : blue;}
+
+.fs03 { font-size: 20px;
+		color  :red;}
+
+.fs04 { font-size: 1em;
+		color : #00d;}
+
+.fs05 { font-size:0.75em;
+		color  :green;}
+	
+.fs06 { font-size:1.25em;
+		color  :red;}
+		
+.fs07 { font-size: 1rem;
+		color : #040;}
+		
+.fs08 { font-size: 0.75rem;
+		color : #040;}
+		
+.fs09 { font-size: 1.25rem;
+		color : #040;}
+
+.fs01, .fs04, .fs07 {  
+/*
+그룹 선택자 A, B, C, ... 는 동시에 여러 
+요소를 불러서 같은 스타일 적용 
+(선택자 종류는 서로 달라도 됨)  */ 
+	padding-top : 10px;
+	border-top: 2px solid #ccd;
+}
+
+/* 2. font-weight : ; 글자 두께 */
+
+.fw100 { font-weight: 100;}
+.fw200 { font-weight: 200;}
+.fw300 { font-weight: 300;}
+.fw400 { font-weight: 400;}
+.fw500 { font-weight: 500;}
+.fw600 { font-weight: 600;}
+.fw700 { font-weight: 700;}
+.fw800 { font-weight: 800;}
+.fw900 { font-weight: 900;}
+.fw01{ font-weight: bold;
+	   color : #a00; }
+.fw02{font-weight: normal;
+	  color: #056;}
+.fw02:hover {
+	/* A:hover는 A에 마우스 오버 상태일 때만 적용됨 */
+	font-weight: bold;
+}
+
+.fw03 { font-weight: bold;
+		background-color: #aa9;}
+
+.fst01 { font-style: italic;
+		color : #a00;}
+		
+.fst02 { font-style: oblique;}
+.fst03 { font-style: normal;}
+
+.fst03:hover { font-style: italic;}
+
+.ffm01 {font-family: 
+	"Times New Roman" "Garamond" , "Georgia", serif;}
+	
+.ffm02 { font-family: 
+	"Verdana","Arial","Verdana",sans-serif;}
+
+.ffm03 { font-family: 
+	"courier new","Lucida console", "monaco", monospace;}
+
+/*  fonts.google.com
+
+.nanum-gothic-regular {
+  font-family: "Nanum Gothic", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+.gowun-batang-regular {
+  font-family: "Gowun Batang", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.nanum-brush-script-regular {
+  font-family: "Nanum Brush Script", cursive;
+  font-weight: 400;
+  font-style: normal;
+}
+.bagel-fat-one-regular {
+  font-family: "Bagel Fat One", system-ui;
+  font-weight: 400;
+  font-style: normal;
+}
+
+
+*/
+
+.ffm04 { font-family: "Gowun Batang", serif; }
+.ffm05 { font-family: "Nanum Brush Script", cursive;}
+.ffm06 { font-family: "Bagel Fat One", system-ui;}
+
+
+
+
+
+
+
+
+
+
+
+
+
