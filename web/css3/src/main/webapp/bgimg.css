@@ -1,0 +1,39 @@
+@charset "UTF-8";
+body {background-color: #cef; 
+background-image:url("img/smartphone.jpg");
+/* background-repeat:no-repeat; */
+background-position:right bottom;
+background-size:cover;
+background-attachment:fixed;
+font-size: 20px;
+line-height: 1.6;
+/* 행간(줄간격) 글자 높이의 ~배 */}
+#bg{
+	background-color :#eee;
+	border: 6px double;
+	border-radius:12px;
+	margin:3em 1em;
+	padding:1em 2.5em;
+	width: 550px;
+	font-size: 1.1em;
+	color:#09aa5c;
+}
+ul { line-height: 2;}
+li {margin-top: 30px;}
+
+section {background-color :#fff;
+color :#000;}
+
+.sc, .fx, .lc {border: 4px solid #590;
+	padding: 1em;
+	width:26%; height: 400px;
+	display:inline-block;
+	overflow:scroll;
+	background-image: url("img/sunset2.jpg");
+	background-size: cover;
+	background-position: 50% 50%;
+}
+
+.sc{background-attachment: scroll;}
+.fx{background-attachment: fixed;}
+.lc{background-attachment: local;}
