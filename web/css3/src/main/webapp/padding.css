@@ -1,8 +1,6 @@
 @charset "UTF-8";
 #pd { border: 1px solid;}
-#pd:hover {
-	padding: 50px;
-}
+#pd:hover {padding: 50px;}
 
 #ul-pd01>li{ border: 1px solid #009;}
 .pt {padding-top : 30px;}
@@ -18,3 +16,76 @@
 .p02 {padding :2em 20%;}
 .p03 {padding :3em 30% 1em;}
 .p04 {padding :2em 40% 1.5em 25%}
+
+legend {
+	padding-left: 0.5em;
+	padding-right: 0.5em;
+	font-size: 20px;
+	font-weight: bold;
+	text-transform: capitalize;
+}
+label {	text-transform: uppercase;}
+fieldset {
+/* 	padding-top: 30px; */
+/* 	padding-left: 50px; */
+/* 	padding-bottom: 40px; */
+/* 	padding-right: 0px; */
+	padding : 30px 0px 40px 30px;
+}
+#name, #id {padding:0.7em;}
+
+#sbm {padding: 0.7em 5em;}
+
+.id {padding-right: 30px;}
+#brd{padding: 3em 0;}
+
+#brd>table { 
+	border:1px solid;
+	width: 800px;
+	height: 400px;
+}
+#brd>nav>a {
+	background-color:#9ed;
+/* 	font-size: 36px; */
+	padding:10px 25px;
+	text-decoration: none;
+	color:#029;
+}
+
+#brd>nav>a:hover{
+	background-color: #029;
+	color:#9ed;
+}
+
+#brd>nav {padding: 50px 0px;}
+/* img에서의 padding 활용 */
+p>img {width:400px;}
+
+.ph01 {
+	border: 34px solid #432;
+	padding: 60px;
+	box-shadow: 1px 2px 10px #333;
+}
+.ph02 {
+	border: 1px solid;
+	padding: 20px 20px 140px;
+	border-radius:6px;
+	box-shadow: 1px 2px 2px #333;
+	opacity: 0.7;   /* 불투명 정도!! */
+}
+.ph02:hover {
+	opacity:1;
+	box-shadow: 1px 2px 10px #333;
+	transition:0.8s;
+}
+
+.ph03 {
+	border-radius: 50%;
+}
+.ph03:hover {
+	border-radius: 0 50%;
+	transition:0.8s;
+}
+
+
+
