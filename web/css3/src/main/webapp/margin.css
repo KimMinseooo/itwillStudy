@@ -1,0 +1,117 @@
+@charset "UTF-8";
+
+.margin {
+	border-left:12px solid #bbb;
+	background-color: #eee;
+	padding:1.5em;
+	line-height: 1.8;
+}
+.margin:first-line {
+	font-size: 1.05em;
+	font-weight: bold;
+	text-decoration:underline;
+	color:#333;
+}
+.margin:first-letter {
+	background-color: #900;
+	padding:4px;
+	color:#fff;
+}
+
+#mg {
+	border:1px solid;
+	margin :40px;
+}
+
+#ul-mg01>li {border:1px solid #060;}
+.mt {margin-top: 3em;}
+.mr {
+	margin-right: 3em;
+	text-align: right;
+}
+.mb{
+	margin-bottom: 3em;
+}
+.ml{
+	margin-left: 3em;
+}
+
+#ul-mg02>li {
+	border:1px solid #600;
+}
+.m01 {
+	margin:50px;
+}
+.m02 {
+	margin:50px 20%;
+}
+.m03 {
+	margin:50px 20% 80px;
+}
+.m04 {
+	margin:50px 30% 30px 20%;
+}
+
+/* 마진값이 충돌(?) 될때 큰값이 적용된다 ! 각자 적용되는것이 아니고 
+	마진값들중 큰 값이 적용!  */
+
+#cnt {
+	background-color : #edf;
+	width:300px;
+/* 	margin-left : auto; */
+/* 	margin-right:auto; */
+	margin:4em auto;
+	padding:0.3em;
+	font-size: 50px;
+	font-weight: bold;
+	text-align: center;
+	text-transform: uppercase;
+}
+
+#cnt>span {
+	font-size:16px;
+	text-transform: none;
+}
+#cnt>span>b {
+	color:#900;
+}
+
+/* form에서의 margin 활용 */
+
+fieldset {
+	width:300px;
+	margin: 3em auto;
+}
+
+
+.id {margin-right: 27px;}
+#sbm {margin-top :2em;}
+
+/* a에서의 margin 활용 */
+table {
+	border :1px solid;
+	width:800px;
+	height: 400px;	
+}
+
+#brd>nav>a {
+	background-color:#ff5;
+	color:#550;
+	text-decoration:none;
+	padding:10px;
+}
+#brd>nav>a:hover {
+	color:#ff5;
+	background-color: #550;
+}
+
+#brd>nav {
+	margin-top: 5em;
+	margin-bottom:2em;
+}
+
+/* margin이나 padding값은 inline 태그들 
+	즉, 크기를 갖고있지 않는 태그들엔 사용 불가 ? */
+
+
+
