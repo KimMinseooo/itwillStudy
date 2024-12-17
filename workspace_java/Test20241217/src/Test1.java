@@ -48,7 +48,6 @@ public class Test1 {
 			System.out.println(ir.next());
 		}
 		
-		
 		TreeSet<Integer> asd = new TreeSet<Integer>();
 		asd.add(100);
 		asd.add(50);
