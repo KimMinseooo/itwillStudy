@@ -17,15 +17,16 @@ public class Test3 {
 		String str = dateFormat.format(a);
 		System.out.println(str);  // 2024/12/19 16:24:40
 		
-//		String => Timestamp 변환 
+//		String => Date => Timestamp 변환
+		
 		try {
-			java.util.Date date = dateFormat.parse(str);
+			java.util.Date date = dateFormat.parse(str);  // 먼저 Date 타입으로 변환
 			Timestamp timestamp = new Timestamp(date.getTime());
 			System.out.println(timestamp);
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}   // 먼저 Date 타입으로 변환
+		}  
 		
 	}
 }
