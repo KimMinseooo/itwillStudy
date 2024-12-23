@@ -1,10 +1,63 @@
 @charset "UTF-8";
 
+nav>ul {/* 목록 앞의 기본 여백 제거 */
+padding-left: 0px;
+text-align: center;
+margin-bottom : 5em;}
+
+nav>ul>li {
+	border-bottom :10px solid;
+	background-color: #5ef;
+	width:150px; height: 30px;
+	display: inline-block; /* 나란히 */
+	border-radius:20px 0;
+	text-align: center;
+	line-height: 30px;
+	text-transform: capitalize;
+	margin-right: 12px;
+}
+
+nav>ul>li:hover {
+	border-bottom : 10px solid #5ef;
+	background-color :#530;
+	transition:1s;
+}
+nav>ul>li>a {
+/* 	border :1px solid #00f; */
+	display: block;
+	width:150px; height: 30px;
+	text-decoration: none;
+}
+
+nav>ul>li>a:link, nav>ul>li>a:visited {
+	/* 1. 링크의 평상시 상태 (초기 , 방문한)
+	a:link, a:visited */
+	color : #530;	
+}
+
+nav>ul>li>a:hover , nav>ul>li>a:active {
+	/* 2. 링크의 동작시 상태 (마우스오버 , 활성화)
+	a:hover , a:active  */
+	color :#5ef;
+}
+section>h2>i {
+	font-style: normal;
+	font-size :12px;
+	color:#930;
+	background-color : #ff0;
+}
+
+#sec04 , #sec05 {
+	display: inline-block;
+	width: 45%;
+	vertical-align: top;
+}
+
 #sec01, #sec02 {
 display: inline-block;
 width: 45%;
-vertical-align:top
-/* inline요소들끼리의 수직정렬 */; }
+vertical-align:top;
+/* inline요소들끼리의 수직정렬 */ }
 
    /* 1. display:inline; */
 #sec01>.bl {border: 1px solid #00f;
@@ -49,6 +102,35 @@ display: inline-block;}
 }
 
 
+/* 5. visibility */
 
+#sec05>p {
+	background-color : #4af;
+	padding:1em;
+	visibility: hidden;
+}
 
+#sec05:hover>p{
+	background-color : #4af;
+	padding:1em;
+	visibility: visible;
+}
+
+#sec05>a {
+	background-color: #fa4;
+	padding: 0.5em;
+	visibility: hidden;
+}
+/* #sec05:hover>a { */
+/* 	background-color: #fa4; */
+/* 	padding: 0.5em; */
+/* 	visibility: visible; */
+/* } */
+
+#sec05>aside:hover+a {
+	/* 형제관계선택자 A+B는 A의 바로 뒤에 위치한 형제B를 지정,
+	A~B는 A의 뒤에 오는 모든 형제B를 지정 */
+	
+	visibility :visible;
+}
 
