@@ -1,0 +1,132 @@
+@charset "UTF-8";
+
+nav {margin :5em 0;}
+
+
+h1>i {
+	background-color :#df0;
+	font-size: 14px;
+	color: #a40;	
+	font-stretch: normal;
+} 
+nav>ul {
+	list-style: none;
+	padding-left: 0;
+}
+/* 1. left menu */
+#nv01>ul>li{
+/* 	border : 1px solid red; */
+	float:left; /* 나란히 배치 */
+}
+nav>ul>li>a {
+/* 	border:1px solid #00f; */
+	text-decoration: none;
+	text-transform: uppercase;
+	padding:8px 20px;
+}
+nav>ul>li>a:link, nav>ul>li>a:visited {
+	border-left:10px solid #0a8;
+	background-color : #064;
+	color : #ff9;
+}
+
+nav>ul>li>a:hover , nav>ul>li>a:active {
+	background-color:#ff9;
+	color:#064;
+}
+
+/* 2. right menu */
+#nv02>ul>li {
+/* 	border:1px solid red; */
+	float:left; /* 나란히 */
+}
+#nv02>ul {
+/* 	border:1px solid #00d; */
+	float: right;	/* 우측 정렬 */
+}
+
+/* 3. 중앙 menu */
+#nv03>ul>li {
+/* 	border: 1px solid red; */
+	float:left;
+}
+#nv03 {margin :5em 0;}
+
+#nv03>ul {
+/* 	border: 1px solid #00d; */
+	width:460px;
+	margin: 0 auto;
+}
+
+h1 {margin-top :5em;}
+
+
+#f-l , #f-r {
+	padding: 1em;
+	color:#fff;	
+	font-weight: bold;
+}
+
+#f-l {
+	background-color: #7ae;
+	float:left;
+}
+	
+#f-r {
+	background-color: #ea7;
+	float:right;
+	margin-bottom: 5em;
+}
+.clear {clear:both;}
+
+/* 1. img에 float:left; */
+#sec01 {
+	overflow: hidden; /* float으로 빠져나간
+	자식을 다시 둘러싸도록 함  */
+	float:left;
+	width:35%;
+}
+#sec01>p>img {float:left;
+margin-right: 1em;
+margin-bottom: 0.7em;}
+/* 2. img에 float:right; */
+#sec02 {
+	overflow: hidden;
+}
+#sec02>p {text-align: justify;}
+
+#sec02>p>img {
+	float:right;
+	margin-left: 1em;
+	margin-bottom: 0.7em;
+}
+
+#sec03 {
+	clear:both;
+	overflow: hidden;
+}
+#sec03>p {
+	border: 1px solid red;
+}
+.p01, .p02 {
+	float:left;
+	width: 45%;
+	margin-right: 4%;
+}
+
+.p03 {
+	clear:both;
+}
+
+ .p04, .p05 , .p06{
+	width:30%;
+	float:left;
+	margin-right: 3%;
+}
+
+#sec04 {overflow:hidden;}
+#sec04>p {
+	border:1px solid #00f;
+	float:right;
+	height: 50px;
+}
