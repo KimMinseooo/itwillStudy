@@ -29,3 +29,102 @@ desc empvu80;
 
 select *
 from empvu80;
+
+create view deptvu
+as select *
+	 from departments
+	where department_id > 200;
+    
+    
+desc deptvu;
+
+select *
+from deptvu;
+
+-- 뷰를 사용한 DML 작업 
+insert into deptvu 
+values (340, "Test1",124,1700);
+
+update deptvu
+set location_id =1700
+where department_id = 310;
+
+delete from deptvu 
+where department_id =280;
+
+update departments
+set manager_id = 125
+where department_id = 310;
+
+select *
+from deptvu;
+
+select * 
+from departments;
+
+-- 보안성 예제 
+use shopdb;
+
+create view member_vu
+as select member_id, member_name , birth , job 
+	 from members;
+     
+desc member_vu;
+
+select *
+from member_vu;
+
+-- 단순성 예제 , 편의성 예제 
+use hr;
+
+create view dept_sal_vu
+as select d.department_name, sum(e.salary) as "급여 합계",
+		  avg(e.salary) as "급여 평균", min(e.salary) as "최소 급여",
+          max(e.salary) as "최대 급여"
+	 from employees e join departments d
+     on e.department_id = d.department_id
+     group by d.department_name
+     order by d.department_name;
+     
+desc dept_sal_vu;
+
+select *
+from dept_sal_vu;
+
+-- 10-2. 뷰 수정(alter view) 
+-- [문법] alter view 뷰명
+-- 	     as select 컬럼1, 컬럼2, 컬럼3, ...
+--       from 테이블명
+--       [where 조건절]
+
+alter view empvu80
+as select employee_id, last_name , salary , email , department_id
+	 from employees
+	where department_id =80;
+    
+desc empvu80;
+
+select *
+from empvu80;
+
+-- 10-3. 뷰 삭제(drop view)
+-- [문법] drop view 뷰명;
+
+drop view empvu80;
+select * 
+from empvu80;
+
+select *
+from employees
+where department_id = 80;
+
+-- 10-4. DB 사전으로부터 View 정보 조회하기
+use information_schema;
+show tables;
+
+select * 
+from views
+where table_schema="hr";
+
+
+
