@@ -1,9 +1,11 @@
 package com.itwillbs.test3_mybatis.controller;
 
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -49,4 +51,25 @@ public class StudentController {
 	public String registSucess() {
 		return "student/student_regist_success";
 	}
+	
+	@GetMapping("studentInfo")
+	public String studentInfo(String idx,Model model) {
+		System.out.println("학생정보(idx) : "+idx);
+		StudentVO student= service.getStudentInfo(idx);
+		System.out.println(student);
+		model.addAttribute("student" , student);
+		return "student/student_info";
+	}
+	
+	@GetMapping("studentList")
+	public String studentList(Model model) {
+		
+		List<StudentVO> studentList= service.getStudentList();
+		System.out.println(studentList);
+		model.addAttribute("studentList",studentList);
+		
+		
+		return "student/student_list";
+	}
+	
 }
