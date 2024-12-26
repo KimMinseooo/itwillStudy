@@ -21,6 +21,6 @@ public interface ProductMapper {
 	int productDelete(String product_id);
 	
 	//상품정보 수정
-//	int productModify(@Param("product") ProductVO product,@Param("old_id") String old_id);
-	int productModify(ProductVO product);
+	int productModify(@Param("old_id") String old_id,@Param("product") ProductVO product);
+//	int productModify(ProductVO product);
 }

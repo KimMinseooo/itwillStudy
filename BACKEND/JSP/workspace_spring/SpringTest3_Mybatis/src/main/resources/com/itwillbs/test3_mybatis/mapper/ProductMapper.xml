@@ -37,12 +37,12 @@
   
   	<update id="productModify">
   		UPDATE PRODUCT
-  		   SET PRODUCT_ID = #{product_id},
-  		   	   PRODUCT_NAME = #{product_name},
-  		   	   PRODUCT_PRICE = #{product_price},
-  		   	   PRODUCT_QTY = #{product_qty},
-  		   	   PRODUCT_IMG = #{product_img}
-  		 WHERE PRODUCT_ID = #{product_id}
+  		   SET PRODUCT_ID = #{product.product_id},
+  		   	   PRODUCT_NAME = #{product.product_name},
+  		   	   PRODUCT_PRICE = #{product.product_price},
+  		   	   PRODUCT_QTY = #{product.product_qty},
+  		   	   PRODUCT_IMG = #{product.product_img}
+  		 WHERE PRODUCT_ID = #{old_id}
   		   	   
   	</update>
   

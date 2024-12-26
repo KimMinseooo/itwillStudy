@@ -31,8 +31,8 @@ public class ProductService {
 		return mapper.productDelete(product_id);
 	}
 
-	public int productModify(ProductVO product) {
-//		return mapper.productModify(product,old_id);
-		return mapper.productModify(product);
+	public int productModify(String old_id,ProductVO product) {
+		return mapper.productModify(old_id,product);
+//		return mapper.productModify(product);
 	}
 }

@@ -74,11 +74,11 @@ public class ProductController {
 	}
 	
 	@PostMapping("productModify")
-	public String productModify(ProductVO product,Model model) {
+	public String productModify(String old_id,ProductVO product,Model model) {
 //		System.out.println("전달받은 product_id :"+product_id+" Product "+product);
-//		System.out.println("전달받은 old_id : "+old_id+" product :"+product);
-//		int updateCount = service.productModify(product,old_id);
-		int updateCount = service.productModify(product);
+		System.out.println("전달받은 old_id : "+old_id+" product :"+product);
+		int updateCount = service.productModify(old_id,product);
+//		int updateCount = service.productModify(product);
 		System.out.println("update 실행결과 : "+updateCount);
 		model.addAttribute("product_id",product.getProduct_id());
 		return "redirect:productInfo";

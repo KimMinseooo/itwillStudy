@@ -10,7 +10,7 @@
 	<div align="center">
 		<h1>상품 수정 폼</h1>
 		<form action="productModify" method="post">
-<%-- 			<input type="hidden" name="old_id" value="${param.product_id}"> --%>
+			<input type="hidden" name="old_id" value="${param.product_id}">
 			<input type="text" name="product_id" placeholder="상품번호" value="${product.product_id}"><br>
 			<input type="text" name="product_name" placeholder="상품명" value="${product.product_name}"><br>
 			<input type="text" name="product_price" placeholder="가격" value="${product.product_price}"><br>
