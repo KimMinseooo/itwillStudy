@@ -1,0 +1,86 @@
+package com.itwillbs.test3_mybatis.controller;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+
+import com.itwillbs.test3_mybatis.service.ProductService;
+import com.itwillbs.test3_mybatis.vo.ProductVO;
+
+@Controller
+public class ProductController {
+
+	
+	@Autowired
+	ProductService service;
+	
+	@GetMapping("registProduct")
+	public String registProductForm() {
+		
+		return "product/product_regist_form";
+	}
+	
+	@PostMapping("registProduct")
+	public String registProduct(ProductVO product) {
+	
+		System.out.println("전달받은 상품번호 :"+product.getProduct_id());
+		System.out.println("전달받은 상품명 :"+product.getProduct_name());
+		System.out.println("전달받은 가격 :"+product.getProduct_price());
+		System.out.println("전달받은 수량 :"+product.getProduct_qty());
+		System.out.println("전달받은 이미지 : "+product.getProduct_img());
+		int registCount = service.registProduct(product);
+		System.out.println("INSERT 작업 결과 :"+ registCount);
+		
+		return "redirect:productList";
+	}
+	
+	@GetMapping("productList")
+	public String getProductList(Model model) {
+		
+		List<ProductVO> productList= service.getProductList();
+		System.out.println(productList);
+		model.addAttribute("productList",productList);
+		
+		return "product/product_list";
+	}
+	
+	@GetMapping("productInfo")
+	public String getProductInfo(String product_id,Model model) {
+		System.out.println("전달받은 : "+ product_id);
+		ProductVO product = service.getProductInfo(product_id);
+		model.addAttribute("product",product);
+		return "product/product_info";
+	}
+	
+	@GetMapping("productDelete")
+	public String productDelete(String product_id) {
+		System.out.println("전달받은 상품번호 :"+product_id);
+		int deleteCount = service.productDelete(product_id);
+		System.out.println("DELETE 실행 결과 :"+deleteCount);
+		return "redirect:productList";
+	}
+	
+	
+	@GetMapping("productModify")
+	public String productModifyForm(String product_id,Model model) {
+		System.out.println("전달받은 product_id :"+product_id);
+		ProductVO product = service.getProductInfo(product_id);
+		model.addAttribute("product",product);
+		return "product/product_modify_form";
+	}
+	
+	@PostMapping("productModify")
+	public String productModify(ProductVO product,Model model) {
+//		System.out.println("전달받은 product_id :"+product_id+" Product "+product);
+//		System.out.println("전달받은 old_id : "+old_id+" product :"+product);
+//		int updateCount = service.productModify(product,old_id);
+		int updateCount = service.productModify(product);
+		System.out.println("update 실행결과 : "+updateCount);
+		model.addAttribute("product_id",product.getProduct_id());
+		return "redirect:productInfo";
+	}
+}
