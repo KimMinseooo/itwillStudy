@@ -15,7 +15,7 @@
 			<input type="text" name="product_name" placeholder="상품명" value="${product.product_name}"><br>
 			<input type="text" name="product_price" placeholder="가격" value="${product.product_price}"><br>
 			<input type="text" name="product_qty" placeholder="수량" value="${product.product_qty}"><br>
-			<input type="file" name="product_img" value="${product.product_img}"><br>(현재 업로드 파일: )
+			<input type="file" name="product_img"><br>(현재 업로드 파일: ${product.product_img})
 			<input type="submit" value="등록"> <%-- 수정 완료 후 "상품상세" productInfo로 이동 --%>
 		</form>
 	</div>
