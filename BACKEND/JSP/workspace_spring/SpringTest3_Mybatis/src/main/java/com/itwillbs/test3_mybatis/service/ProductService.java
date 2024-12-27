@@ -22,6 +22,10 @@ public class ProductService {
 	public List<ProductVO> getProductList() {
 		return mapper.getProductList();
 	}
+	// 메서드 오버로딩으로 메서드명이 같아도 가능
+	public ProductVO getProductList(String product_id) {
+		return mapper.getProductList(product_id);
+	}
 
 	public ProductVO getProductInfo(String product_id) {
 		return mapper.getProductInfo(product_id);

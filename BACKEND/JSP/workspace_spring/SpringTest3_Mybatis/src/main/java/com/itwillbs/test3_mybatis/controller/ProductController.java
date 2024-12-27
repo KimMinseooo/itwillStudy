@@ -51,7 +51,7 @@ public class ProductController {
 	@GetMapping("productInfo")
 	public String getProductInfo(String product_id,Model model) {
 		System.out.println("전달받은 : "+ product_id);
-		ProductVO product = service.getProductInfo(product_id);
+		ProductVO product = service.getProductList(product_id);
 		model.addAttribute("product",product);
 		return "product/product_info";
 	}
@@ -68,7 +68,7 @@ public class ProductController {
 	@GetMapping("productModify")
 	public String productModifyForm(String product_id,Model model) {
 		System.out.println("전달받은 product_id :"+product_id);
-		ProductVO product = service.getProductInfo(product_id);
+		ProductVO product = service.getProductList(product_id);
 		model.addAttribute("product",product);
 		return "product/product_modify_form";
 	}

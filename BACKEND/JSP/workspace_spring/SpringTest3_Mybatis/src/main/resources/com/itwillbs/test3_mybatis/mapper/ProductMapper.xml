@@ -22,13 +22,16 @@
   	<select id="getProductList" resultType="product">
   		SELECT *
   		  FROM PRODUCT
+  		  <if test="product_id !=null and !product_id.equals('')">
+  		 WHERE PRODUCT_ID = #{product_id}
+  		  </if>
   	</select>
   
-  	<select id="getProductInfo" resultType="product">
-  		SELECT *
-  		  FROM PRODUCT
-  		 WHERE PRODUCT_ID = #{product_id}
-  	</select>
+<!--   	<select id="getProductInfo" resultType="product"> -->
+<!--   		SELECT * -->
+<!--   		  FROM PRODUCT -->
+<!--   		 WHERE PRODUCT_ID = #{product_id} -->
+<!--   	</select> -->
   
   	<delete id="productDelete">
   		DELETE FROM PRODUCT

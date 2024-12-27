@@ -13,6 +13,7 @@ public interface ProductMapper {
 	
 	//상품 목록 조회
 	List<ProductVO> getProductList();
+	ProductVO getProductList(String product_id);
 
 	//상품 상세정보
 	ProductVO getProductInfo(String product_id);

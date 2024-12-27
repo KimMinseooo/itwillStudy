@@ -10,6 +10,12 @@
 <body>
 	<div align="center">
 		<h1>상품 목록</h1>
+		<form action="productList" method="get">
+			<input type="text" name="product_id" placeholder="상품번호">
+			<input type="text" name="product_name" placeholder="상품명">
+			<input type="submit" value="조회">
+		</form>
+		
 		<table border="1">
 			<tr>
 				<th>상품번호</th>
