@@ -45,6 +45,29 @@ nav>ul>li>a:hover , nav>ul>li>a:active {
 	float: right;	/* 우측 정렬 */
 }
 
+#sub {
+	list-style: none;
+	padding-left: 10px;
+	display: none;
+}
+#mn04:hover>#sub { display: block;}
+
+#sub a {
+	text-decoration: none;
+	padding:5px 15px;
+	display: block;	
+	
+}
+#sub a:link, #sub a:visited {
+	background-color: #ccc;
+	color: #05c;
+}
+
+#sub a:hover, #sub a:active {
+	background-color: #05c;
+	color: #ccc;
+}
+
 /* 3. 중앙 menu */
 #nv03>ul>li {
 /* 	border: 1px solid red; */
