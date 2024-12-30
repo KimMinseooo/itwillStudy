@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link href="style.css" rel="stylesheet">
+<link href="position.css" rel="stylesheet">
+</head>
+<body>
+	<h1>position 요소의 위치 기준 지정</h1>
+	<ul>
+		<li>position:static; 기본값. 위치(거리값) 적용 불가</li>
+		<li>position:relative; 현재 위치에서 거리 적용</li>
+		<li>position:absolute; 상위요소의 ~에서 거리 적용</li>
+		<li>position:fixed; 브라우저를 기준으로 ~에 고정</li>
+		<li>position:sticky; relative와 fixed의 믹스</li>
+	</ul>
+	<hr>
+	<ul>
+		<li>left:n; 왼쪽에서 n거리 적용</li>
+		<li>right:n; 오른쪽에서 n거리 적용</li>
+		<li>top:n; 위쪽에서 n거리 적용</li>
+		<li>bottom:n; 아래쪽에서 n거리 적용</li>
+	</ul>
+	
+	<section id="sec04">
+		<h2>5. position:sticky; relative와 fixed의 믹스
+		<i>브라우저의 특정 위치에 도달하면 고정 됨</i></h2>
+	</section>
+
+
+
+	<section id="sec01">
+		<h2>1. position:static; 기본값. 위치(거리) 적용 불가</h2>
+		<p>position:static;</p>
+	</section>	
+	
+	<section id="sec02">
+		<h2>2. position:relative; 현재 위치에서 거리 적용</h2>
+		
+		<p class="re01">position:relative; <br>left:1000px;</p>
+		<p class="re02">position:relative; <br>right: 1000px;</p>
+		<p class="re03">position:relative; <br>top:5em;</p>
+		<p class="re04">position:relative; <br>bottom: 5em;</p>
+		<p class="re05">position:relative; <br>left:1400px;bottom: 400px;</p>
+		<p class="re06">position:relative; <br>left:1200px;	top:400px</p>
+	</section>
+	
+	<section id="sec03">
+		<h2>3. position:absolute; 상위요소의 ~에서 거리 적용</h2>
+		<p class="ab01">position:absolute;<br>left:1000px;</p>
+		<p class="ab02">position:absolute;<br>right: 1000px;</p>
+		<p class="ab03">position:absolute;<br>top:200px;</p>
+		<p class="ab04">position:absolute;<br>bottom:100px;</p>
+		
+		<div id="box">
+		  <div class="c">c</div>
+		  <div class="a">a</div>
+		  <div class="r">r</div>
+		  <div class="d">d</div>
+		  <p>position으로 겹친 요소들끼리의 위아래는 <b>z-index:n;</b> 로 지정.<br>
+		   (태그 추가시 1씩 증가하며 큰 값이 위로 배치 됨. 음수값 가능)</p>
+		</div>
+	</section>
+
+	<aside id="quick">
+		<nav>
+			<ul>
+				<li><a href="#">top</a></li>
+				<li><a href="#sec01">section-1</a></li>
+				<li><a href="#sec02">section-2</a></li>
+				<li><a href="#sec03">section-3</a></li>
+			</ul>
+		</nav>
+	</aside>	
+	
+	
+	
+	
+	
+</body>
+</html>

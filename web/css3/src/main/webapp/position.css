@@ -1,0 +1,169 @@
+@charset "UTF-8";
+html {scroll-behavior:smooth;/* 부드러운 스크롤 이동 */}
+section>p {border: 1px solid;}
+ 
+section>h2>i {
+background-color:#697;
+padding:4px 6px;	
+font-size:15px;
+font-weight:normal;
+font-style: normal;	
+color: #fff;}
+ 
+ /* 1. position:static; 기본값 */
+#sec01 {position:static;
+	left: 1000px;}
+
+
+ /* 2. position:relative; 현재 위치에서 거리 적용 */
+#sec02>p {width: 200px;}
+.re01 {position: relative;
+left: 1000px;}
+
+.re02 {position: relative;
+ right:0px; }
+#sec02:hover>.re02 {
+ right: 1000px;
+ transition:1s;}
+ 
+.re03 {position: relative;
+top: 5em;}
+ 
+ .re04 {position: relative;
+ bottom: 5em;}
+ 
+  .re05 {position: relative;
+ left: 0px; bottom: 0px;}
+ #sec02:hover>.re05	{
+ left: 1400px; bottom: 400px;
+ transition:1s;} 
+ 
+ #sec02:hover>.re06	{position: relative;
+ left: 1200px; top: -400px;}
+ 
+ 
+  /* 3. position:absolute; 상위요소의 ~에서 */
+#sec03 {position:relative /* 기준이 될 
+ 상위요소의 설정값 */; 
+height: 500px;}
+
+#sec03>p {background-color: #0a9;
+width: 200px;
+margin: 0; }
+ 
+.ab01 {position: absolute;
+left: 1000px;}
+.ab02 {position: absolute;
+right: 1000px;} 
+.ab03 {position: absolute;
+top:200px;}
+.ab04 {position: absolute;
+bottom: 100px;}
+ 
+#box {background-color: #000;
+width: 800px; height: 400px;
+position: relative;
+left:500px;
+color: #ccc;}
+
+#box>p {position: absolute;
+right: 1em; bottom: 1em;}
+
+#box>p>b {background-color:#3fc;
+padding:2px 4px;
+color:#f00;}
+
+#box>div {border: 1px solid;
+border-radius:6px;
+width: 100px; height: 150px; 
+box-sizing:border-box /* 요소의 크기(width,height)
+계산시 border까지 포함해서 표현되게 함 */;
+font-size:4em;
+font-weight: bold;
+text-transform:uppercase;
+text-align: center;
+line-height: 150px;
+color: #777;
+position: absolute;}
+
+.c {background-color: #aec;
+ left: 100px; top:100px;
+ z-index: 50;}
+.a {background-color: #eac;
+ left: 120px; top:120px;
+ z-index: 49;}
+.r {background-color: #ace;
+ left: 140px; top:140px; 
+ z-index: 48;}
+.d {background-color: #cae;
+ left: 160px; top:160px; 
+ z-index: 47;}	
+
+#box:hover>.c {
+ left: 150px; top:120px; 	
+ transition:1s;} 
+#box:hover>.a {
+ left: 250px; top:150px; 	
+ transition:1s 1.2s;} 
+#box:hover>.r {
+ left: 350px; top:120px; 	
+ transition:1s 2.4s;} 
+#box:hover>.d {
+ left: 450px; top:150px; 	
+ transition:1s 3.6s;} 
+
+
+
+/* position:fixed; 브라우저 */
+#quick {
+	border-top:12px solid #d42; 
+	border-radius: 16px 16px 0 0;
+	background-color:#000;
+	width:150px;
+	height: 180px;
+	color:#fff;
+	position:fixed;
+	right:0;
+	bottom:-160px;
+	z-index:9999;
+}
+
+#quick:hover{
+	bottom:0;
+	transition:1s;
+}
+
+
+#quick ul {
+	/* border:1px solid; */
+	padding-left:0;
+	list-style: none;
+}
+
+#quick a {
+	text-decoration: none;
+	width:150px;
+	padding:5px;
+	display: block;
+	text-transform: capitalize;
+	text-align: center;
+}
+
+#quick a:link , #quick a:visited{
+	border-bottom :4px solid;
+	color:#fff;
+}
+#quick a:hover , #quick a:active{
+	color:#ff0;
+}
+
+/* 5. position:sticky; relative와 fixed의 믹스 */
+#sec04 {
+	background-color : rgba(200,200,200,0.7);
+	position: sticky;
+	top:0;
+	z-index:999;
+	
+}
+
+	
