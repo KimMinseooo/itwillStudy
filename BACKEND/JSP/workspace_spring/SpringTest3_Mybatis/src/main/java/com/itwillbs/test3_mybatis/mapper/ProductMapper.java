@@ -1,6 +1,7 @@
 package com.itwillbs.test3_mybatis.mapper;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.annotations.Param;
 
@@ -12,11 +13,13 @@ public interface ProductMapper {
 	int registProduct(ProductVO product);
 	
 	//상품 목록 조회
-	List<ProductVO> getProductList();
-	ProductVO getProductList(String product_id);
+	<T> List<T> getProductList(Map<String,String>param);
+	
+//	List<ProductVO> getProductList(Map<String,String>param);
+//	ProductVO getProductList(Map<String, String>param);
 
 	//상품 상세정보
-	ProductVO getProductInfo(String product_id);
+//	ProductVO getProductInfo(String product_id);
 	
 	//상품정보 삭제
 	int productDelete(String product_id);

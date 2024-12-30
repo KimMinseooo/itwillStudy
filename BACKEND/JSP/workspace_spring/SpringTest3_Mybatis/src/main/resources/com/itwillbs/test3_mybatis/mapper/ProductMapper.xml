@@ -19,11 +19,19 @@
   			   ,#{product_img})
   	</insert>
   
-  	<select id="getProductList" resultType="product">
+  <!-- product_name -->
+  
+  	<select id="getProductList" resultType="product" parameterType="map">
+  		-- ProductMapper.xml getProductList
   		SELECT *
   		  FROM PRODUCT
+  		 WHERE 1=1
   		  <if test="product_id !=null and !product_id.equals('')">
-  		 WHERE PRODUCT_ID = #{product_id}
+  		   AND PRODUCT_ID = #{product_id}
+  		  </if>
+  		   <if test="product_name !=null and !product_name.equals('')">
+<!--   		 WHERE PRODUCT_NAME LIKE '%${product_name}%' -->
+  		   AND PRODUCT_NAME LIKE CONCAT('%', #{product_name}, '%')
   		  </if>
   	</select>
   
@@ -32,12 +40,6 @@
 <!--   		  FROM PRODUCT -->
 <!--   		 WHERE PRODUCT_ID = #{product_id} -->
 <!--   	</select> -->
-  
-  	<delete id="productDelete">
-  		DELETE FROM PRODUCT
-  		 WHERE PRODUCT_ID = #{product_id}
-  	</delete>
-  
   	<update id="productModify">
   		UPDATE PRODUCT
   		   SET PRODUCT_ID = #{product.product_id},
@@ -46,8 +48,12 @@
   		   	   PRODUCT_QTY = #{product.product_qty},
   		   	   PRODUCT_IMG = #{product.product_img}
   		 WHERE PRODUCT_ID = #{old_id}
-  		   	   
   	</update>
+
+  	<delete id="productDelete">
+  		DELETE FROM PRODUCT
+  		 WHERE PRODUCT_ID = #{product_id}
+  	</delete>
   
   
   </mapper>

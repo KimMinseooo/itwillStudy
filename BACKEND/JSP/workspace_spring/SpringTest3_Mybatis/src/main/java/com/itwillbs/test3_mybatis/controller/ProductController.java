@@ -1,12 +1,14 @@
 package com.itwillbs.test3_mybatis.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.itwillbs.test3_mybatis.service.ProductService;
 import com.itwillbs.test3_mybatis.vo.ProductVO;
@@ -39,9 +41,11 @@ public class ProductController {
 	}
 	
 	@GetMapping("productList")
-	public String getProductList(Model model) {
+	public String getProductList(@RequestParam Map<String, String> param,Model model) {
 		
-		List<ProductVO> productList= service.getProductList();
+		System.out.println(param);
+		
+		List<ProductVO> productList= service.getProductList(param);
 		System.out.println(productList);
 		model.addAttribute("productList",productList);
 		
@@ -49,10 +53,11 @@ public class ProductController {
 	}
 	
 	@GetMapping("productInfo")
-	public String getProductInfo(String product_id,Model model) {
-		System.out.println("전달받은 : "+ product_id);
-		ProductVO product = service.getProductList(product_id);
-		model.addAttribute("product",product);
+	public String getProductInfo(@RequestParam Map<String,String> param,Model model) {
+//		System.out.println("전달받은 : "+ product_id);
+//		ProductVO product = service.getProductList(product_id);
+		List<ProductVO> list = service.getProductList(param);
+		model.addAttribute("product",list.get(0));
 		return "product/product_info";
 	}
 	
@@ -66,10 +71,10 @@ public class ProductController {
 	
 	
 	@GetMapping("productModify")
-	public String productModifyForm(String product_id,Model model) {
-		System.out.println("전달받은 product_id :"+product_id);
-		ProductVO product = service.getProductList(product_id);
-		model.addAttribute("product",product);
+	public String productModifyForm(@RequestParam Map<String,String>param,Model model) {
+//		System.out.println("전달받은 product_id :"+product_id);
+		List<ProductVO> list = service.getProductList(param);
+		model.addAttribute("product",list);
 		return "product/product_modify_form";
 	}
 	
