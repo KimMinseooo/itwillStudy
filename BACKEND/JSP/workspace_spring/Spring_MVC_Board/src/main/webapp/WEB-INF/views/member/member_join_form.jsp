@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 <link href="${pageContext.request.contextPath }/resources/css/default.css" rel="stylesheet" type="text/css">
 <script src="${pageContext.request.contextPath }/resources/js/jquery-3.7.1.js"></script>
-<script src="${pageContext.request.contextPath }/resources/js/member_join_form.js">
+<script src="${pageContext.request.contextPath }/resources/js/member_join_form.js"></script>
 </head>
 <body>
 
