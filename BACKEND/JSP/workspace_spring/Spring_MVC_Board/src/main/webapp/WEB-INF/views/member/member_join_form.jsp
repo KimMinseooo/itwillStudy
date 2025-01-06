@@ -21,18 +21,25 @@
 			<table border="1">
 				<tr>
 					<th>이름</th>
-					<td><input type="text" name="name" id="name"></td>
+					<td><input type="text" name="name" id="name" pattern="^[가-힣]{2,6}$" title="한글 2~6글자"></td>
 				</tr>
 				<tr>
 					<th>아이디</th>
 					<td>
-						<input type="text" name="id" id="id" placeholder="4 ~ 8글자 사이 입력">
+						<input type="text" name="id" id="id" placeholder="4~16자 영문자,숫자,_조합">
 						<span id="checkIdResult"></span>
 					</td>
 				</tr>
 				<tr>
 					<th>비밀번호</th>
 					<td>
+						<!-- 
+						비밀번호 입력란 change 이벤트 핸들링
+						=> 비밀번호가 영문자, 숫자,특수문자(!@#$%) 조합 8글자 ~16글자 사이 
+						=> 조합 대상 외의 문자가 포함되거나 길이가 부적합할 경우 
+							"영문자, 숫자, 특수문자(!@#$%) 조합 8~16글자 필수!" 메세지를 span영역에 빨간색으로!
+						=> 아니면 복잡도 검사를 체크하여 "안전","보통","위험","사용불가" 4단계 메시지 출력
+						 -->
 						<input type="password" name="passwd" id="passwd" placeholder="8 ~ 16글자 사이 입력">
 						<span id="checkPasswdResult"></span>
 					</td>
@@ -56,8 +63,8 @@
 				<tr>
 					<th>E-Mail</th>
 					<td>
-						<input type="text" name="email1" size="10"> @
-						<input type="text" name="email2" size="10">
+						<input type="text" id="email1" name="email1" size="10"> @
+						<input type="text" id="email2" name="email2" size="10">
 						<select name="emailDomain">
 							<option value="">직접입력</option>
 							<option value="naver.com">naver.com</option>
