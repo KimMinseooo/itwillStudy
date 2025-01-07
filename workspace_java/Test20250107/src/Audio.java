@@ -1,5 +1,5 @@
 
-public class Audio implements RemoteControl{
+public class Audio implements RemoteControl, Searchable{
 	int volume;
 	@Override
 	public void turnOn() {
@@ -20,6 +20,11 @@ public class Audio implements RemoteControl{
 			this.volume=volume;
 		}
 		System.out.println("현재 Audio 볼륨 : "+ this.volume);
+	}
+	
+	@Override
+	public void search(String url) {
+		System.out.println(url+"을 검색합니다");
 	}
 	
 }

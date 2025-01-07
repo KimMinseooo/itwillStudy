@@ -43,22 +43,34 @@ public class Test3 {
 		television.setVolume(7);
 		System.out.println(television.volume);
 		television.turnOff();
+		television.search("www.naver.com");
 		System.out.println("==============================");
 		Audio audio = new Audio();
 		audio.turnOn();
 		audio.setVolume(11);
 		System.out.println(audio.volume);
 		audio.turnOff();
-		
+		audio.search("www.naver.com~");
 		RemoteControl remoteControl = new Television();
 		remoteControl.turnOn();
 		remoteControl.setVolume(20);
 		remoteControl.turnOff();
-		 
+//		remoteControl.search();
 		RemoteControl remoteControl2 = new Audio();
 		remoteControl2.turnOn();
 		remoteControl2.setVolume(20);
 		remoteControl2.turnOff();
+		
+//		인터페이스 다중 상속 가능
+//		인터페이스 Searchable 정의
+//		추상 메서드 리턴값 없음 search(String url) 정의
+		
+//		Television, Audio 에, Searchable 상속 (구현)
+		Searchable searchable = new Television();
+		searchable.search("www.tv.com");
+		
+		searchable= new Audio();
+		searchable.search("www.au.com");
 	}
 
 }

@@ -1,5 +1,5 @@
 
-public class Television implements RemoteControl{
+public class Television implements RemoteControl, Searchable{
 	int volume;
 	
 	@Override
@@ -20,5 +20,9 @@ public class Television implements RemoteControl{
 			this.volume = volume;
 		}
 		System.out.println("현재 TV 볼륨 : "+this.volume);
+	}
+	@Override
+	public void search(String url) {
+		System.out.println(url+"을 검색합니다");
 	}
 }
