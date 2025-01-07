@@ -68,7 +68,7 @@ $(function(){
 			data: {id : $('#id').val()},
 			success: function(res){
 				$('#checkIdResult').text(res.msg);
-				$('#checkIdResult').css(res.color);
+				$('#checkIdResult').css('color',res.color);
 			},
 			error : function(xhr, textStatus,errorThrown){
 				

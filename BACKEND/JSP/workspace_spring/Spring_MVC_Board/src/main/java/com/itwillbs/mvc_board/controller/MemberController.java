@@ -38,10 +38,10 @@ public class MemberController {
 	
 	@ResponseBody // 리턴되는 문자열이 데이터가 되도록 변경
 	@GetMapping("checkId")
-	public Map<String,String> checkId(@RequestParam Map<String, String> param) {
+	public Map<String,String> checkId(@RequestParam Map<String,String> param) {
 		System.out.println("Ajax 호출됨!!!");
 //		System.out.println(member);
-//		System.out.println(param);
+		System.out.println(param);
 		
 		// 자바스크립트 success에서 데이터를 사용하려면 json 형태인것인 편리하다.
 		// 이때 , 가장 비슷한 Map을 리턴하더라도 자동 json으로 파싱이 불가능
