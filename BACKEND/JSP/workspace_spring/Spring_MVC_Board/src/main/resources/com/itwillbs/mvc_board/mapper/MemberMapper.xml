@@ -38,9 +38,20 @@
   		SELECT COUNT(*) AS CNT
   		  FROM MEMBER
   		 WHERE ID =#{id}
-  	
   	</select>
-  	
+
+	<select id="getMember" parameterType="member" resultType="member">
+		SELECT *
+		  FROM MEMBER
+		 WHERE ID = #{id}
+		   AND PASSWD = #{passwd}
+	</select>  	
+	
+	<select id="getMemberInfo">
+		SELECT *
+		  FROM MEMBER
+		 WHERE ID = #{id}
+	</select>
   	
   	
   	

@@ -5,8 +5,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -24,16 +27,77 @@ public class MemberController {
 	private MemberService memberService;
 	
 	@GetMapping("MemberJoin")
-	public String MemberJoinForm() {
+	public String memberJoinForm() {
 		return "member/member_join_form";
 	}
 	
 	@PostMapping("MemberJoin")
-	public String MemberJoin(MemberVO member) {
+	public String memberJoin(MemberVO member) {
 		System.out.println(member);
 		int insertCnt = memberService.registMember(member);
 		System.out.println("INSERT 결과 : " +insertCnt);
-		return "";
+		return "redirect:/MemberJoinSucess";
+	}
+	// 회원가입 완료 뷰페이지(member_join_success.jsp) 포워딩
+	@GetMapping("MemberJoinSucess")
+	public String memberJoinSucess() {
+		return "member/member_join_success";
+	}
+	
+	@GetMapping("MemberLogin")
+	public String memberLogin() {
+		return "member/member_login_form";
+	}
+	
+	@PostMapping("MemberLogin")
+	public String memberLogin(MemberVO member, HttpSession session, Model model) {
+		MemberVO dbMember = memberService.getMember(member);
+		System.out.println("!!@#$@!#");
+		System.out.println(dbMember);
+		
+		if(dbMember == null) { // 로그인 실패
+		
+			model.addAttribute("msg","로그인 실패!");
+			
+			return "result/fail";
+			
+		} else { // 로그인 성공
+			session.setAttribute("sId", member.getId());
+			// 세션 타이머 설정(ex. 금융권 사이트의 경우 10분(=600초))
+			session.setMaxInactiveInterval(600);
+		}
+		
+		//메인페이지로 리다이렉트
+		return "redirect:/";
+//		model.addAttribute("msg","로그인 성공!");
+//		model.addAttribute("url","./");
+//		return "result/fail";
+	}
+	
+	@GetMapping("MemberLogout")
+	public String memberLogout(HttpSession session) {
+		session.invalidate(); // 세션 죽이기 
+		return "redirect:/";
+	}
+	
+	// 회원 상세정보 조회
+	@GetMapping("MemberInfo")
+	public String memberInfo(HttpSession session,Model model) {
+		// 세션 아이디 가져와서 로그인 여부 판별
+		// => 만약, 미 로그인(세션 객체의 sId 속성값이 null)일 경우 
+		// 	  "접근 권한이 없습니다!" 메시지를 msg 속성에 저장 후 fail.jsp 포워딩
+		String id = (String)session.getAttribute("sId");
+		if(id == null) {
+			model.addAttribute("msg","접근 권한이 없습니다!");
+			model.addAttribute("url","MemberLogin");
+			return "result/fail";
+		}
+		
+		// [ 로그인 상태일 경우 ]
+		
+		MemberVO member= memberService.getMemberInfo(id);
+		model.addAttribute("member",member);
+		return "member/member_modify_form";
 	}
 	
 	@ResponseBody // 리턴되는 문자열이 데이터가 되도록 변경

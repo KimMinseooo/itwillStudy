@@ -26,7 +26,9 @@ article table {
 	margin: auto;
 }
 
-
+#loginForm {
+	text-align: center;
+}
 
 
 

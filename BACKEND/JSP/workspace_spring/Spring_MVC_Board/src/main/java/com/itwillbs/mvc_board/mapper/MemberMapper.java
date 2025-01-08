@@ -8,8 +8,10 @@ import com.itwillbs.mvc_board.vo.MemberVO;
 
 @Mapper
 public interface MemberMapper {
+	
 	int registMember(MemberVO member);
-
 	int checkId(Map<String, String> param);
+	MemberVO getMember(MemberVO member);
+	MemberVO getMemberInfo(String id);
 	
 }
