@@ -30,5 +30,13 @@ public class MemberService {
 		return mapper.getMemberInfo(id);
 	}
 
+	public int modifyMember(Map<String, String> param) {
+		return mapper.modifyMember(param);
+	}
+
+	public int deleteMember(Map<String, String> map) {
+		return mapper.deleteMember(map);
+	}
+
 	
 }

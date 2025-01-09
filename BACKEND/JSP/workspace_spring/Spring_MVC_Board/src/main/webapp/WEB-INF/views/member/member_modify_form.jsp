@@ -26,12 +26,19 @@
 				<tr>
 					<th>아이디</th>
 					<td>
-						<input type="text" name="id" id="id" value="${member.id}" placeholder="4~16자 영문자,숫자,_조합">
+						<input type="text" name="id" id="id" value="${member.id}" placeholder="4~16자 영문자,숫자,_조합" readonly>
 						<span id="checkIdResult"></span>
 					</td>
 				</tr>
 				<tr>
-					<th>비밀번호</th>
+					<th>기존 비밀번호</th>
+					<td>
+						<input type="password" name="oldPasswd" id="oldPasswd" placeholder="8 ~ 16글자 사이 입력">
+						<span id="checkPasswdResult"></span>
+					</td>
+				</tr>
+				<tr>
+					<th>새 비밀번호</th>
 					<td>
 						<input type="password" name="passwd" id="passwd" placeholder="8 ~ 16글자 사이 입력">
 						<span id="checkPasswdResult"></span>
@@ -47,7 +54,7 @@
 				<tr>
 					<th>주소</th>
 					<td>
-						<input type="text" name="post_code" id="post_code" value="${member.post_code}" size="6">
+						<input type="text" name="post_code" id="post_code" value="${member.post_code}" size="6" readonly>
 						<input type="button" value="주소검색" id="btnSearchAddress"><br>
 						<input type="text" name="address1" id="address1" value="${member.address1}" size="30" placeholder="기본주소"><br>
 						<input type="text" name="address2" id="address2" value="${member.address2}" size="30" placeholder="상세주소">
@@ -95,8 +102,6 @@
 				<tr>
 					<th>취미</th>
 					<td>
-					${member.hobby}
-					
 						<input type="checkbox" name="hobby" value="여행" <c:if test="fn:contains(member.hobby,'여행')">checked</c:if> >여행
 						<input type="checkbox" name="hobby" value="독서" <c:if test="fn:contains(member.hobby,'독서')">checked</c:if> >독서
 						<input type="checkbox" name="hobby" value="게임" <c:if test="fn:contains(member.hobby,'게임')">checked</c:if> >게임
@@ -112,7 +117,7 @@
 				<tr>
 					<td colspan="2" align="center">
 						<input type="submit" value="정보수정">
-						<input type="reset" value="초기화">
+						<input type="button" value="회원탈퇴" onclick="location.href='MemberWithdraw'">
 						<input type="button" value="돌아가기" onclick="history.back()">
 					</td>
 				</tr>

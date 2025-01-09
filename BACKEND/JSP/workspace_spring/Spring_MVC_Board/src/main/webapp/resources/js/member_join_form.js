@@ -7,6 +7,7 @@ $(function(){
 
 	// --------- Events --------------------
 	$('#id').on('change',checkId); // id 변경 이벤트	
+	$('#id').on('keyup',duplicateId);
 	$('#passwd').on('change',checkPass); // passwd 확인 이벤트
 	$('#passwd2').on('change',checkPass2); // passwd 확인 이벤트
 	$('form').on('submit',checkSubmit); // 최종 가입 버튼 클릭 이벤트

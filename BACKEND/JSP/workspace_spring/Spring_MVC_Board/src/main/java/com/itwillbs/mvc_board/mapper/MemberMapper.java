@@ -13,5 +13,7 @@ public interface MemberMapper {
 	int checkId(Map<String, String> param);
 	MemberVO getMember(MemberVO member);
 	MemberVO getMemberInfo(String id);
+	int modifyMember(Map<String, String> param);
+	int deleteMember(Map<String, String> map);
 	
 }
