@@ -11,5 +11,6 @@
 <!-- 		<typeAlias type="com.itwillbs.test3_mybatis.vo.StudentVO" alias="student"/> -->
 <!-- 		<typeAlias type="com.itwillbs.test3_mybatis.vo.ProductVO" alias="product"/> -->
 		<typeAlias type="com.itwillbs.mvc_board.vo.MemberVO" alias="member"/>
+		<typeAlias type="com.itwillbs.mvc_board.vo.BoardVO" alias="board"/>
 	</typeAliases>
 </configuration>
