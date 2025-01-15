@@ -28,10 +28,29 @@
   	
   	</insert>
   	
-  	<select id="getBoardList">
+  	<select id="getBoardListCount" resultType="int">
+  		SELECT COUNT(*)
+  		  FROM BOARD
+  	</select>
+  	
+  	<!--  
+  	정렬 : 참조글번호(board_re_ref) 기준 내림차순, 
+  	     순서번호(board_re_seq) 기준 오름차순
+  	 LIMIT 절을 활용하여 조회할 게시물 개수 제한(startRow 행부터 listLimit 만큼 조회)
+  	 -->
+  	<select id="getBoardList" resultType="board">
   	-- getBoardList
   	SELECT *
   	  FROM BOARD
+  	 ORDER BY BOARD_RE_REF DESC 
+  	     , BOARD_RE_SEQ ASC
+  	 LIMIT #{startRow}, #{listLimit} 
+  	</select>
+  	
+  	<select id="getBoard" resultType="board">
+  		SELECT * 
+  		  FROM BOARD
+  		 WHERE BOARD_NUM = #{board_num}
   	</select>
   	
   </mapper>

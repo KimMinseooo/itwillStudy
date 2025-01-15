@@ -18,8 +18,15 @@ public class BoardService {
 		return mapper.registBoard(board);
 	}
 
-	public List<BoardVO> getBoardList() {
-		return mapper.getBoardList();
+	public List<BoardVO> getBoardList(int startRow,int listLimit ) {
+		return mapper.getBoardList(startRow,listLimit);
 	}
 	
+	public int getBoardListCount() {
+		return mapper.getBoardListCount();
+	}
+
+	public BoardVO getBoard(int board_num) {
+		return mapper.getBoard(board_num);
+	}
 }
