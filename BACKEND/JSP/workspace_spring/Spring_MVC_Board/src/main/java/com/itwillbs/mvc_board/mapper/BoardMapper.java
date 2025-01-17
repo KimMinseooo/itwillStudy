@@ -23,5 +23,9 @@ public interface BoardMapper {
 
 	// 게시물 상세 조회
 	public BoardVO getBoard(int board_num);
+	// 게시글 삭제
+	public int removeBoard(BoardVO board);
+
+	public void updateReadCount(int board_num);
 
 }
