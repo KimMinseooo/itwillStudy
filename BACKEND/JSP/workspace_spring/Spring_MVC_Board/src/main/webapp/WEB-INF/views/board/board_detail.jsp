@@ -108,7 +108,7 @@
 				<input type="button" value="답글" onclick="location.href=''">
 				<%-- 수정, 삭제 버튼은 작자가 세션아이디와 동일한 경우에만 표시 --%>
 				<c:if test="${sessionScope.sId eq board.board_name or sessionScope.sId eq 'admin'}">
-					<input type="button" value="수정" onclick="location.href=''">
+					<input type="button" value="수정" onclick="requestModify()">
 					<input type="button" value="삭제" onclick="confirmDelete()">
 				</c:if>
 			</c:if>
@@ -129,6 +129,11 @@
 				location.href= "BoardDelete?board_num=${board.board_num}";
 			}
 		}
+		
+		function requestModify(){
+			location.href = 'BoardModify?board_num=${board.board_num}&pageNum=${param.pageNum}';
+		}
+
 	</script>
 </body>
 </html>

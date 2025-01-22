@@ -67,4 +67,14 @@
 		 WHERE BOARD_NUM = #{board_num}
   	</update>
   	
+  	<update id="modifyBoard" parameterType="board">
+  		UPDATE BOARD 
+		   SET BOARD_SUBJECT = #{board_subject}
+		     , BOARD_CONTENT = #{board_content} 
+		 WHERE BOARD_NUM = #{board_num}
+  	</update>
+  	
+  	
+  	
+  	
   </mapper>

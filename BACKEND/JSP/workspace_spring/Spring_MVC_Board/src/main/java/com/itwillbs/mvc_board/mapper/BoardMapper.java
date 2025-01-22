@@ -27,5 +27,7 @@ public interface BoardMapper {
 	public int removeBoard(BoardVO board);
 
 	public void updateReadCount(int board_num);
+	// 글 수정 
+	public int modifyBoard(BoardVO board);
 
 }

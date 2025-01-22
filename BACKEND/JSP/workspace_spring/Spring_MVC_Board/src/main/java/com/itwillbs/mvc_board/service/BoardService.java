@@ -39,4 +39,8 @@ public class BoardService {
 	public int removeBoard(BoardVO board) {
 		return mapper.removeBoard(board);
 	}
+
+	public int modifyBoard(BoardVO board) {
+		return mapper.modifyBoard(board);
+	}
 }

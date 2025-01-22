@@ -179,4 +179,54 @@ public class BoardController {
 		
 	}
 	
+	// ======================================================
+	// [ 글 수정 폼 처리 ]
+	@GetMapping("BoardModify")
+	public String boardModify(
+			int board_num, 
+			HttpSession session,
+			Model model) {
+		
+		String id = (String)session.getAttribute("sId");
+		if(id == null) {
+			model.addAttribute("msg", "접근 권한이 없습니다!");
+			model.addAttribute("url", "MemberLogin");
+			return "result/fail";
+		}
+		
+		// 조회수 증가되지 않도록 두번째 파라미터 false 전달
+		BoardVO board = boardService.getBoard(board_num, false);
+		
+		// 조회결과가 없거나, 관리자가 아니고 세션 아이디와 작성자가 일치하지 않을 경우
+		// "잘못된 접근입니다!" 메시지로 fail.jsp 페이지 포워딩 처리
+		if (board == null || (!id.equals("admin") && !id.equals(board.getBoard_name()))) {
+			model.addAttribute("msg", "잘못된 접근입니다!");
+			return "result/fail";
+		}
+		
+		model.addAttribute("board", board);
+		
+		return "board/board_modify_form";
+	}
+	
+	@PostMapping("BoardModify")
+	public String boardModify(
+			BoardVO board, 
+			@RequestParam(defaultValue = "1") int pageNum,
+			Model model) {
+		
+		int updateCnt = boardService.modifyBoard(board);
+		if(updateCnt >0) { // 수정 성공!
+			return "redirect:/BoardDetail?board_num=" + board.getBoard_num() + "&pageNum=" + pageNum;
+		} else { // 수정 실패!  
+			model.addAttribute("msg", "글 수정 실패!");
+			return "result/fail";
+		}
+	}
+	
+	
+	
+	
+	
+	
 }
