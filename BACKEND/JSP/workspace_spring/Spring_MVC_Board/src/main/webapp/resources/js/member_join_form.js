@@ -6,10 +6,11 @@ $(function(){
 	let checkPasswd2= false;
 
 	// --------- Events --------------------
-	$('#id').on('change',checkId); // id 변경 이벤트	
-	$('#id').on('keyup',duplicateId);
-	$('#passwd').on('change',checkPass); // passwd 확인 이벤트
-	$('#passwd2').on('change',checkPass2); // passwd 확인 이벤트
+	// TODO
+//	$('#id').on('change',checkId); // id 변경 이벤트	
+//	$('#id').on('keyup',duplicateId);
+//	$('#passwd').on('change',checkPass); // passwd 확인 이벤트
+//	$('#passwd2').on('change',checkPass2); // passwd 확인 이벤트
 	$('form').on('submit',checkSubmit); // 최종 가입 버튼 클릭 이벤트
 	// --------- functions --------------------
 	function checkId() {
@@ -165,16 +166,17 @@ $(function(){
 		console.log("비밀번호 : "+checkPasswd);
 		console.log("비밀번호확인 : "+checkPasswd2);
 		
-		if(!checkPasswd) {
-			alert("비밀번호를 확인하세요!");
-			$('#passwd').focus();
-			return false;
-		}
-		if(!checkPasswd2) {
-			alert("비밀번호 확인란을 확인하세요!");
-			$('#passwd2').focus();
-			return false;	
-		}
+		// TODO
+//		if(!checkPasswd) {
+//			alert("비밀번호를 확인하세요!");
+//			$('#passwd').focus();
+//			return false;
+//		}
+//		if(!checkPasswd2) {
+//			alert("비밀번호 확인란을 확인하세요!");
+//			$('#passwd2').focus();
+//			return false;	
+//		}
 		
 		let email = $('#email1').val() +'@'+$('#email2').val();
 		$('input[name=email]').remove();

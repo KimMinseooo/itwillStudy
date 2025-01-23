@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link href="${pageContext.request.contextPath }/resources/css/default.css" rel="stylesheet" type="text/css">
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+<!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous"> -->
 <script src="${pageContext.request.contextPath }/resources/js/jquery-3.7.1.js"></script>
 <script src="${pageContext.request.contextPath }/resources/js/member_join_form.js"></script>
 
@@ -112,7 +112,7 @@
 					<td colspan="2" align="center">
 						<input type="submit" value="가입">
 						<input type="reset" value="초기화">
-						<input class="btn btn-primary" type="button" value="돌아가기" onclick="history.back()">
+						<input type="button" value="돌아가기" onclick="history.back()">
 					</td>
 				</tr>
 			</table>
