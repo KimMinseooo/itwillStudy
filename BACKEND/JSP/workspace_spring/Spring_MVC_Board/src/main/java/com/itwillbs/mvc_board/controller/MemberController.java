@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.itwillbs.mvc_board.service.MailService;
 import com.itwillbs.mvc_board.service.MemberService;
 import com.itwillbs.mvc_board.vo.MemberVO;
 
@@ -27,6 +28,8 @@ public class MemberController {
 	
 	@Autowired
 	private MemberService memberService;
+	@Autowired
+	private MailService mailService;
 	
 	@GetMapping("MemberJoin")
 	public String memberJoinForm() {
@@ -34,7 +37,10 @@ public class MemberController {
 	}
 	
 	@PostMapping("MemberJoin")
-	public String memberJoin(MemberVO member, BCryptPasswordEncoder passwordEncoder) {
+	public String memberJoin(
+			MemberVO member, 
+			BCryptPasswordEncoder passwordEncoder,
+			Model model) {
 		
 //		System.out.println(member);
 		
@@ -56,8 +62,18 @@ public class MemberController {
 		
 		// TODO
 		int insertCnt = memberService.registMember(member);
-//		System.out.println("INSERT 결과 : " +insertCnt);
-		return "redirect:/MemberJoinSucess";
+		
+		if (insertCnt > 0) {
+			
+			// ------- 인증 메일 발송 작업 추가 ----------
+			mailService.sendAuthMail(member);
+			return "redirect:/MemberJoinSucess";
+		} else {
+			model.addAttribute("msg","회원가입 실패!");
+			return "result/fail";
+		}
+		
+		
 	}
 	// 회원가입 완료 뷰페이지(member_join_success.jsp) 포워딩
 	@GetMapping("MemberJoinSucess")
