@@ -3,7 +3,9 @@ package com.itwillbs.mvc_board.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.itwillbs.mvc_board.handler.GenerateRandomCode;
 import com.itwillbs.mvc_board.handler.MailClient;
+import com.itwillbs.mvc_board.vo.MailAuthInfo;
 import com.itwillbs.mvc_board.vo.MemberVO;
 
 @Service
@@ -12,10 +14,16 @@ public class MailService {
 	@Autowired
 	private MailClient mailClient;
 	
-	public void sendAuthMail(MemberVO member) {
+	public MailAuthInfo sendAuthMail(MemberVO member) {
+		
+		// 인증 메일에 포함시킬 인증코드(난수) 생성
+		String auth_code = GenerateRandomCode.getRandomCode(5);
+		System.out.println("생성된 인증 코드 : " +auth_code);
+		// ========================================================
+		// [ 인증 메일 발송 요청 ]
 		
 		String subject = "[아이티윌] 가입 인증 메일입니다.";
-		String url = "http://localhost:8080/mvc_board/MemberEmailAuth?";
+		String url = "http://localhost:8080/mvc_board/MemberEmailAuth?email="+ member.getEmail()+"&auth_code="+auth_code;
 		String content = "<a href='"+ url +"'>이메일 인증을 수행하려면 이 링크를 클릭!</a>";
 		
 		// MailClient - sendMail() 메서드 호출하여 메일 발송 요청
@@ -26,9 +34,10 @@ public class MailService {
 		// 따라서, 메일 발송 작업과 나머지 작업을 별도로 분리하여 동작 시키기 위해
 		// 메일 발송 메서드 호출 작업을 하나의 쓰레드로 동작시키면 별도로 분리가 가능!
 		// 즉, 메일 발송이 완료되지 않더라도 다음 작업 진행이 가능!
+		
 		// 람다식 표현
 		new Thread(()->mailClient.sendMail(member.getEmail(), subject,content)).start();
 		
-
+		return new MailAuthInfo(member.getEmail(),auth_code);
 	}
 }

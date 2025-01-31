@@ -78,5 +78,32 @@
 	   	   AND PASSWD = #{passwd}
   	</update>
   	
+  	<insert id="mergeMailInfo" parameterType="mail">
+  		INSERT INTO mail_auth_info 
+		     ( email
+		     , auth_code) 
+		VALUES 
+			 ( #{email}
+			 , #{auth_code})
+		  ON DUPLICATE KEY UPDATE
+		  auth_code = #{auth_code}
+  	</insert>
+  	
+  	<select id="selectMailAuthInfo" resultType="mail">
+  		SELECT *
+  		  FROM MAIL_AUTH_INFO
+  		 WHERE email = #{email}
+  	</select>
+  	
+  	<update id="updateMailAuthStatus" parameterType="mail">
+  		UPDATE MEMBER
+  		   SET mail_auth_status = 'Y'
+  		 WHERE email = #{email}
+  	</update>
+  	
+  	<delete id="deleteMailAuthInfo" parameterType="mail">
+  		DELETE FROM MAIL_AUTH_INFO
+  		 WHERE email = #{email}
+  	</delete>
   	
   </mapper>

@@ -2,8 +2,12 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:mybatis-spring="http://mybatis.org/schema/mybatis-spring"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx"
 	xsi:schemaLocation="http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring-1.2.xsd
-		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd">
+		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
 	
 	<!-- Root Context: defines shared resources visible to all other web components -->
 		
@@ -14,7 +18,7 @@
 <!-- 		<property name="jdbcUrl" value="jdbc:mysql://localhost:3306/study_jsp"></property> -->
 <!-- 		<property name="username" value="root"></property> -->
 <!-- 		<property name="password" value="1234"></property> -->
-<!-- 	</bean>	 -->
+<!-- 	</bean> -->
 	
 	<!-- SQL 로그 출력을 위해 log4jdbc 라이브러리 관련 DBCP 정보 변경 필요(driverClassName, jdbcUrl 속성만 변경) -->
 	<bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig">
@@ -24,7 +28,7 @@
 		<property name="jdbcUrl"         value="jdbc:log4jdbc:mysql://localhost:3306/spring_mvc_board"></property>
 		<property name="username"        value="root"></property>
 		<property name="password"        value="1234"></property>
-	</bean>
+	</bean>	
 		
 	<!-- 2. HikariCP를 통해 커넥션을 관리하는 DataSource 객체 설정 -->	
 	<bean id="dataSource" class="com.zaxxer.hikari.HikariDataSource" destroy-method="close">
@@ -41,7 +45,21 @@
 	<!-- 4. MyBatis 연동에 사용될 객체(클래스)들의 패키지 위치 지정 (기본 루트 패키지 지정) -->
 	<!-- 이 설정이 없을 경우 3번과 관련된 객체 (xxxMapper.java 등) 불러올 수 없다! -->	
 	<mybatis-spring:scan base-package="com.itwillbs.mvc_board" />	
-	
+		
 <!-- 	<context:component-scan base-package="com.itwillbs.mvc_board.service"></context:component-scan> -->
+	
+	<!-- 5. 트랜잭션 설정(마이바티스가 commit, rollback 여부를 직접 결정하여 수행 -->
+	<!-- 5-1) <bean> 태그를 사용하여 DataSourceTransactionManager 객체 설정 -->
+	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource"></property>
+	</bean>
+	<!-- 5-2) <tx:annotation-driven> 태그를 통해 5-1 과정에서 생성한 트랜잭션 관리 객체 지정 -->
+	<!-- namespace 탭에서 tx 항목 추가 필요 -->
+	<!-- transaction-manager 속성값으로 5-1 의 <bean> 태그의 id 속성값 지정 -->
+	<tx:annotation-driven transaction-manager="transactionManager"/>
+	<!-- 트랜잭션 처리가 필요한 클래스(주로, Service 클래스)에서 @Transactional 어노테이션 사용 -->
+		
+		
+		
 		
 </beans>

@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.itwillbs.mvc_board.service.MailService;
 import com.itwillbs.mvc_board.service.MemberService;
+import com.itwillbs.mvc_board.vo.MailAuthInfo;
 import com.itwillbs.mvc_board.vo.MemberVO;
 
 // @RestController  // 해당 클래스의 모든 메서드에 @ResponseBody 가 적용됨
@@ -66,7 +67,9 @@ public class MemberController {
 		if (insertCnt > 0) {
 			
 			// ------- 인증 메일 발송 작업 추가 ----------
-			mailService.sendAuthMail(member);
+			MailAuthInfo mailAuthInfo = mailService.sendAuthMail(member);
+			//DB에 메일 인증정보 등록
+			memberService.registMailAuthInfo(mailAuthInfo);
 			return "redirect:/MemberJoinSucess";
 		} else {
 			model.addAttribute("msg","회원가입 실패!");
@@ -133,7 +136,13 @@ public class MemberController {
 		} else if (dbMember.getMember_status() == 3) {
 			model.addAttribute("msg","탈퇴한 회원입니다!");
 			return "result/fail";
-		} else {
+		}
+		// TODO 
+//		else if (!dbMember.getMail_auth_status().equals("Y")) {
+//			model.addAttribute("msg","이메일 인증 후 로그인 가능합니다!");
+//			return "result/fail";
+//		} 
+		else {
 			
 //			if (rememberId != null) { // 체크했을때
 //				// 1. javax.servlet.http.Cookie 객체 생성
@@ -288,8 +297,31 @@ public class MemberController {
 			resultMap.put("color", "red");
 		}
 	
-		
-		
 		return resultMap;
 	}
+	
+	// =============================================================
+	// [ 이메일 인증 처리 비지니스 로직 ("MemberEmailAuth" - GET) ]
+	@GetMapping("MemberEmailAuth")
+	public String memberEmailAuth(
+			MailAuthInfo mailAuthInfo,
+			Model model) {
+		System.out.println("mailAuthInfo : " + mailAuthInfo);
+		
+		// requestEmailAuth() 메서드 호출하여 인증처리 요청
+		// => 파라미터: MailAuthInfo 객체, 리턴타입: boolean
+		boolean isAuthSuccess = memberService.requestEmailAuth(mailAuthInfo);
+		
+		if(!isAuthSuccess) {
+			model.addAttribute("msg", "메일 인증 실패!");
+		} else {
+			model.addAttribute("msg","메일 인증 성공! \\n로그인 페이지로 이동합니다.");
+			model.addAttribute("url","MemberLogin");
+		}
+		return "result/fail";
+	}
+	
+	
+	
+	
 }
