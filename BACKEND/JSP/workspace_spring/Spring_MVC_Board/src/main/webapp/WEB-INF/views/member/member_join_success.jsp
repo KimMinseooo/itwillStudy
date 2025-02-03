@@ -11,6 +11,7 @@
 	<header>
 		<jsp:include page="/WEB-INF/views/inc/top.jsp" />
 	</header>
+	
 	<article>
 		<h1>회원 가입 완료</h1>
 		<h3>
@@ -18,11 +19,9 @@
 			<input type="button" value="로그인" onclick="location.href='MemberLogin'">
 		</h3>
 	</article>
-
-
+	
 	<footer>
 		<jsp:include page="/WEB-INF/views/inc/bottom.jsp" />	
 	</footer>
-
 </body>
 </html>

@@ -3,8 +3,8 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.itwillbs</groupId>
-	<artifactId>test1</artifactId>
-	<name>SpringTest1</name>
+	<artifactId>mvc_board</artifactId>
+	<name>Spring_MVC_Board</name>
 	<packaging>war</packaging>
 	<version>1.0.0-BUILD-SNAPSHOT</version>
 	<properties>
@@ -62,7 +62,8 @@
 		    <artifactId>HikariCP</artifactId>
 		    <version>6.2.1</version>
 		</dependency>
-				
+		
+			
 		<!-- 5. MyBatis 활용에 필요한 라이브러리 추가 -->
 		<!-- 5-1) MyBatis 기본 라이브러리(최신 버전 사용) -->
 		<!-- https://mvnrepository.com/artifact/org.mybatis/mybatis -->
@@ -89,18 +90,18 @@
 		    <artifactId>log4jdbc-log4j2-jdbc4.1</artifactId>
 		    <version>1.16</version>
 		</dependency>				
-		
-		<!-- 7. ajax 활용 시 json 변환을 편리하게 할 jackson 라이브러리 추가 -->
+	
+		<!-- 7. ajax 활용 시 json 변환을 편리하게할 jackson 라이브러리 추가 -->
 		<!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind -->
 		<dependency>
 		    <groupId>com.fasterxml.jackson.core</groupId>
 		    <artifactId>jackson-databind</artifactId>
 		    <version>2.17.2</version>
 		</dependency>
-	
-		<!--  8. 암호화에 사용될 BCryptPasswordEncoder 클래스가 포함된 spring-security-web 라이브러리 -->	
-		<!--  참고) spring-security-web 대신 spring-security-crypto 라이브러리 추가 해도됨 -->
-		<!--  주의! JDK 11 기준 5.x.x 버전 까지만 사용 가능 -->
+				
+		<!-- 8. 암호화에 사용될 BCryptPasswordEncoder 클래스가 포함된 spring-security-web 라이브러리 -->
+		<!-- 참고) spring-security-web 대신 spring-security-crypto 라이브러리 추가 해도됨 -->
+		<!-- 주의! JDK 11 기준 5.x.x 버전 까지만 사용 가능 -->		
 		<!-- https://mvnrepository.com/artifact/org.springframework.security/spring-security-web -->
 		<dependency>
 		    <groupId>org.springframework.security</groupId>
@@ -108,8 +109,8 @@
 <!-- 		    <version>6.4.1</version> -->
 		    <version>5.8.16</version>
 		</dependency>
-		
-		<!--  9. 자바 메일 관련 라이브러리 -->
+						
+		<!-- 9. 자바 메일 관련 라이브러리 -->
 		<!-- https://mvnrepository.com/artifact/javax.mail/mail -->
 		<dependency>
 		    <groupId>javax.mail</groupId>
@@ -122,9 +123,31 @@
 		    <artifactId>activation</artifactId>
 		    <version>1.1.1</version>
 		</dependency>
+				
+		<!-- 
+		10 . 스프링 JUnit 테스트에 필요한 라이브러리 (junit, spring-test)
+			단, JUnit 라이브러리는 기본적으로 스프링에 포함되어 있음
+			주의! 사용 환경(스프링 버전, 자바 버전 등)에 따라 오류(예외) 발생할 수 있음(버전확인)
+		 --> 		
+		<!-- https://mvnrepository.com/artifact/org.springframework/spring-test -->
+		<dependency>
+		    <groupId>org.springframework</groupId>
+		    <artifactId>spring-test</artifactId>
+		    <!-- 6.2.2 버전은 JDK 11에서 사용불가! 5.x.x 버전 필요(기본 스프링 버전 사용) -->
+		    <version>${org.springframework-version}</version>
+		    <scope>test</scope>
+		</dependency>
+				
+		<!--  11. 난수 생성에 활용할 commons-lang3 라이브러리 -->		
+		<!-- https://mvnrepository.com/artifact/org.apache.commons/commons-lang3 -->
+		<dependency>
+		    <groupId>org.apache.commons</groupId>
+		    <artifactId>commons-lang3</artifactId>
+		    <version>3.17.0</version>
+		</dependency>
 		
-		
-		
+				
+				
 		<!-- Spring -->
 		<dependency>
 			<groupId>org.springframework</groupId>
@@ -151,6 +174,7 @@
 			<version>${org.aspectj-version}</version>
 		</dependency>	
 		
+	
 		<!-- Logging -->
 		<dependency>
 			<groupId>org.slf4j</groupId>
@@ -210,6 +234,15 @@
 			<scope>provided</scope>
 		</dependency> -->
 		
+		<!-- https://mvnrepository.com/artifact/javax.servlet/javax.servlet-api -->
+		<dependency>
+		    <groupId>javax.servlet</groupId>
+		    <artifactId>javax.servlet-api</artifactId>
+		    <version>4.0.1</version>
+		    <scope>provided</scope>
+		</dependency>
+				
+		
 		<!-- https://mvnrepository.com/artifact/jakarta.servlet/jakarta.servlet-api -->
 <!-- 		<dependency> -->
 <!-- 		    <groupId>jakarta.servlet</groupId> -->
@@ -220,25 +253,27 @@
 		
 		
 		
-	<!-- https://mvnrepository.com/artifact/javax.servlet/javax.servlet-api -->
 		<dependency>
-		    <groupId>javax.servlet</groupId>
-		    <artifactId>javax.servlet-api</artifactId>
-		    <version>4.0.1</version>
-		    <scope>provided</scope>
+			<groupId>javax.servlet.jsp</groupId>
+			<artifactId>jsp-api</artifactId>
+			<version>2.1</version>
+			<scope>provided</scope>
 		</dependency>
-
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>jstl</artifactId>
 			<version>1.2</version>
 		</dependency>
 	
+		<!--  단위테스트에 사용할 JUnit 라이브러리 (기본적으로 추가되어있음) -->
+		<!--  단, 버전에 따른 오류 발생 가능성 있으므로 버전확인 필요 -->
 		<!-- Test -->
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
-			<version>4.7</version>
+<!-- 			<version>4.7</version> -->
+			<!--  4.12 이상을 요구하므로 버전 변경 -->
+			<version>4.12</version>
 			<scope>test</scope>
 		</dependency>        
 	</dependencies>
@@ -258,6 +293,7 @@
                     <downloadJavadocs>true</downloadJavadocs>
                 </configuration>
             </plugin>
+            
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>

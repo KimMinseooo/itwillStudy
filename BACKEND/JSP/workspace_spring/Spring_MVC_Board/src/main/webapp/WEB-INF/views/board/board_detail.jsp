@@ -72,7 +72,7 @@
 	</header>
 	<!-- 게시판 등록 -->
 	<article id="articleForm">
-		
+	
 		<h1>글 상세내용 보기</h1>
 		<section id="basicInfoArea">
 			<table>
@@ -103,17 +103,15 @@
 		</section>
 		<section id="commandCell">
 		
-			<%-- 답글, 수정 , 삭제 버튼 모두 로그인 한 사용자에게만 표시 --%>
+			<%-- 답글, 수정, 삭제 버튼 모두 로그인 한 사용자에게만 표시 --%>
 			<c:if test="${not empty sessionScope.sId}">
 				<input type="button" value="답글" onclick="location.href=''">
-				<%-- 수정, 삭제 버튼은 작자가 세션아이디와 동일한 경우에만 표시 --%>
+				<%-- 수정, 삭제 버튼은 작성자가 세션아이디와 동일할 경우에만 표시 --%>
 				<c:if test="${sessionScope.sId eq board.board_name or sessionScope.sId eq 'admin'}">
 					<input type="button" value="수정" onclick="requestModify()">
 					<input type="button" value="삭제" onclick="confirmDelete()">
 				</c:if>
 			</c:if>
-			
-		
 			<%-- 목록 버튼 항상 표시 --%>
 			<input type="button" value="목록" onclick="location.href='BoardList?pageNum=${param.pageNum}'">
 		</section>
@@ -125,16 +123,24 @@
 	
 	<script type="text/javascript">
 		function confirmDelete(){
-			if(confirm("삭제하시겠습니까?")) {
-				location.href= "BoardDelete?board_num=${board.board_num}";
+			if(confirm("삭제하시겠습니까?")){
+				location.href = "BoardDelete?board_num=${board.board_num}";
 			}
 		}
 		
 		function requestModify(){
 			location.href = 'BoardModify?board_num=${board.board_num}&pageNum=${param.pageNum}';
 		}
-
+	
 	</script>
+	
+	
+	
+	
+	
+	
+	
+	
 </body>
 </html>
 

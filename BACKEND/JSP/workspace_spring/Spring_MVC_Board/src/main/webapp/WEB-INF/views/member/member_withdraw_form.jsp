@@ -13,16 +13,15 @@
 	</header>
 	
 	<article>
-		<h1>회원 탈퇴</h1>	
+		<h1>회원 탈퇴</h1>
 		<form action="MemberWithdraw" method="post" id="loginForm">
 			<input type="password" name="passwd" placeholder="패스워드" required><br>
 			<input type="submit" value="로그인">
 		</form>
 	</article>
-
-
+	
 	<footer>
-		<jsp:include page="/WEB-INF/views/inc/bottom.jsp" />	
+		<jsp:include page="/WEB-INF/views/inc/bottom.jsp" />
 	</footer>
 
 </body>

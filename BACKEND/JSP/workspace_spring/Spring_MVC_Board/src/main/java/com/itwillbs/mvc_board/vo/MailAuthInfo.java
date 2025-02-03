@@ -16,13 +16,10 @@ import lombok.NoArgsConstructor;
    );
  */
 
-
-
-
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class MailAuthInfo {
-	private String email;        // 이메일
-	private String auth_code;    // 난수
+	private String email;
+	private String auth_code;
 }

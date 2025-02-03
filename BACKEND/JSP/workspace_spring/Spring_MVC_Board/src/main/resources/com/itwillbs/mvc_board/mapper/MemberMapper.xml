@@ -2,19 +2,10 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
-  <!-- 
-  마이바티스에서 실행할 SQL 구문을 갖는 xxxMapper.xml 파일 정의
-  => 실행할 각 구문의 이름을 태그로 제공함(insert, update, delete ,select 등) 
-  	(내부적으로 PreparedStatement 객체를 통해 SQL 구문을 실행함)
-  => 주의! mapper 태그 내의 namespace 속성에 현재 XML 파일과 연결된 자바 인터페이스를 명시 
-  => 주의! 각 태그 내의 id속성에 지정될 이름은 Mapper 인터페이스 내의 메서드명과 일치해야한다!
-   -->
-  
-  
-  <mapper namespace="com.itwillbs.mvc_board.mapper.MemberMapper">
-  
-  	<insert id="registMember" parameterType="member">
-  		INSERT INTO MEMBER
+<mapper namespace="com.itwillbs.mvc_board.mapper.MemberMapper">
+
+	<insert id="registMember" parameterType="member">
+		INSERT INTO MEMBER
 		VALUES (null
 			 , #{name}
 			 , #{id}
@@ -28,37 +19,36 @@
 		     , #{hobby}
 		     , #{motivation}
 		     , NOW()
-		     , null
+			 , null
 		     , 1
-		     , 'N'
-			)
-  	</insert>
-  	
-  	<select id="checkId" parameterType="map">
-  		SELECT COUNT(*) AS CNT
-  		  FROM MEMBER
-  		 WHERE ID =#{id}
-  	</select>
+		     , 'N')
+	</insert>
+
+	<select id="checkId" parameterType="map">
+		SELECT COUNT(*) AS CNT
+		  FROM MEMBER
+		 WHERE ID = #{id} 
+	</select>
 
 	<select id="getMember" parameterType="member" resultType="member">
 		SELECT *
 		  FROM MEMBER
 		 WHERE ID = #{id}
 		   AND PASSWD = #{passwd}
-	</select>  	
+	</select>
 	
 	<select id="getMemberInfo">
 		SELECT *
 		  FROM MEMBER
-		 WHERE ID = #{id}
+		 WHERE ID = #{id} 
 	</select>
-  	
-  	<update id="modifyMember" parameterType="map">
+	
+	<update id="modifyMember" parameterType="map">
 		UPDATE MEMBER
 	       SET NAME = #{name}
-	       <if test="!passwd.equals('')">
-		     , PASSWD = #{passwd} -- 비밀번호 변경시에만
-		   </if>  
+		<if test="!passwd.equals('')">
+			 , PASSWD = #{passwd} -- 비밀번호 변경시에만		
+		</if>  
 	         , POST_CODE = #{post_code}
 	         , ADDRESS1 = #{address1}
 	         , ADDRESS2 = #{address2}
@@ -69,41 +59,42 @@
 	         , MOTIVATION = #{motivation}
 	   	 WHERE ID = #{id}
 	</update>
-  	
-  	<update id="deleteMember" parameterType="map">
-  		UPDATE MEMBER
-	       SET WITHDRAW_DATE = now()
-	         , member_status = 3
-	   	 WHERE ID = #{id}
-	   	   AND PASSWD = #{passwd}
-  	</update>
-  	
-  	<insert id="mergeMailInfo" parameterType="mail">
-  		INSERT INTO mail_auth_info 
-		     ( email
-		     , auth_code) 
+	
+	<update id="updateStatus" parameterType="map">
+		UPDATE MEMBER
+		   SET WITHDRAW_DATE = NOW()
+			 , MEMBER_STATUS = 3
+		 WHERE ID = #{id}	 
+	</update>
+
+	<insert id="mergeMailInfo" parameterType="mail">
+		INSERT INTO MAIL_AUTH_INFO
+			 ( EMAIL
+		     , AUTH_CODE)
 		VALUES 
 			 ( #{email}
 			 , #{auth_code})
-		  ON DUPLICATE KEY UPDATE
-		  auth_code = #{auth_code}
-  	</insert>
-  	
-  	<select id="selectMailAuthInfo" resultType="mail">
-  		SELECT *
-  		  FROM MAIL_AUTH_INFO
-  		 WHERE email = #{email}
-  	</select>
-  	
-  	<update id="updateMailAuthStatus" parameterType="mail">
-  		UPDATE MEMBER
-  		   SET mail_auth_status = 'Y'
-  		 WHERE email = #{email}
-  	</update>
-  	
-  	<delete id="deleteMailAuthInfo" parameterType="mail">
-  		DELETE FROM MAIL_AUTH_INFO
-  		 WHERE email = #{email}
-  	</delete>
-  	
-  </mapper>
+		   ON DUPLICATE KEY UPDATE
+		   AUTH_CODE = #{auth_code}
+	</insert>
+
+	<select id="selectMailAuthInfo" resultType="mail">
+		SELECT *
+		  FROM MAIL_AUTH_INFO
+		 WHERE email = #{email} 
+	</select>
+
+	<update id="updateMailAuthStatus" parameterType="mail">
+		UPDATE MEMBER
+		   SET MAIL_AUTH_STATUS = 'Y'
+		 WHERE EMAIL = #{email}
+	</update>
+	
+	<delete id="deleteMailAuthInfo" parameterType="mail">
+		DELETE FROM MAIL_AUTH_INFO
+   		 WHERE email = #{email}
+	</delete>
+	
+
+
+</mapper> 

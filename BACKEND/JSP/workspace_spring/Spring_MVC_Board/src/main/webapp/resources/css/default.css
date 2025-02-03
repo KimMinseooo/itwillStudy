@@ -21,6 +21,7 @@ article {
 article h1, article h3 {
 	text-align: center; 
 }
+
 /* 본문 내의 테이블 가운데 정렬 */
 article table {
 	margin: auto;
@@ -29,6 +30,9 @@ article table {
 #loginForm {
 	text-align: center;
 }
+
+
+
 
 
 

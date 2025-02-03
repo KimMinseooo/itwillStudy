@@ -49,7 +49,7 @@
 			<table>
 				<tr>
 					<td class="write_td_left"><label for="board_name">글쓴이</label></td>
-					<td class="write_td_right"><input type="text" name="board_name" value="${sessionScope.sId}" required="required" /></td>
+					<td class="write_td_right"><input type="text" name="board_name" value="${sessionScope.sId }" required="required" /></td>
 				</tr>
 <!-- 				<tr> -->
 <!-- 					<td class="write_td_left"><label for="board_pass">비밀번호</label></td> -->

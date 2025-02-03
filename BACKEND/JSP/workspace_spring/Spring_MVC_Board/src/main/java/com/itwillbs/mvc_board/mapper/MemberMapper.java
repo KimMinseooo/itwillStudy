@@ -14,12 +14,10 @@ public interface MemberMapper {
 	int checkId(Map<String, String> param);
 	MemberVO getMember(MemberVO member);
 	MemberVO getMemberInfo(String id);
-	int modifyMember(Map<String, String> param);
-	int deleteMember(Map<String, String> map);
-	// 메일 인증 등록 및 수정 
+	int modifyMember(Map<String, String> map);
+	int updateStatus(Map<String, String> map);
+	// 메일 인증 등록 및 수정
 	void mergeMailInfo(MailAuthInfo mailAuthInfo);
-	
-	
 	// 메일 인증 정보 조회
 	MailAuthInfo selectMailAuthInfo(MailAuthInfo mailAuthInfo);
 	// Member 테이블의 mail_auth_status 'Y'로 변경

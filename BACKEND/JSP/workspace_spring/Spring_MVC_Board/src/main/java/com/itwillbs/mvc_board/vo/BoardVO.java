@@ -61,5 +61,4 @@ public class BoardVO {
 	private int board_readcount;
 	private Timestamp board_date; // java.sql.Timestamp(java.sql.Date 도 사용 가능)
 	private String board_writer_ip;
-
 }

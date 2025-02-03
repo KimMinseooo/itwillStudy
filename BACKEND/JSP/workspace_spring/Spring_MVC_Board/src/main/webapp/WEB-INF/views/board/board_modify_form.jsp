@@ -51,11 +51,11 @@
 			<%-- 입력받지 않은 글번호, 페이지번호 파라미터를 hidden 속성으로 포함시키기 --%>
 			<input type="hidden" name="board_num" value="${param.board_num }">
 			<input type="hidden" name="pageNum" value="${param.pageNum }"> 
-			
+		
 			<table>
 				<tr>
 					<td class="write_td_left"><label for="board_name">글쓴이</label></td>
-					<td class="write_td_right"><input type="text" name="board_name" value="${sessionScope.sId}" required="required" /></td>
+					<td class="write_td_right"><input type="text" name="board_name" value="${sessionScope.sId }" required="required" /></td>
 				</tr>
 <!-- 				<tr> -->
 <!-- 					<td class="write_td_left"><label for="board_pass">비밀번호</label></td> -->
@@ -65,12 +65,12 @@
 <!-- 				</tr> -->
 				<tr>
 					<td class="write_td_left"><label for="board_subject">제목</label></td>
-					<td class="write_td_right"><input type="text" id="board_subject" name="board_subject" value="${board.board_subject}" required="required" /></td>
+					<td class="write_td_right"><input type="text" id="board_subject" name="board_subject" value="${board.board_subject }" required="required" /></td>
 				</tr>
 				<tr>
 					<td class="write_td_left"><label for="board_content">내용</label></td>
 					<td class="write_td_right">
-						<textarea id="board_content" name="board_content" rows="15" cols="40" required="required">${board.board_content}</textarea>
+						<textarea id="board_content" name="board_content" rows="15" cols="40" required="required">${board.board_content }</textarea>
 					</td>
 				</tr>
 			</table>
