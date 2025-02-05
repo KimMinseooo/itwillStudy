@@ -30,5 +30,24 @@
 	<!-- 웹과 관련없는 Service 등의 패키지는 root-context.xml 에서 관리하도록 추가로 등록 -->
 	
 <!-- 	<tx:annotation-driven/> -->
+	<!-- ========================================================================= -->
+	<!-- 
+	파일 업로드 처리를 위해 form 태그에 enctype="multipart/form-data" 속성을 추가했을 경우
+	스프링 컨트롤러에서 폼 파라미터 데이터 처리를 위해(또는 MultipartFile 타입 객체 처리 위해)
+	org.springframework.web.multipart.commons.CommonsMultipartResolver 객체 설정 필수!
+	(꼭 MultipartFile 타입 객체를 사용하지 않더라도 request 객체를 통한 파라미터 처리가 가능해짐)
+	=> bean 태그(현재 servlet-context.xml 파일에서는 <beans:bean> 태그) 사용하여 객체 설정
+	=> id 속성값은 "muiltipartResolver" 고정
+	=> class 속성값은 해당 라이브러리의 클래스 지정
+	=> <beans:bean> 태그 사이에 <beans:property> 태그를 통해 파일 업로드 옵션(사이즈, 인코딩) 설정
+	   이 때, name 속성값은 고정된 값 사용
+	-->
+
+	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<!--  maxUploadSize 속성 : 파일 업로드 시 최대 파일 사이즈 지정(Byte 단위) => 10MB 로 제한 설정  -->
+		<beans:property name="maxUploadSize" value="10485760"/>
+		<!--  defaultEncoding 속성 : 파일명에 한글 등의 아스키코드 외의 문자 인코딩 방식 설정(UTF-8)  -->
+		<beans:property name="defaultEncoding" value="UTF-8"/>
+	</beans:bean>
 
 </beans:beans>

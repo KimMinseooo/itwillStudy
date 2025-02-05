@@ -1,6 +1,13 @@
 package com.itwillbs.mvc_board.controller;
 
+import java.io.File;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -11,6 +18,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.itwillbs.mvc_board.service.BoardService;
 import com.itwillbs.mvc_board.vo.BoardVO;
@@ -21,6 +29,9 @@ public class BoardController {
 
 	@Autowired
 	BoardService boardService;
+	
+	//업로드 경로(이클립스 프로젝트 상의 경로) 
+	String virtualPath = "/resources/upload";
 	
 	@GetMapping("BoardWrite")
 	public String boardWrite(HttpSession session, Model model) {
@@ -35,14 +46,14 @@ public class BoardController {
 		return "board/board_write_form";
 	}
 	
+	// 파일 업로드 처리를 위해 뷰페이지 폼 태그에 "multipart/form-data" 추가하고
+	// servlet-context.xml 파일에 파일 업로드 관련 설정 추가 필요
 	@PostMapping("BoardWrite")
-	public String boardWrite(BoardVO board, HttpServletRequest req, Model model) {
-		
-		// 임시)
-		board.setBoard_file("");
-		board.setBoard_file1("");
-		board.setBoard_file2("");
-		board.setBoard_file3("");
+	public String boardWrite(
+			BoardVO board, 
+			HttpServletRequest req,
+			HttpSession session,
+			Model model) {
 		
 		// ---------------------------------------
 		// 게시물 작성자(클라이언트)의 IP 주소 정보 가져와서 BoardVO 객체에 저장
@@ -56,12 +67,110 @@ public class BoardController {
 			ip = "127.0.0.1";
 		}
 		board.setBoard_writer_ip(ip);
+		// ---------------------------------------
+		// [ 파일 업로드 처리 ] 
+		// 실제 파일 업로드 처리를 수행하기 위해 프로젝트 상의 가상의 업로드 경로 생성 필요 (upload)
+		// => 외부에서 업로드 파일에 접근 (다운로드)가능하도록 webapp/resources 경로에 생성
+		// => 단, 실패 파일이 업로드 되는 위치는 별도의 경로로 관리됨 
+		// 	 (즉, 이클립스 프로젝트 상에서 관리하는 경로와 실제 톰캣의 경로가 달라짐)
+		// => 가상의 경로 예시: D:\Shared\BACKEND\SPRING\workspace_spring\Spring_MVC_Board\src\main\webapp\resources\ upload
 		
+		// 1. 가상의 경로에 대한 서버(톰캣)상의 실제 경로 알아내기 (= 톰캣이 관리하는 실제 경로)
+		// => 이클립스 프로젝트 상에서 업로드 폴더 생성 후 파일 업로드 수행 시 
+		// 	  이클립스에 연결된 톰캣이 관리하는 폴더에 업로드 폴더가 생성되기 때문
+		// => request 객체 또는 session 객체의 getServletContext().getRealPath() 활용
+		String realPath = session.getServletContext().getRealPath(virtualPath);
+		System.out.println("실제 업로드 경로: " + realPath);
+		
+		// TODO
+		// 2. 업로드 경로 관리 
+		// 업로드 파일에 대한 관리 용이성을 증대시키기 위해 서브 디렉토리 활용하여 분산 관리 
+		String subDir = createDirectories(realPath);
+		realPath += "/" + subDir;
+		
+		// 3. 업로드 되는 실제 파일 처리 
+		// 실제 파일은 BoardVO 객체의 MultipartFile 타입 객체로 관리됨 (멤버변수명 fileX)
+		MultipartFile mFile1 =board.getFile1();
+		MultipartFile mFile2 =board.getFile2();
+		MultipartFile mFile3 =board.getFile3();
+//		System.out.println("원본 파일명1: " +mFile1.getOriginalFilename());
+//		System.out.println("원본 파일명2: " +mFile2.getOriginalFilename());
+//		System.out.println("원본 파일명3: " +mFile3.getOriginalFilename());
+		
+		/*
+		 * [ 파일명 중복 방지 대책 ]
+		 * - 서로 다른 파일이 동일한 파일명을 갖는 경우 같은 디렉토리에 업로드 불가!
+		 * - 파일명 앞에 날짜 및 시간 관련 값 또는 난수값을 결합하여 중복 방지 처리 필수!
+		 *   => 만약, 난수 사용 시 숫자만으로 이루어진 난수보다 문자와 함께 결합된 난수가 더 효율적
+		 *   => 또한 날짜 및 시간 관련 정보를 long 타입으로 변환하여 난수처럼 사용해도 됨
+		 * - 난수 생성 시 기본 난수 생성 라이브러리(SecoreRandom 등)을 활용하거나
+		 *   java.util.UUID 클래스 활용하여ㅕ 난수 생성 또는 별도의 라이브러리 활용 가능
+		 *   => UUID : 현재 시스템(서버)에서 랜덤ID 값을 추출하여 제공하는 클래스 
+		 *   	(Universally Unique Identifier: 범용 고유 식별자)
+		 *   	=> 32자리의 16진수로 구성됨(8자리-4자리-4자리-4자리-12자리)
+		 *  */
+		// 1) UUID 클래스의 randomUUID() 메서드 활용
+//		String uuid = UUID.randomUUID().toString();
+//		System.out.println("uuid: " + uuid);
+		// uuid: ae46fcc9-51a7-4815-9ffc-7e0dc21f8002
+		
+		// 2. System 클래스의 currentTimeMills() 메서드 활용
+//		System.out.println("currentTimeMillis: "+ System.currentTimeMillis());
+		// currentTimeMillis: 1738720043524
+		
+		// 임시)
+		board.setBoard_file("");
+		board.setBoard_file1("");
+		board.setBoard_file2("");
+		board.setBoard_file3("");
+		
+		String fileName1 ="";
+		String fileName2 ="";
+		String fileName3 ="";
+		
+		String origin1 = mFile1.getOriginalFilename();
+		String origin2 = mFile2.getOriginalFilename();
+		String origin3 = mFile3.getOriginalFilename();
+		
+		// 업로드 파일명이 널스트링이 아닐 경우 판별하여 파일명 저장
+		if (!origin1.equals("")) {
+			fileName1 =UUID.randomUUID().toString() +"_"+origin1;
+			board.setBoard_file1(subDir+"/"+fileName1);
+		}
+		if (!origin2.equals("")) {
+			fileName2 =UUID.randomUUID().toString() +"_"+origin2;
+			board.setBoard_file2(subDir+"/"+fileName2);
+		}
+		if (!origin3.equals("")) {
+			fileName3 =UUID.randomUUID().toString() +"_"+origin3;
+			board.setBoard_file3(subDir+"/"+fileName3);
+		}
+		
+		System.out.println("DB에 저장될 파일명1: " +board.getBoard_file1());
+		System.out.println("DB에 저장될 파일명2: " +board.getBoard_file2());
+		System.out.println("DB에 저장될 파일명3: " +board.getBoard_file3());
+		
+		
+		// ---------------------------------------
 		int insertCnt = boardService.registBoard(board);
-		
 		// 작업 성공 시 "BoardList" 서블릿 주소로 리다이렉트
 		// 실패 시 "fail.jsp" 페이지로 포워딩(msg 속성값: "글쓰기 실패!")
 		if (insertCnt > 0) {
+			
+			try {
+				if (mFile1.getOriginalFilename().equals("")) {
+					mFile1.transferTo(new File(realPath, fileName1)); // 실제로 넣는 작업
+				}
+				if (mFile2.getOriginalFilename().equals("")) {
+					mFile2.transferTo(new File(realPath, fileName2)); // 실제로 넣는 작업
+				}
+				if (mFile3.getOriginalFilename().equals("")) {
+					mFile3.transferTo(new File(realPath, fileName3)); // 실제로 넣는 작업
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
 			return "redirect:/BoardList"; 
 		} else {
 			model.addAttribute("msg", "글쓰기 실패!");
@@ -226,10 +335,47 @@ public class BoardController {
 		}
 	}
 	
+	// ===========================================================
+	// ===========================================================
+	// ===========================================================
+	// ==============  유틸리티 메서드 ================================
+	// ===========================================================
 	
-	
-	
-	
-	
-	
+	// 파일 업로드 시점에 맞는 날짜별 서브디렉토리 생성
+	private String createDirectories(String realPath) {
+		// Date 클래스 또는 LocalXXX 클래스 활용
+		// 실제 날짜 및 시간 관련 정보 생성 시에는 LocalXXX 클래스 사용하고
+		// 기존에 있는 라이브러리를 사용할 때 Date를 요구하는 경우에 Date 타입 활용
+		
+		// 1. LocalXXX 클래스 활용
+		// => 날짜 정보 : LocalDate, 시간정보: LocalTime, 날짜 및 시간 : LocalDateTime
+		LocalDate today = LocalDate.now(); // 현재 시스템의 날짜 정보 생성
+		// 2025-02-05
+		
+		// 2. 날짜 포맷을 디렉토리 형식에 맞게 변경(ex. 2025-01-06 => 2025/01/06)
+		String datePattern ="yyyy/MM/dd";
+		
+		// 3. 지정한 포멧을 적용하여 날짜 형식 변경
+		DateTimeFormatter dtf = DateTimeFormatter.ofPattern(datePattern);
+		String subDir = today.format(dtf);
+		
+		// 4. 기존 실제 업로드 경로에 서브디렉토리 결합
+		realPath += "/" +subDir;
+		
+		try {
+			// 5. 해당 디렉토리를 실제 경로상에 생성
+			// 5-1) java.nio.file.Paths 클래스의 get() 메서드 호출하여 Path 객체 리턴받기
+			Path path = Paths.get(realPath);
+			
+			// 5-2) Files 클래스의 static 메서드 createDirectories() 호출하여 실제 경로 생성
+			// => 파라미터로 Path 타입 객체 전달
+			// => 이때, 경로 상에서 생성되지 않은 모든 디렉토리를 생성해준다!
+			// 	  (만약, 서브디렉토리 상의 최종 디렉토리 1개만 생성 시 createDirectory() 메서드 사용가능)
+			Files.createDirectories(path);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return subDir;
+	}
 }
