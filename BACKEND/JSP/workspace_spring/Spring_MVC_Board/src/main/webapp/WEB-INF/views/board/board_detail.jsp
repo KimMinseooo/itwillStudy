@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %> 
 <!DOCTYPE html>
 <html>
 <head>
@@ -94,7 +95,27 @@
 				</tr>
 				<tr>
 					<th class="td_title">첨부파일</th>
-					<td colspan="3" id="board_file"></td>
+					<td colspan="3" id="board_file">
+					<%--
+					파일 다운로드 기능을 추가하려면 하이퍼링크에 download 속성추가 
+					=> 하이퍼링크 경로는 업로드 경로 상의 파일명 지정
+					=> 만약, 다운로드 버튼으로 변경하려면 버튼을 하이퍼링크로 감싸기 
+					=> download 속성값 지정 시 지정된 이름으로 다운로드 파일명이 변경됨 
+					 --%>
+<%-- 						<a href="${pageContext.request.contextPath }/resources/upload/${board.board_file1}" download>${board.board_file1 }</a><hr> --%>
+<%-- 						<a href="${pageContext.request.contextPath }/resources/upload/${board.board_file2}" download>${board.board_file2 }</a><hr> --%>
+<%-- 						<a href="${pageContext.request.contextPath }/resources/upload/${board.board_file3}" download> --%>
+<!-- 							<input type="button" value="다운로드">	 -->
+<!-- 						</a><hr> -->
+						<c:forEach var="file" items="${fileList}" varStatus="status">
+							<div>
+								${originalFileList[status.index] }
+								<a href="${pageContext.request.contextPath }/resources/upload/${board.board_file3}" download="${originalFileList[status.index] }">
+								<input type="button" value="다운로드">
+								</a><hr>
+							</div>
+						</c:forEach>
+					</td>
 				</tr>
 			</table>
 		</section>

@@ -6,7 +6,9 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
@@ -17,7 +19,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.itwillbs.mvc_board.service.BoardService;
@@ -82,7 +86,7 @@ public class BoardController {
 		String realPath = session.getServletContext().getRealPath(virtualPath);
 		System.out.println("실제 업로드 경로: " + realPath);
 		
-		// TODO
+	
 		// 2. 업로드 경로 관리 
 		// 업로드 파일에 대한 관리 용이성을 증대시키기 위해 서브 디렉토리 활용하여 분산 관리 
 		String subDir = createDirectories(realPath);
@@ -248,6 +252,11 @@ public class BoardController {
 		
 		model.addAttribute("board", board);
 		
+		// TODO
+		// 파일명 처리를 위해 사용자 정의 메서드 addFileListToModel() 메서드 호출 
+		// -> 뷰페이지에서 파일 목록의 효율적 처리를 위해 별도의 가공 작업 수행
+		addFileListToModel(board,model);
+		
 		return "board/board_detail";
 	}
 	
@@ -315,7 +324,7 @@ public class BoardController {
 		}
 		
 		model.addAttribute("board", board);
-		
+		addFileListToModel(board, model);
 		return "board/board_modify_form";
 	}
 	
@@ -335,11 +344,52 @@ public class BoardController {
 		}
 	}
 	
+	// [ 게스물 내의 파일 삭제 비지니스 로직 - AJAX 요청]
+	// AJAX 요청에 대한 응답 데이터를 생성하여 직접 전송하기 위해서는
+	// 매핑 메서드에 @ResponseBody 어노테이션 추가
+	@ResponseBody
+	@PostMapping("BoardDeleteFile")
+	public String boardDeleteFile(@RequestParam Map<String,String> map) {
+		System.out.println("!@#!@#");
+		System.out.println(map);
+		return "test";
+	}
+	
+	
+	
+	
 	// ===========================================================
 	// ===========================================================
 	// ===========================================================
 	// ==============  유틸리티 메서드 ================================
 	// ===========================================================
+	
+	// 뷰페이지에서 파일 목록의 효율적 처리를 위해 별도의 가공 작업 수행하는 메서드
+	// 파일 정보가 저장된 BoardVO
+	private void addFileListToModel(BoardVO board,Model model) { // Model 객체를 전달받았음. 참조타입이라 
+		// 1. List 객체 생성 후 
+		// BoardVO 객체의 실제 업로드 파일명을 모두 List에 추가
+		List<String> fileList= new ArrayList<String>();				// 리턴없어도 model에 데이터가 담긴다
+		fileList.add(board.getBoard_file1());
+		fileList.add(board.getBoard_file2());
+		fileList.add(board.getBoard_file3());
+		
+		// 2. List 객체 생성 후 
+		// 실제 파일명을 가공하여 원본 파일명을 추출하여 List 객체에 추가
+		List<String> originalFileList = new ArrayList<String>();
+		
+		for(String file : fileList) {
+			if(!file.equals("")) {			// NullPoint 예방! 
+				file = file.split("_")[1];
+			}
+			originalFileList.add(file);
+		}
+		
+		model.addAttribute("fileList",fileList); 
+		model.addAttribute("originalFileList",originalFileList);
+	}
+	
+	
 	
 	// 파일 업로드 시점에 맞는 날짜별 서브디렉토리 생성
 	private String createDirectories(String realPath) {
