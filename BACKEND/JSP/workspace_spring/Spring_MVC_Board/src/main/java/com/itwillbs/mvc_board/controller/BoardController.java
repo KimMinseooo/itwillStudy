@@ -1,12 +1,14 @@
 package com.itwillbs.mvc_board.controller;
 
 import java.io.File;
+import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
@@ -252,7 +254,6 @@ public class BoardController {
 		
 		model.addAttribute("board", board);
 		
-		// TODO
 		// 파일명 처리를 위해 사용자 정의 메서드 addFileListToModel() 메서드 호출 
 		// -> 뷰페이지에서 파일 목록의 효율적 처리를 위해 별도의 가공 작업 수행
 		addFileListToModel(board,model);
@@ -331,12 +332,29 @@ public class BoardController {
 	@PostMapping("BoardModify")
 	public String boardModify(
 			BoardVO board, 
+			HttpSession session,
 			@RequestParam(defaultValue = "1") int pageNum,
 			Model model) {
+		
+		// TODO
+		// 실제 경로 .meta/xxx/xxx/xxx/upload
+		// 경로 생성 ( 서브 디렉토리 포함 )   2025/02/01
+		// 기존 realPath 에 subDir 경로 결합
+		String realPath = session.getServletContext().getRealPath(virtualPath);
+		String subDir = createDirectories(realPath);
+		realPath += "/" +subDir;
+		
+		// 파일명 중복 방지 대책 수행 /xxx/xxx/upload/2025/02/01/uuid_실제 파일명
+		List<String> fileNames = duplicateFileNames(board,subDir);
 		
 		int updateCnt = boardService.modifyBoard(board);
 		
 		if (updateCnt > 0) { // 성공
+			
+			// TODO
+			// 실제 파일 업로드 (임시경로 -> 실제 경로) 처리를 위해 completeUpload() 메서드 호출
+			completeUpload(realPath,board,fileNames);
+			
 			return "redirect:/BoardDetail?board_num=" + board.getBoard_num() + "&pageNum=" + pageNum;
 		} else { // 실패
 			model.addAttribute("msg", "글 수정 실패!");
@@ -349,9 +367,34 @@ public class BoardController {
 	// 매핑 메서드에 @ResponseBody 어노테이션 추가
 	@ResponseBody
 	@PostMapping("BoardDeleteFile")
-	public String boardDeleteFile(@RequestParam Map<String,String> map) {
+	public String boardDeleteFile(
+			@RequestParam Map<String,String> map,
+			HttpSession session) {
 		System.out.println("!@#!@#");
 		System.out.println(map);
+		
+		Map<String,Object> result = new HashMap();
+		result.put("result", false);
+		int deleteCnt = boardService.removeBoardFile(map);
+		
+		// TODO
+		// DB에서 해당 파일명 삭제 성공 시 실제 업로드 된 파일 삭제 처리 
+		if(deleteCnt > 0 ) {
+			// 실제 업로드 경로 알아내기 
+			String realPath = session.getServletContext().getRealPath(virtualPath);
+			System.out.println("실제 업로드 경로: " + realPath);
+			
+			// 업로드 경로와 파일명(서브디렉토리) 결합하여 Path 객체 생성
+			Path path = Paths.get(realPath, map.get("file"));
+			// File 클래스의 deleteIfExists() 메서드 호출하여 
+			// 해당 파일이 실제 서버상에 존재할 경우에만 삭제 처리
+			try {
+				Files.deleteIfExists(path);
+				result.put("result",true);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
 		return "test";
 	}
 	
@@ -428,4 +471,74 @@ public class BoardController {
 		
 		return subDir;
 	}
+	
+	// BoardVO 객체에 저장된 파일들에 대한 파일명 중복처리를 수행하는 메서드 
+	public List<String> duplicateFileNames(BoardVO board,String subDir) {
+		MultipartFile mFile1 = board.getFile1();
+		MultipartFile mFile2 = board.getFile2();
+		MultipartFile mFile3 = board.getFile3();
+
+		board.setBoard_file("");
+		board.setBoard_file1("");
+		board.setBoard_file2("");
+		board.setBoard_file3("");
+
+		String fileName1 = "";
+		String fileName2 = "";
+		String fileName3 = "";
+
+		String origin1 = mFile1.getOriginalFilename();
+		String origin2 = mFile2.getOriginalFilename();
+		String origin3 = mFile3.getOriginalFilename();
+		if (!origin1.equals("")) {
+			fileName1 = UUID.randomUUID().toString() + "_" + origin1;
+			board.setBoard_file1(subDir + "/" + fileName1);
+		}
+		if (!origin2.equals("")) {
+			fileName2 = UUID.randomUUID().toString() + "_" + origin2;
+			board.setBoard_file2(subDir + "/" + fileName2);
+		}
+		if (!origin3.equals("")) {
+			fileName3 = UUID.randomUUID().toString() + "_" + origin3;
+			board.setBoard_file3(subDir + "/" + fileName3);
+		}
+		
+		// 중복 처리 완료된 파일명들을 하나의 List 객체에 추가 후 리턴
+		List<String> fileNames = new ArrayList<String>();
+		fileNames.add(fileName1);
+		fileNames.add(fileName2);
+		fileNames.add(fileName3);
+		
+		return fileNames;
+		
+	}
+	
+	public void completeUpload(String realPath,BoardVO board, List<String> fileNames ) {
+		
+		List<MultipartFile> fileList = new ArrayList<MultipartFile>();
+		fileList.add(board.getFile1());
+		fileList.add(board.getFile2());
+		fileList.add(board.getFile3());
+		
+		
+		try {
+			
+			for(int i=0; i< fileNames.size();i++) {
+				MultipartFile mFile = fileList.get(i);    // 물리적 파일
+				String fileName = fileNames.get(i);		// 경로
+				
+				if(!mFile.getOriginalFilename().equals("")) {
+					mFile.transferTo(new File(realPath,fileName));
+				}
+			}
+			
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	
+	
+	
 }

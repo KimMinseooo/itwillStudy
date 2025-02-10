@@ -53,7 +53,7 @@
 	<article id="writeForm">
 		<h1>게시판 글 수정</h1>
 		
-		<form action="BoardModify" name="writeForm" method="post">
+		<form action="BoardModify" name="writeForm" method="post" enctype="multipart/form-data">
 		
 			<%-- 입력받지 않은 글번호, 페이지번호 파라미터를 hidden 속성으로 포함시키기 --%>
 			<input type="hidden" name="board_num" value="${param.board_num }">
@@ -92,15 +92,19 @@
 					   반복 순서번호: varStatus속성명.count (1 부터 시작)
 					 --%>
 						<c:forEach var="file" items="${fileList }" varStatus="status">
-							<div class="board_file">
+							<div id="fileDiv${status.count }" class="board_file">
 							
 							<%-- 파일명 존재 시 원본 파일명을 표시하고, 아니면 파일선택 버튼 표시 --%>		
 							<c:choose>
 								<c:when test="${not empty file }">
 									<%-- 원본 파일명 접근 시 status.index 값 활용 --%>
+									<span>
 									${originalFileList[status.index] }	
-									<%-- 하이퍼링크 클릭 시 deleteFile() --%>
+									<%-- 파일 삭제 힐크 생성 (파일 개별 삭제용) --%>
+									<%-- 하이퍼링크 클릭 시 deleteFile() 함수 호출(글번호, 실제파일명, 카운트번호) 전달 --%>
 									<a href="javascript:deleteFile(${board.board_num },'${file }' , ${status.count })"><img src="${pageContext.request.contextPath }/resources/images/delete-icon.png" class="img_btn" /></a> 		
+									</span>
+									<input type="file" name="file${status.count }" hidden>
 								</c:when>
 								<c:otherwise>
 									<%-- 
@@ -110,9 +114,6 @@
 									<input type="file" name="file${status.count }">
 								</c:otherwise>
 							</c:choose>
-							
-							
-							
 							
 							</div>
 						</c:forEach>
@@ -133,6 +134,15 @@
 	
 	<script src="${pageContext.request.contextPath}/resources/js/jquery-3.7.1.js"></script>
 	<script type="text/javascript">
+	
+	let isAjaxProcessing = false;
+	$('form').on('submit',function(){
+		
+		if(isAjaxProcessing) return false;
+		return true;
+		
+	});
+	
 		
 	// ----- AJAX 활용하여 특정 파일 삭제 -------
 	function deleteFile(board_num, file, index) {
@@ -141,6 +151,8 @@
 		// AJAX를 통해 "BoardDeleteFile" 서블릿 주소 요청(POST)
 		
 		if(!confirm('삭제하시겠습니까?')) return ;
+		
+		isAjaxProcessing = true;
 		
 		$.ajax({
 			type: "POST",
@@ -151,9 +163,20 @@
 				index: index
 			}
 		}).done(function(result) {
-			console.log('done')
+			isAjaxProcessing = false;
+			if(!res.result) { // 파일 삭제 성공
+				return;
+			}
+// 			location.reload();
+
+			// 파일명과 delete.png 삭제
+			
+			// <input type="file"> 추가하기
+			let fileElem = $("input[name=file"+ index +"]");
+			$(fileElem).parent().find('span').remove();
+			$(fileElem).prop("hidden", false);
+			
 		}).fail(function() {
-			console.log('fail')
 		})
 	}
 	

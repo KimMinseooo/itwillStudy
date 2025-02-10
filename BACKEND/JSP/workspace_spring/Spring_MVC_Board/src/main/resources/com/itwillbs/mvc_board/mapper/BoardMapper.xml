@@ -69,7 +69,33 @@
 		UPDATE BOARD
 		   SET board_subject = #{board_subject}
 		   	 , board_content = #{board_content}
+		   	 <if test="!board_file1.equals('')">
+		   	 , board_file1 = #{board_file1} -- board_file1 컬럼 UPDATE
+		   	 </if>
+		   	 <if test="!board_file2.equals('')">
+		   	 , board_file2 = #{board_file2} -- board_file2 컬럼 UPDATE
+		   	 </if>
+		   	 <if test="!board_file3.equals('')">
+		   	 , board_file3 = #{board_file3} -- board_file3 컬럼 UPDATE
+		   	 </if>
 		 WHERE board_num = #{board_num}  
 	</update>
+	
+	<!-- 게시물 내의 파일 정보 삭제 - UPDATE -->
+	<!-- 글번호(board_num)가 일치하는 레코드의 해당 파일에 대한 컬럼값을 널스트링으로 수정 -->
+	<update id="removeBoardFile">
+	UPDATE BOARD
+<!-- 	   SET board_file${index} = '' -->
+	   SET
+	<choose>
+		<when test="index eq 1">board_file1 = ''</when>
+		<when test="index eq 2">board_file2 = ''</when>
+		<when test="index eq 3">board_file3 = ''</when>
+	</choose>
+	 WHERE BOARD_NUM = #{board_num}
+	</update>	
+	
+	
+
 
 </mapper> 

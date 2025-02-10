@@ -107,14 +107,16 @@
 <%-- 						<a href="${pageContext.request.contextPath }/resources/upload/${board.board_file3}" download> --%>
 <!-- 							<input type="button" value="다운로드">	 -->
 <!-- 						</a><hr> -->
-						<c:forEach var="file" items="${fileList}" varStatus="status">
+						<c:forEach var="file" items="${fileList }" varStatus="status">
+						<c:if test="${not empty file }">
 							<div>
 								${originalFileList[status.index] }
-								<a href="${pageContext.request.contextPath }/resources/upload/${board.board_file3}" download="${originalFileList[status.index] }">
-								<input type="button" value="다운로드">
-								</a><hr>
-							</div>
-						</c:forEach>
+								<a href="${pageContext.request.contextPath }/resources/upload/${file}" download="${originalFileList[status.index] }">
+									<input type="button" value="다운로드">	
+								</a>
+							</div>	
+						</c:if>
+					</c:forEach>
 					</td>
 				</tr>
 			</table>

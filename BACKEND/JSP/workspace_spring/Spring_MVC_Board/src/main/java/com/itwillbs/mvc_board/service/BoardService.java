@@ -1,6 +1,7 @@
 package com.itwillbs.mvc_board.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -39,6 +40,10 @@ public class BoardService {
 	
 	public int modifyBoard(BoardVO board) {
 		return mapper.modifyBoard(board);
+	}
+
+	public int removeBoardFile(Map<String,String> map) {
+		return mapper.removeBoardFile(map);
 	}
 	
 	
