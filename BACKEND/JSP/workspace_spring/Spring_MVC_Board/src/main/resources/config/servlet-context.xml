@@ -49,5 +49,34 @@
 		<!--  defaultEncoding 속성 : 파일명에 한글 등의 아스키코드 외의 문자 인코딩 방식 설정(UTF-8)  -->
 		<beans:property name="defaultEncoding" value="UTF-8"/>
 	</beans:bean>
+	
+	<!--  HandlerInterceptor를 활용한 세션 가로채기 설정 (AOP로 동일하게 수행할 경우 주석 필수!) -->
+	<!--  1) 실질적인 가로채기 기능을 수행할 인터셉터 클래스를 빈으로 생성(id 속성값은 아무거나) -->
+	<beans:bean id="loginInterceptor" class="com.itwillbs.mvc_board.handler.LoginInterceptor"></beans:bean>
+	
+	<!--  2) 요청에 대한 인터셉터 연결  -->
+	<interceptors>
+		<interceptor>
+			<!--  2-1) 세션 가로채기가 필요한 요청 주소  -->
+			<!--  모든 요청 주소를 인터셉트 -->
+<!-- 			<mapping path="/*"/> -->
+			<mapping path="/BoardWrite"/>
+			<mapping path="/BoardDelete"/>
+			<mapping path="/BoardModify"/>
+			<!--  2-2) 세션 가로채기 대상에서 제외시킬 요청 주소(생략 가능함)  -->
+			<!--       2-1번 과정에서 불특정 다수의 대상("/*")이 지정됐을 때 제외시킬 대상 지정 -->
+			<exclude-mapping path="/BoardList"/>
+			<exclude-mapping path="/BoardDetail"/>
+			
+			
+			<!--  2-3) 요청에 대한 인터셉터 지정 -->
+			<beans:ref bean="loginInterceptor"/>
+			
+			<!--  2-3 과정을 생략하고 1번 내용을 interceptor 태그 내에 직접 기술해도됨 -->
+			<!--  단, 다른 인터셉터 추가할 경우 현재 인터셉터 필요 시 다시 기술해야함 -->
+<!-- 		<beans:bean id="loginInterceptor" class="com.itwillbs.mvc_board.handler.LoginInterceptor"></beans:bean> -->
+		</interceptor>
+	</interceptors>
+	
 
 </beans:beans>

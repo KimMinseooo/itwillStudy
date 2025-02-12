@@ -42,13 +42,12 @@ public class BoardController {
 	@GetMapping("BoardWrite")
 	public String boardWrite(HttpSession session, Model model) {
 		
-		String id = (String)session.getAttribute("sId");
-		if(id == null) {
-			model.addAttribute("msg", "접근 권한이 없습니다!");
-			model.addAttribute("url", "MemberLogin");
-			return "result/fail";
-		}
-		
+//		String id = (String)session.getAttribute("sId");
+//		if(id == null) {
+//			model.addAttribute("msg", "접근 권한이 없습니다!");
+//			model.addAttribute("url", "MemberLogin");
+//			return "result/fail";
+//		}
 		return "board/board_write_form";
 	}
 	
@@ -188,6 +187,7 @@ public class BoardController {
 	public String boardList(
 			@RequestParam(defaultValue = "1") int pageNum,
 			Model model) {
+		
 		
 		// ---------------------------------------------------
 		// [ 페이징 처리 ]
