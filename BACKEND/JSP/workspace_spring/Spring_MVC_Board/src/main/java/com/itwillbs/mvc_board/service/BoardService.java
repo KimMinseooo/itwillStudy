@@ -19,6 +19,12 @@ public class BoardService {
 	}
 	
 	public List<BoardVO> getBoardList(int startRow, int listLimit) {
+		
+		// 트랜잭션 확인용
+//		if(true) {
+//			throw new RuntimeException();
+//		}
+		
 		return mapper.getBoardList(startRow, listLimit);
 	}
 	

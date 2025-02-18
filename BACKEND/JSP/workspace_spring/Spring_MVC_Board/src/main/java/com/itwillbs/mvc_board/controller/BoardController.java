@@ -26,6 +26,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.itwillbs.mvc_board.aop.LoginCheck;
+import com.itwillbs.mvc_board.aop.LoginCheck.MemberRole;
 import com.itwillbs.mvc_board.service.BoardService;
 import com.itwillbs.mvc_board.vo.BoardVO;
 import com.itwillbs.mvc_board.vo.PageInfo;
@@ -39,6 +41,7 @@ public class BoardController {
 	//업로드 경로(이클립스 프로젝트 상의 경로) 
 	String virtualPath = "/resources/upload";
 	
+	@LoginCheck
 	@GetMapping("BoardWrite")
 	public String boardWrite(HttpSession session, Model model) {
 		
