@@ -33,4 +33,7 @@ public interface BoardMapper {
 	public int modifyBoard(BoardVO board);
 	
 	public int removeBoardFile(Map<String,String> map);
+
+	public void updateBoardReSeq(BoardVO board);
+	public int registReplyBoard(BoardVO board);
 }

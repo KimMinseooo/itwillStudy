@@ -128,7 +128,7 @@
 		
 			<%-- 답글, 수정, 삭제 버튼 모두 로그인 한 사용자에게만 표시 --%>
 			<c:if test="${not empty sessionScope.sId}">
-				<input type="button" value="답글" onclick="location.href=''">
+				<input type="button" value="답글" onclick="location.href='BoardReply?board_num=${param.board_num}'">
 				<%-- 수정, 삭제 버튼은 작성자가 세션아이디와 동일할 경우에만 표시 --%>
 				<c:if test="${sessionScope.sId eq board.board_name or sessionScope.sId eq 'admin'}">
 					<input type="button" value="수정" onclick="requestModify()">

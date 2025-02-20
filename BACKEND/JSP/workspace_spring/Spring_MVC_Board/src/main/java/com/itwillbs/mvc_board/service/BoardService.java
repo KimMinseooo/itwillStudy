@@ -52,6 +52,13 @@ public class BoardService {
 		return mapper.removeBoardFile(map);
 	}
 	
+	public int registReplyBoard(BoardVO board) {
+		// 기존 답글들의 순서번호(seq) 조정을 위해 updateBoardReSeq() 메서드 호출
+		mapper.updateBoardReSeq(board);
+		// 답글 등록 작업 insertReplyBoard() 메서드 호출
+		return mapper.registReplyBoard(board);
+	}
+	
 	
 	
 	

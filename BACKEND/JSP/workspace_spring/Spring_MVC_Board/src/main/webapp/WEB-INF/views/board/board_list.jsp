@@ -94,7 +94,21 @@
 				<c:forEach var="board" items="${boardList }">
 					<tr>
 						<td class="board_num">${board.board_num }</td>
-						<td class="board_subject">${board.board_subject }</td>
+						
+						<%--
+						======= 답글 관련 처리 ========
+						들여쓰기 (공백 = &nbsp;) 추가 후 답글 이미지(re.gif) 추가  
+						 --%>
+						<td class="board_subject">
+							<c:if test="${board.board_re_lev  > 0}">
+								<c:forEach begin="1" end="${board.board_re_lev }">
+									&nbsp;&nbsp;
+								</c:forEach>
+							<img alt="" src="${pageContext.request.contextPath}/resources/images/re.gif">
+							</c:if>
+							${board.board_subject }
+						</td>
+						
 						<td>${board.board_name }</td>
 						<td>
 						<%--

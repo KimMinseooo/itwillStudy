@@ -95,7 +95,48 @@
 	 WHERE BOARD_NUM = #{board_num}
 	</update>	
 	
+	<!-- ========================================== -->
+	<!-- 답글 등록 -->
 	
+	<!-- 새 답글 등록을 위한 기존 답글등의 순서번호 조정 - UPDATE -->
+	<!-- => 참조글번호(board_re_ref)가 대상(원본) 게시물의 참조글번호와 같고 -->
+	<!--  순서번호(board_re_seq)가 대상 게시물의 순서번호보다 더 큰 레코드들의 순서번호 1씩 증가  -->
+	
+	<update id="updateBoardReSeq" parameterType="board">
+		UPDATE BOARD
+		   SET board_re_seq = board_re_seq + 1
+		 WHERE 1=1
+		   AND board_re_ref = #{board_re_ref}
+		   AND board_re_seq > #{board_re_seq}
+	</update>
+	<!-- 새 답글 등록 -INSERT -->	
+	<!-- 
+		=> 기본적으로 새 글 등록 작업과 대부분 동일하지만
+			참조글번호는 전달받은 원본글의 참조글 번호를 그대로 사용하고
+			순서번호와 들여쓰기 레벨은 전달받은 원본글의 값 + 1 처리 후 사용 
+	 -->
+	<insert id="registReplyBoard" parameterType="board">
+		<selectKey keyProperty="board_num" resultType="int" order="BEFORE">
+			SELECT IFNULL(MAX(BOARD_NUM), 0) + 1
+			  FROM BOARD
+		</selectKey>
+	
+	INSERT INTO BOARD
+	VALUES (#{board_num}
+		 , #{board_name}
+	     , #{board_subject}
+	     , #{board_content}
+	     , #{board_file}
+	     , #{board_file1}
+	     , #{board_file2}
+	     , #{board_file3}
+	     , #{board_re_ref} 			-- 참조글 번호(전달받은 원본글의 값)
+	     , #{board_re_lev} +1		-- 들여쓰기레벨(전달받은 원본글의 lev값 +1)
+	     , #{board_re_seq} +1		-- 답글순서번호(전달받은 원본글의 seq값 +1)
+	     , 0						-- 조회수(board_readcount)
+	     , NOW()
+	     , #{board_writer_ip} )
+	</insert>	
 
 
 </mapper> 

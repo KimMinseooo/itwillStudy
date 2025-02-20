@@ -401,9 +401,43 @@ public class BoardController {
 		return "test";
 	}
 	
+	// ----------------------------------------------
+	// [ 답글 작성 폼 처리 ] 
+	@LoginCheck
+	@GetMapping("BoardReply")
+	public String boardReplyForm(int board_num, Model model) {
+		
+		// 조회수 증가되지 않도록 두번째 파라미터 false 전달
+		BoardVO board = boardService.getBoard(board_num, false);
+		
+		model.addAttribute("board",board);
+		
+		return "board/board_reply_form";
+	}
 	
-	
-	
+	// [ 답글 작성 비지니스 로직 ]
+	// => 새글 작성 처리 방법과 거의 동일함
+	@PostMapping("BoardReply")
+	public String boardReply(BoardVO board ,HttpServletRequest req) {
+		
+		System.out.println("!@#!@#!@#");
+		System.out.println("board : " + board);
+		
+		String ip = req.getRemoteAddr();
+		if (ip.equals("0:0:0:0:0:0:0:1")) {
+			ip = "127.0.0.1";
+		}
+		board.setBoard_writer_ip(ip);
+		
+		board.setBoard_file("");		
+		board.setBoard_file1("");
+		board.setBoard_file2("");
+		board.setBoard_file3("");
+		
+		int insertCnt = boardService.registReplyBoard(board);
+		
+		return "redirect:/BoardList";
+	}
 	// ===========================================================
 	// ===========================================================
 	// ===========================================================
