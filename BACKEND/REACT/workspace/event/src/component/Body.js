@@ -1,6 +1,6 @@
 // function Body(props) {
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 
 //     // < 이벤트 핸들링 >
 //     // - button , input, checkbox 등 이벤트를 연결하려면 onClick 속성에 함수를 지정! 
@@ -60,78 +60,158 @@ import { useState } from "react";
 //     );
 // }
 
-function Body() {
-    // 여러 입력정보를 관리할 경우 변수, 함수 등이 많아져 코드가 길어진다.
-    // 이때, JSON 형태로 사용하여 코드를 간결하게 처리할 수 있다!
-    // const [name, setName]  = useState("");      // input에 name 및 change이벤트
-    // const [gender,setGender] = useState("");    // selectbox에 gender 및 change 이벤트
-    // const [birth,setBirth] = useState("");      // input에 birth및 change 이벤트
-    // const [bio,setBio] = useState("");          // textarea에 bio 및 change 이벤트
+// function Body() {
+//     // 여러 입력정보를 관리할 경우 변수, 함수 등이 많아져 코드가 길어진다.
+//     // 이때, JSON 형태로 사용하여 코드를 간결하게 처리할 수 있다!
+//     // const [name, setName]  = useState("");      // input에 name 및 change이벤트
+//     // const [gender,setGender] = useState("");    // selectbox에 gender 및 change 이벤트
+//     // const [birth,setBirth] = useState("");      // input에 birth및 change 이벤트
+//     // const [bio,setBio] = useState("");          // textarea에 bio 및 change 이벤트
 
-    // const onChangeName = (e) => {
-    //     setName(e.target.value);
-    // }
-    // const onChangeGender = (e) => {
-    //     setGender(e.target.value);
-    // }
-    // const onChangeBirth = (e) => {
-    //     setBirth(e.target.value);
-    // }
-    // const onChangeBio = (e) => {
-    //     setBio(e.target.value);
-    // }
+//     // const onChangeName = (e) => {
+//     //     setName(e.target.value);
+//     // }
+//     // const onChangeGender = (e) => {
+//     //     setGender(e.target.value);
+//     // }
+//     // const onChangeBirth = (e) => {
+//     //     setBirth(e.target.value);
+//     // }
+//     // const onChangeBio = (e) => {
+//     //     setBio(e.target.value);
+//     // }
 
-    // useState() 초기값으로 객체(JSON) 전달
-    const [state, setState] = useState({
-       name: "",
-       gender : "",
-       birth : "",
-       bio : "", 
-    });
+//     // useState() 초기값으로 객체(JSON) 전달
+//     const [state, setState] = useState({
+//        name: "",
+//        gender : "",
+//        birth : "",
+//        bio : "", 
+//     });
 
+//     const handleOnChange = (e) => {
+//         console.log(`${e.target.value}`);
+
+//         // useState()에 초기값으로 전달한 것은 객체 즉, 참조타입이다!
+//         // state객체에 직접 접근하여 값을 변경하면 state변수의 주소는 변함이 없다!
+//         // 따라서 , 변경된 새로운 객체(JSON)을 생성하여 useState()에 전달해야함!
+//         // state[e.target.name] = e.target.value;
+//         // setState(state);    값이 변경 불가 why? 참조타입이기때문에 객체를 전달해야함.
+//         // setState({...state, name: ""});
+
+//         setState({
+//             ...state, // 모든 key, value를 복사해온 후 
+//             [e.target.name]:e.target.value // [key]에 해당하는 데이터는 update
+//         });
+
+//         // let obj = {
+//         //     ...state, // 모든 key, value를 복사해온 후 
+//         //     [e.target.name]:e.target.value // [key]에 해당하는 데이터는 update
+//         // }
+//         // setState(obj);
+//     }
+
+//     return (
+//         <div>
+//             <div>
+//                 <input name="name" value={state.name} onChange={handleOnChange}/>
+//             </div>
+//             <div>
+//                 <select name="gender" value={state.gender} onChange={handleOnChange}>
+//                     <option></option>
+//                     <option>남성</option>
+//                     <option>여성</option>
+//                 </select>
+//             </div>
+//             <div>
+//                 <input name="birth" type="date" value={state.birth} onChange={handleOnChange}/>
+//             </div>
+//             <div>
+//                 <textarea name="bio" value={state.bio} onChange={handleOnChange} />
+//             </div>
+//         </div>
+//     );
+
+// }
+
+// 상태 관리중인 변수를 자식 컴포넌트에 props로 전달할 수 있다!
+// 이때 , Viewer 컴ㄴ포넌트에 num을 전달할 필요가 없다면? 
+// Viewer는 리랜더링 될 필요없지만 Body가 리랜더링 되고 있으므로 
+// Viewer도 함께 다시 랜더링 된다!
+// 이러한 불필요한 작업을 최소화하기 위해 최적화 작업을 거친다.
+// function Body () {
+//     console.log("Body update!");
+//     const [num , setNum] = useState(0);
+
+//     const onDecrease = () => {
+//         setNum(num -1);
+//     }
+
+//     const onIncrease = () => {
+//         setNum(num +1);
+//     }
+
+//     return (
+//         <div>
+//             <h2>{num}</h2>
+//             <Viewer num={num} />
+//             <div>
+//                 <button onClick={onDecrease}>-</button>
+//                 <button onClick={onIncrease}>+</button>
+//             </div>
+//         </div>
+//     );
+// }
+
+// function Viewer ( {num} ) {
+//     console.log("Viewer update!");
+//     return(
+//         <div>
+//             <h3>{num%2 == 0 ? "짝수": "홀수"}</h3>
+//         </div>
+//     )
+// }
+
+function Body () {
+
+    console.log("Body Update!!!");
+
+    const [text, setText] = useState("");
+    const textRef = useRef();
     const handleOnChange = (e) => {
-        console.log(`${e.target.value}`);
-
-        // useState()에 초기값으로 전달한 것은 객체 즉, 참조타입이다!
-        // state객체에 직접 접근하여 값을 변경하면 state변수의 주소는 변함이 없다!
-        // 따라서 , 변경된 새로운 객체(JSON)을 생성하여 useState()에 전달해야함!
-        // state[e.target.name] = e.target.value;
-        // setState(state);    값이 변경 불가 why? 참조타입이기때문에 객체를 전달해야함.
-        // setState({...state, name: ""});
-
-        setState({
-            ...state, // 모든 key, value를 복사해온 후 
-            [e.target.name]:e.target.value // [key]에 해당하는 데이터는 update
-        });
-
-        // let obj = {
-        //     ...state, // 모든 key, value를 복사해온 후 
-        //     [e.target.name]:e.target.value // [key]에 해당하는 데이터는 update
-        // }
-        // setState(obj);
+        setText(e.target.value);
+    }
+    const handleOnClick = (e) => {
+        alert(text);
+        textRef.current.value=''; // 마치 순수 JS에서 document로 접근하여 직접 값 설정하는 것과 유사 
+        // setText("");
+        // 사용자입장에서는 똑같지만 리랜더링 textRef로 변경 시 text변수를 변함 없으므로 
+        // 리랜더링 되지 않는다! (일종의 최적화)
+        console.log(text);    // 상태관리중인 변수(text)는 그대로라는 것이 중요!
     }
 
     return (
         <div>
-            <div>
-                <input name="name" value={state.name} onChange={handleOnChange}/>
-            </div>
-            <div>
-                <select name="gender" value={state.gender} onChange={handleOnChange}>
-                    <option></option>
-                    <option>남성</option>
-                    <option>여성</option>
-                </select>
-            </div>
-            <div>
-                <input name="birth" type="date" value={state.birth} onChange={handleOnChange}/>
-            </div>
-            <div>
-                <textarea name="bio" value={state.bio} onChange={handleOnChange} />
-            </div>
+            {/* <input value={text} onChange={handleOnChange}/> */}
+            <input ref={textRef} value={text} onChange={handleOnChange}/>
+            <button onClick={handleOnClick}>완료</button>
         </div>
     );
-
 }
 
+
 export default Body;
+
+/*
+< 리액트 훅이란? > 
+- 리액트 훅이란 낚아채다(hook)에서 따온말로 원래 컴포넌트는 클래스기반으로 만들었는데
+  클래스 기반으로 컴포넌트를 만들면 코드가 많아지고 코드상 this의 의존도가 높다. 
+- class -> function 기반으로 컴포넌트를 만들고 싶은데 이때, state, ref 등의 개념이 함수에는 없다 
+  즉, 현재 상태관리하는 변수를 클래스로 본다면 멤버변수, Setter 함수이다 . 
+
+- 즉, function 기반으로 컴포넌트는 만들되 , class 기반으로 인식 시키고 싶었다.
+- 함수이름에 use가 붙은 함수들은 죄다 hook!!!!
+- useEffect, useContext, useReducer, useCallback , useMemo 등이 있음
+
+
+*/
