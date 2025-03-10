@@ -1,0 +1,150 @@
+@charset "UTF-8";
+ /* transition-property 적용할 속성 */
+#sec01>p {border: 1px solid;
+width: 1200px; height: 24px;
+background-color: #eee;
+padding:1em;
+color: #333;
+text-align:center;
+text-transform: uppercase;}
+
+#sec01:hover>p {
+width: 200px; height: 100px;
+background-color: #670;	
+color: #fea;	
+font-size: 30px;}
+
+#sec01:hover>.box01 {
+transition-property:
+background-color, color;	
+transition-duration:1.5s;}
+
+#sec01:hover>.box02 {
+transition-property:height;	
+transition-duration:1.5s;	}
+
+#sec01:hover>.box03 {
+transition-property:width, font-size;
+transition-duration:1.5s;}
+
+#sec01:hover>.box04 {	
+transition-property:width, height,
+background-color, color, font-size;
+transition-duration:2.5s, 4s, 1s, 1s, 2s;}
+
+
+
+ /* transition-delay  지연 시간 */
+#sec02 {position: relative;
+height: 400px;
+overflow: hidden;}
+
+#sec02>p {border: 1px solid;
+width: 50px; height: 50px;
+box-sizing:border-box;
+background-color: #ea0;
+color: #300;
+text-align:center;
+line-height: 50px;
+text-transform: uppercase;
+position: absolute;
+left: -100px; bottom:250px;}
+
+#sec02:hover>p {transition-property:left, bottom;
+transition-duration:2s;  }
+
+#sec02:hover>.b {
+left: 250px;  bottom: 50px;
+transition-delay:1s; }
+#sec02:hover>.o {
+left: 300px; bottom: 50px;
+transition-delay:2s;}
+#sec02:hover>.x {
+left: 350px; bottom: 50px;
+transition-delay:3s;}
+#sec02:hover>.b0 {
+left: 400px; bottom: 50px;
+transition-delay:4s;}
+#sec02:hover>.b5 {
+left: 450px; bottom: 50px;
+transition-delay:5s;}
+
+#sec02:hover>.all {
+left: 350px; bottom: 100px;	
+background-color:#ad9;
+width:100px; 
+transform:rotate(720deg);
+transition:left 3s 2s, bottom 3s 2s,
+background-color 5s, width 6s 3s,transform 3s 2s;}
+
+
+ /* transition-timing-function 가속 감속 등 */
+#sec03>p {background-color: #cef;
+border-right:10px solid #9ad;
+width: 150px;
+padding: 0.5em;
+text-align: right;}
+
+#sec03:hover>p {
+background-color: #fce;	
+width: 1000px;
+transition:3s;}
+
+#sec03:hover>.tf01 {
+	transition-timing-function:ease;}
+#sec03:hover>.tf02 {
+	transition-timing-function:ease-in;}
+#sec03:hover>.tf03 {
+	transition-timing-function:ease-out;}
+#sec03:hover>.tf04 {
+	transition-timing-function:ease-in-out;}
+#sec03:hover>.tf05 {
+	transition-timing-function:linear;}
+#sec03:hover>.tf06 {
+	transition-timing-function:
+cubic-bezier(.17,.67,.83,.67);}
+#sec03:hover>.tf07 {
+	transition-timing-function:
+cubic-bezier(1,2.05,.83,.67);}
+#sec03:hover>.tf08 {
+	transition-timing-function:
+cubic-bezier(1,2.05,.58,-1.05);}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

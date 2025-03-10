@@ -1,0 +1,173 @@
+@charset "UTF-8";
+  /* 
+  font-family: "Nanum Gothic", serif;
+  font-family: "Black Han Sans", serif;
+  font-family: "Cute Font", serif; */
+  
+  
+* {margin: 0; padding: 0; } 
+
+body {
+	font-family: "Nanum Gothic", serif; }
+ 
+a {text-decoration: none; } 
+ 
+nav a:link, nav a:visited {
+	color: #fff; } 
+nav a:hover, nav a:active {
+	color: #ff0; }  
+ 
+h2 {font-size: 1.8em;}
+h3 {font-size: 1.3em;}
+p {font-size: 1.3em;
+line-height: 2.5;} 
+li {font-size: 1em;
+line-height: 2;}  
+
+ /* mobile */
+#wrap {border: 1px solid red;
+margin: 0 auto; } 
+ 
+header {height: 300px;
+background-image: url("img/header.jpg");
+background-size:cover;
+background-position: center center;
+}
+ 
+nav {background-color: #000;
+height: 50px;}
+
+nav>ul {/*  */
+padding: 10px;
+list-style: none;} 
+ 
+nav li {/* */
+display: inline-block;
+margin:5px 15px;
+font-family: "Black Han Sans", serif;
+font-size: 0.8em;} 
+
+section {position:relative;
+padding: 15px 5% 10px 5%; } 
+ 
+section:nth-of-type(2n) {
+background-color: #eee;}
+ 
+.icon {font-size: 26px !important;
+ color: #930 !important;} 
+
+.pg-title {
+padding:30px 50px;
+position: absolute;
+top:20px; left: 0; } 
+ 
+.content {/* border: 1px solid #0d0; */
+width: 90%;
+margin: 80px auto 10px;
+padding: 20px; 
+box-sizing: border-box
+/* 요소의 크기 계산시 border까지 포함 */;
+}
+
+.photo {display: none
+/* 모바일~테블릿까지 사진영역 숨김 */;}
+ 
+.text>h3 {color: #0094ff;
+margin-bottom: 20px;}
+ 
+footer {background-color: #000;
+height: 100px;
+color: #fff;} 
+ 
+footer>p {
+ text-align: center;
+ line-height:100px; 	
+ font-size: 3.5em;
+ font-family: "Cute Font", serif; 
+} 
+ 
+ 
+  /* tablet - 너비 768px 이상 */
+@media screen and (min-width:768px) {
+	header {height: 400px;}
+	
+#intro, #map {border:1px dotted #ccc;  
+float: left /* 나란히 배치 */; 
+width: 50%; height:400px;
+box-sizing: border-box;}	
+
+#choice {/* border: 1px solid #00f; */
+clear: both /* float의 영향을 해제시켜
+제자리로  */; }
+} 
+ 
+  /* pc - 너비 992px 이상 */
+@media screen and (min-width:992px) {
+	
+#wrap {border: 1px solid #ccc;
+width: 995px; } 	
+
+header {height: 500px;}
+
+section	{height: 420px;
+padding: 15px 2% 10px 5%;}
+
+#intro, #map {width: 100%;	}
+
+.content {/* border: 1px solid #0d0;  */
+width: 90%;}
+
+.photo {display: block
+/* 모바일~테블릿까지 사진영역   */;
+margin-right: 5%;}	
+	
+.photo, .text {/* border: 1px solid #f00; */
+float: left;
+width: 42%;}
+
+.photo>img {width: 100%;
+max-width:320px;
+height: auto;
+margin-bottom: 30px;}
+
+#choice .photo, #choice .text {
+float: right;	
+margin-right: 5%;}
+
+#choice .photo>img { border-radius: 50%;
+/*
+overflow: hidden; */}
+
+
+footer {clear: both;}
+
+} 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 

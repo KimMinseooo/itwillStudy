@@ -1,0 +1,131 @@
+@charset "UTF-8";
+section>h2>span {background-color: #afc;
+	padding: 6px;
+	font-size: 15px;
+	color: #f00;
+}
+ 
+
+ /* 1. transform:translate(); 위치 변형 */
+#sec01>p {border: 1px solid;
+width: 200px;}
+
+.tr01 {transform:translateX(1000px);}
+#sec01:hover>.tr02 {
+ transform:translateX(-500px);	
+ transition:1s;}
+ 
+.tr03 {transform:translateY(500px);}
+.tr04 {transform:translateY(-500px);}
+ 
+#sec01:hover>.tr05 {
+transform:translate(1000px,-250px);
+transition:1s;}
+
+#sec01:hover>.tr06 {
+transform:translate(100%,100%);}
+
+#sec01 {position: relative;}
+
+#sec01>div {background-color:#ccc;
+width: 70%; height: 150px;
+padding:1em;
+box-sizing:border-box;
+position: absolute;
+left: 50%; top:50%;
+transform:translate(-50%,-50%);}
+
+
+ /* 2. transform:scale(); 크기 변형 */
+#sec02>p, #sec03>p, #sec04>p, #sec05>p {
+	border: 2px solid;
+width: 300px;
+display: inline-block;
+margin: 30px;}
+
+#sec02:hover>.sc01 {transform:scaleX(0.3);
+/* width: 100px !important; */}
+#sec02:hover>.sc02 {transform:scaleX(2);}
+#sec02:hover>.sc03 {transform:scaleY(0.3);}
+#sec02:hover>.sc04 {transform:scaleY(2);}
+.sc05 {overflow: hidden;}
+.sc05:hover>img {transform:scale(1.2,1.2);}
+#sec02:hover>.sc06 {
+	transform:scale(0.1,0.1);
+	transition:1s;}
+
+
+  /* 3. transform:rotate(); 회전 변형 */
+#sec03:hover>.ro01 {transform:rotate(180deg);
+transition:1s;}
+
+#sec03:hover>.ro02 {
+transform:rotate(-180deg);	
+transition:1s;}
+
+#sec03:hover>.ro03 {
+transform:rotateX(180deg);
+transition:1s;}
+
+#sec03:hover>.ro04 {
+transform:rotateY(180deg);
+transition:1s;	}
+
+#sec03:hover>.ro05 {
+transform:rotate(360deg);	
+transition:1s;}
+
+#sec03:hover>.ro06>img {
+transform:rotateY(-720deg);	
+transition:1s;}
+
+
+ /* 4. transform:skew(); 기울기 변형 */
+#sec04:hover>.sk01 {transform:skewX(30deg);	
+transition:1s;}
+#sec04:hover>.sk02 {transform:skewX(-30deg);	
+transition:1s;}
+#sec04:hover>.sk03 {transform:skewY(30deg);	
+transition:1s;}
+#sec04:hover>.sk04 {transform:skewY(-30deg);	
+transition:1s;}
+#sec04:hover>.sk05 {transform:skew(30deg,30deg);
+transition:1s;	}
+
+ /*  */
+.or01 {transform-origin:50% 100%;}
+#sec05:hover>.or01 {
+transform:scale(1,2);	
+transition:1s;}
+
+.or02 {transform-origin:left center;}
+#sec05:hover>.or02 {
+ transform:scale(0.1,1);	
+transition:1s;}
+
+.or03 {transform-origin:0 0; }
+#sec05:hover>.or03 {
+ transform:rotate(360deg);		
+transition:1s;}
+
+.or04 {transform-origin:-200px -250px; }
+#sec05:hover>.or04 {
+transform:rotate(360deg);		
+transition:1s;}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

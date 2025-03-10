@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>rwd</title>
+<link href="style.css" rel="stylesheet">
+<link href="rwd.css" rel="stylesheet">
+</head>
+<body>
+<h1>Responsive Web Design</h1>
+<h2>Viewport</h2>
+<p>
+뷰포트는 사용자가 웹 페이지에서 볼 수 있는 영역입니다. <br>
+뷰포트 설정<br>
+브라우저가 페이지를 처음 로드할 때의 초기 확대/축소 레벨을 설정<br>
+&lt;head&gt;<br>
+&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"/&gt;
+<br>&lt;/head&gt;
+</p>
+
+<h2>반응형 이미지</h2>
+<p>max-width:n%
+필요한 경우 축소되지만 원래 크기보다 더 크게 확대되지는 않습니다.</p>
+<p>다양한 장치에 대한 다양한 이미지 <br>
+&lt;picture&gt; <br>
+  &lt;source srcset="A-s.jpg" media="(max-width:npx)"&gt;<br>
+  &lt;source srcset="A.jpg"&gt;<br>
+  &lt;img src="A.jpg" alt="Flowers"&gt; <br>
+&lt;/picture&gt;
+</p>
+
+<div id="div01">
+ <h2>Media Queries 미디어 쿼리</h2>
+ <p>@media특정 조건이 참인 경우에만 CSS 속성을 사용  <br>
+  Breakpoint 중단점 추가<br>
+  (ex)tablet 768px, desktop 1200px
+ </p>
+</div>
+
+<div id="div02"> 
+ <h2>미디어 쿼리 구문</h2>
+ <p>
+  @media mediatype and (min-width:n) {  <br>
+    선택자 {속성:속성값;} <br>
+  }
+ </p>
+</div>
+
+<div id="div03"> 
+ <h3>미디어 쿼리 장치 종류 조건(mediatype) </h3>
+ <ul>
+  <li>all = Used for all media type devices</li>
+  <li>print = Used for print preview mode</li>
+  <li>screen = Used for computer screens, tablets, smart-phones etc.</li>
+ </ul>
+</div>
+
+<div id="div04"> 
+ <h3>미디어 쿼리의 조건</h3>
+ <ul>
+  <li>width and height of the viewport 뷰포트의 너비와 높이</li>
+  <li>orientation of the viewport (landscape/portrait) 뷰포트 방향(가로 또는 세로)</li>
+  <li>resolution 해상도</li>
+ </ul>
+</div>
+ 
+<h3>Always Design for Mobile First</h3>
+ <p>모바일 퍼스트란 데스크톱이나 다른 기기를 디자인하기 전에 
+  모바일을 먼저 디자인하는 것을 의미합니다.<br>
+ (이렇게 하면 작은 기기에서 페이지가 더 빨리 표시됩니다.)
+ </p>
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
+
+
+
+
+
+
+
+

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>transition</title>
+<link href="style.css" rel="stylesheet">
+<link href="transition.css" rel="stylesheet">
+</head>
+<body>
+<h1>transition 단순한 애니 효과</h1>
+<ul>
+ <li>transition-property: ; 적용할 속성</li>
+ <li>transition-duration:ns/nms; 필수. 진행 시간. 단위는 초 또는 밀리초</li>
+ <li>transition-delay:ns/nms; 지연 시간. 단위는 초 또는 밀리초 </li>
+ <li>transition-timing-function: ; 가속 감속 등 지정.
+  <ul>
+   <li>ease (기본값) 느리게 시작해서 빠르게, 그리고 느리게 끝</li>
+   <li>ease-in 느린 시작으로 지정</li>
+   <li>ease-out 느리게 끝나게 지정 </li>
+   <li>ease-in-out 느리게 시작과 느린 끝으로 지정</li>
+   <li>linear- 시작부터 끝까지 동일한 속도</li>
+   <li>cubic-bezier(n,n,n,n) 3차 베지어 함수에서 사용자 고유의 값을 정의 <br>     
+    <a href="https://cubic-bezier.com/" target="_blank">
+     https://cubic-bezier.com/</a> ( bezier곡선값 자동생성사이트 ) 
+   </li>
+  </ul> 
+ </li>
+</ul>
+
+<section id="sec01">
+ <h2>transition-property: ; 적용할 속성</h2>
+
+ <p class="box01">box 01</p>
+ <p class="box02">box 02</p>
+ <p class="box03">box 03</p>
+ <p class="box04">box 04</p>  
+</section>
+
+<section id="sec02">
+ <h2>transition-delay: ; 지연 시간 </h2>
+
+ <p class="b">b</p>
+ <p class="o">o</p>
+ <p class="x">x</p>
+ <p class="b0">0</p>
+ <p class="b5">5</p>
+ <p class="all">all</p>
+</section>
+
+
+<section id="sec03">
+ <h2>transition-timing-function 가속 감속 등</h2>
+   bezier곡선값 자동생성사이트
+  <a href="https://cubic-bezier.com/" target="_blank">
+  https://cubic-bezier.com/</a> 
+ 
+ <p class="tf01">ease</p>
+ <p class="tf02">ease-in</p>
+ <p class="tf03">ease-out</p>
+ <p class="tf04">ease-in-out</p>
+ <p class="tf05">linear</p>
+ <p class="tf06">cubic-bezier(.17,.67,.83,.67)</p>
+ <p class="tf07">cubic-bezier(1,2.05,.83,.67)</p>
+ <p class="tf08">cubic-bezier(1,2.05,.58,-1.05)</p>
+</section>
+
+
+
+
+
+
+
+
+</body>
+</html>
+
+
+
+
+
+
