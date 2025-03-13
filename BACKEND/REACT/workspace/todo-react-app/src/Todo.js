@@ -14,19 +14,26 @@ function Todo (props) {
         setReadOnly(false);
     }
     // 수정 후 Enter 입력 시 readOnly 설정
+    // enter 키를 할때만 값이 수정하도록 하기 
     const turnOnReadOnly = (e) => {
         if(e.key==='Enter'){
             setReadOnly(true);
+            editItem(item);
         }
     }
 
     const editItem = props.editItem;
     const editEvent = (e) => {
         setItem({...item, title: e.target.value });
+        // item.title = e.target.value;
+        // editItem(item);
     }
 
+    // 불필요한 랜더링을 막기 위해 setItem() 과 item. 으로 접근하는걸 적절히 사용할것
     const checkboxEvent = (e) => {
-        setItem({...item,done: e.target.checked});
+        // setItem({...item,done: e.target.checked});
+        item.done = e.target.checked;
+        editItem(item);
     }
     const deleteItem = props.deleteItem;
     const deleteEvent = () => {
